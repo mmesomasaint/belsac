@@ -16,3 +16,20 @@ export function Text({
 
   return <p className={`${sizeStyle} ${isCopy} ${isFaded}`}>{children}</p>
 }
+
+export function Button({
+  children,
+  onClick,
+}: {
+  children: React.ReactNode
+  onClick: () => void
+}) {
+  return (
+    <button
+      className="bg-black py-5 px-10 rounded-full"
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  )
+}
