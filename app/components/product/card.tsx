@@ -13,7 +13,14 @@ type Props = {
 }
 
 export default function Card({ product }: Props) {
-  const { title, handle, featuredImage, price, compareAtPrice, collectionHandle } = product
+  const {
+    title,
+    handle,
+    featuredImage,
+    price,
+    compareAtPrice,
+    collectionHandle,
+  } = product
 
   return (
     <div className='shadow-lg w-1/4 border border-black/65 flex flex-col gap-0 '>
