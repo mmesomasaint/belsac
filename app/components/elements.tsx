@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from 'next/link'
 
 type Size = 'xl' | 'lg' | 'md' | 'sm' | 'xs'
 
@@ -12,7 +12,7 @@ export function Text({
   white?: boolean
   faded?: boolean
   copy?: boolean
-  size:  Size
+  size: Size
   children: string
 }) {
   const sizeStyles = `${size === 'xl' && 'text-4xl'} ${
@@ -32,9 +32,19 @@ export function Text({
   )
 }
 
-export function TextLink({href, size, children}: {href: string, size: Size, children: string}) {
+export function TextLink({
+  href,
+  size,
+  children,
+}: {
+  href: string
+  size: Size
+  children: string
+}) {
   return (
-    <Link href={href}><Text size={size}>{children}</Text></Link>
+    <Link href={href}>
+      <Text size={size}>{children}</Text>
+    </Link>
   )
 }
 
