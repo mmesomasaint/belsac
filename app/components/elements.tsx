@@ -9,11 +9,18 @@ export function Text({
   size: 'xl' | 'lg' | 'md' | 'sm' | 'xs'
   children: string
 }) {
-  const sizeStyle = `${size === 'xl' && 'text-4xl'} ${size === 'lg' && 'text-3xl'} ${size === 'md' && 'text-2xl'} ${size === 'sm' && 'text-xl'} ${size === 'xs' && 'text-lg'}`
+  const sizeStyle = `${size === 'xl' && 'text-4xl'} ${
+    size === 'lg' && 'text-3xl'
+  } ${size === 'md' && 'text-2xl'} ${size === 'sm' && 'text-xl'} ${
+    size === 'xs' && 'text-lg'
+  }`
+  
   const isCopy = `${copy ? 'leading-snug' : 'leading-none'}`
   const isFaded = `${faded ? 'text-black/65' : 'text-black'}`
 
-  return <p className={`${isCopy} ${isFaded} ${sizeStyle} font-light`}>{children}</p>
+  return (
+    <p className={`${isCopy} ${isFaded} ${sizeStyle} font-light`}>{children}</p>
+  )
 }
 
 export function Button({
