@@ -1,12 +1,14 @@
 import Image from 'next/image'
-import { Text } from '../elements'
+import { Text, TextLink } from '../elements'
 
 type Props = {
   product: {
     title: string
+    handle: string
     featuredImage: string
     price: string
     compareAtPrice: string
+    collectionHandle: string
   }
 }
 
@@ -29,11 +31,9 @@ export default function Card({ product }: Props) {
             </Text>
           </span>
         </div>
-        <span className='line-clamp-2'>
-          <Text size='sm' faded>
+          <TextLink size='sm' href={`/collection/${collectionHandle}/product/${handle}`}>
             {product.title}
-          </Text>
-        </span>
+          </TextLink>
       </div>
     </div>
   )
