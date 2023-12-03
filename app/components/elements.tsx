@@ -19,7 +19,9 @@ export function Text({
   const isFaded = `${faded ? 'text-black/65' : 'text-black'}`
 
   return (
-    <p className={`${isCopy} ${isFaded} ${sizeStyles} font-light`}>{children}</p>
+    <p className={`${isCopy} ${isFaded} ${sizeStyles} font-light`}>
+      {children}
+    </p>
   )
 }
 
