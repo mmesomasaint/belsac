@@ -1,3 +1,7 @@
+import Link from "next/link"
+
+type Size = 'xl' | 'lg' | 'md' | 'sm' | 'xs'
+
 export function Text({
   white,
   faded,
@@ -8,7 +12,7 @@ export function Text({
   white?: boolean
   faded?: boolean
   copy?: boolean
-  size: 'xl' | 'lg' | 'md' | 'sm' | 'xs'
+  size:  Size
   children: string
 }) {
   const sizeStyles = `${size === 'xl' && 'text-4xl'} ${
@@ -25,6 +29,12 @@ export function Text({
     <p className={`${isCopy} ${isFaded} ${isWhite} ${sizeStyles} font-light`}>
       {children}
     </p>
+  )
+}
+
+export function TextLink({href, size, children}: {href: string, size: Size, children: string}) {
+  return (
+    <Link href={href}><Text size={size}>{children}</Text></Link>
   )
 }
 
