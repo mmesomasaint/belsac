@@ -43,7 +43,7 @@ export function TextLink({
 }) {
   return (
     <Link href={href} className='hover:underline hover:underline-offset-4'>
-      <Text size={size}>{children}</Text>
+      <Text size={size} copy>{children}</Text>
     </Link>
   )
 }
