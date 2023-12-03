@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Text } from './components/elements'
+import { Button, Text, TextLink } from './components/elements'
 
 export default function Home() {
   return (
@@ -19,6 +19,7 @@ export default function Home() {
           Click me
         </Text>
       </Button>
+      <TextLink href='/' size='sm'>A Product Name</TextLink>
     </div>
   )
 }
