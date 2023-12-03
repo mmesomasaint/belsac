@@ -31,9 +31,12 @@ export default function Card({ product }: Props) {
             </Text>
           </span>
         </div>
-          <TextLink size='sm' href={`/collection/${collectionHandle}/product/${handle}`}>
-            {product.title}
-          </TextLink>
+        <TextLink
+          size='sm'
+          href={`/collection/${collectionHandle}/product/${handle}`}
+        >
+          {product.title}
+        </TextLink>
       </div>
     </div>
   )
