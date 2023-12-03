@@ -10,7 +10,7 @@ export default function Home() {
     <Text size='sm'>Belsac</Text>
     <Text size='xs'>Belsac</Text>
     <Button onClick={() => {console.log('clicked')}}>
-      <Text size='md'>Click me</Text>
+      <Text size='sm' white>Click me</Text>
     </Button>
   </div>)
 }
