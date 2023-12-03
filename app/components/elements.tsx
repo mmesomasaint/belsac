@@ -1,9 +1,11 @@
 export function Text({
+  white,
   faded,
   copy,
   size,
   children,
 }: {
+  white?: boolean
   faded?: boolean
   copy?: boolean
   size: 'xl' | 'lg' | 'md' | 'sm' | 'xs'
@@ -17,6 +19,7 @@ export function Text({
 
   const isCopy = `${copy ? 'leading-snug' : 'leading-none'}`
   const isFaded = `${faded ? 'text-black/65' : 'text-black'}`
+  const isWhite = `${white ? 'text-white' : 'text-black'}`
 
   return (
     <p className={`${isCopy} ${isFaded} ${sizeStyles} font-light`}>
@@ -33,7 +36,7 @@ export function Button({
   onClick: () => void
 }) {
   return (
-    <button className='bg-black py-5 px-10 rounded-full' onClick={onClick}>
+    <button className='bg-black py-5 px-10 shadow-md' onClick={onClick}>
       {children}
     </button>
   )
