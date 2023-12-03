@@ -1,4 +1,4 @@
-import { Text } from "./components/elements";
+import { Button, Text } from "./components/elements";
 
 export default function Home() {
   return (<div>
@@ -7,6 +7,8 @@ export default function Home() {
     <Text size='md'>Belsac</Text>
     <Text size='sm'>Belsac</Text>
     <Text size='xs'>Belsac</Text>
-    <p>Belsac</p>
+    <Button onClick={() => {console.log('clicked')}}>
+      <Text size='md'>Click me</Text>
+    </Button>
   </div>)
 }
