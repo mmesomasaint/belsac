@@ -18,7 +18,7 @@ export async function shopifyFetch({
         },
         body: { query, variables } && JSON.stringify({ query, variables }),
       })
-      
+
       return {
         status: result.status,
         body: await result.json(),
