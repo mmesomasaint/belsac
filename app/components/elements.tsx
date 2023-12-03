@@ -25,10 +25,7 @@ export function Button({
   onClick: () => void
 }) {
   return (
-    <button
-      className="bg-black py-5 px-10 rounded-full"
-      onClick={onClick}
-    >
+    <button className='bg-black py-5 px-10 rounded-full' onClick={onClick}>
       {children}
     </button>
   )
