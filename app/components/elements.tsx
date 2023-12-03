@@ -22,7 +22,7 @@ export function Text({
   const isWhite = `${white ? 'text-white' : 'text-black'}`
 
   return (
-    <p className={`${isCopy} ${isFaded} ${sizeStyles} font-light`}>
+    <p className={`${isCopy} ${isFaded} ${isWhite} ${sizeStyles} font-light`}>
       {children}
     </p>
   )
