@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, Text } from "./components/elements";
 
 export default function Home() {
