@@ -23,7 +23,7 @@ export default function Card({ product }: Props) {
   } = product
 
   return (
-    <div className='shadow-lg w-1/4 border border-black/65 flex flex-col gap-0 '>
+    <div className='shadow-lg w-1/5 border border-black/65 flex flex-col gap-0 '>
       <Image
         src={featuredImage}
         alt={title}
@@ -31,17 +31,17 @@ export default function Card({ product }: Props) {
         height={400}
         className='grow'
       />
-      <div className='flex flex-col w-full gap-4 p-4'>
+      <div className='flex flex-col w-full gap-2 p-4'>
         <div className='flex justify-start items-end gap-3'>
-          <Text size='xl'>{price}</Text>
+          <Text size='lg'>{price}</Text>
           <span className='text-black/80 line-through'>
-            <Text size='md' faded>
+            <Text size='xs' faded>
               {compareAtPrice}
             </Text>
           </span>
         </div>
         <TextLink
-          size='lg'
+          size='sm'
           href={`/collection/${collectionHandle}/product/${handle}`}
         >
           {title}
