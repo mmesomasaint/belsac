@@ -42,8 +42,13 @@ export function TextLink({
   children: string
 }) {
   return (
-    <Link href={href} className='text-black/80 hover:underline hover:underline-offset-4 line-clamp-2'>
-      <Text size={size} copy>{children}</Text>
+    <Link
+      href={href}
+      className='text-black/80 hover:underline hover:underline-offset-4 line-clamp-2'
+    >
+      <Text size={size} copy>
+        {children}
+      </Text>
     </Link>
   )
 }
@@ -60,7 +65,10 @@ export function Button({
   const outlineStyles = `${outline ? 'bg-transparent' : 'bg-black/90'}`
 
   return (
-    <button className={`py-5 px-10 shadow-md border border-black/90 ${outlineStyles}`} onClick={onClick}>
+    <button
+      className={`py-5 px-10 shadow-md border border-black/90 ${outlineStyles}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
