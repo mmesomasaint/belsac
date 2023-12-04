@@ -13,9 +13,7 @@ export default function Home() {
         </div>
         <div className=''>
           <Button onClick={() => console.log('Search button clicked')}>
-            <Text size='md' white>
-              Search
-            </Text>
+            Search
           </Button>
         </div>
         <div className='flex justify-end items-center gap-4'>
