@@ -59,14 +59,15 @@ export function Button({
   onClick,
 }: {
   outline?: boolean
-  children: React.ReactNode
+  children: string
   onClick: () => void
 }) {
   const outlineStyles = `${outline ? 'bg-transparent' : 'bg-black/90'}`
+  const outlineTextStyles = `${outline ? 'text-black/90' : 'text-white'}`
 
   return (
     <button
-      className={`py-4 px-10 shadow-md border border-black/90 ${outlineStyles}`}
+      className={`py-4 px-10 shadow-md border border-black/90 leading-none text-2xl font-light ${outlineStyles} ${outlineTextStyles}`}
       onClick={onClick}
     >
       {children}
