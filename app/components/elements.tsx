@@ -44,7 +44,7 @@ export function TextLink({
   return (
     <Link
       href={href}
-      className='text-black/90 hover:underline group-hover:underline hover:underline-offset-4 group-hover:underline-offset-4 line-clamp-2'
+      className='text-black/90 decoration-from-font hover:underline group-hover:underline hover:underline-offset-4 group-hover:underline-offset-4 line-clamp-2'
     >
       <Text size={size} copy>
         {children}
