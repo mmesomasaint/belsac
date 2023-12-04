@@ -58,7 +58,7 @@ export function Button({
   children,
   onClick,
 }: {
-  outline: boolean
+  outline?: boolean
   children: React.ReactNode
   onClick: () => void
 }) {
