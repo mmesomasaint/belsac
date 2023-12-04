@@ -22,7 +22,7 @@ export function Text({
   }`
 
   const isCopy = `${copy ? 'leading-snug' : 'leading-none'}`
-  const isFaded = `${faded ? 'text-black/70' : 'text-black'}`
+  const isFaded = `${faded ? 'text-black/80' : 'text-black'}`
   const isWhite = `${white ? 'text-white' : 'text-black'}`
 
   return (
@@ -42,7 +42,7 @@ export function TextLink({
   children: string
 }) {
   return (
-    <Link href={href} className='text-black/70 hover:underline hover:underline-offset-4 line-clamp-2'>
+    <Link href={href} className='text-black/80 hover:underline hover:underline-offset-4 line-clamp-2'>
       <Text size={size} copy>{children}</Text>
     </Link>
   )
