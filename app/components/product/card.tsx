@@ -34,7 +34,7 @@ export default function Card({ product }: Props) {
       <div className='flex flex-col w-full gap-4 p-4'>
         <div className='flex justify-start items-end gap-3'>
           <Text size='xl'>{price}</Text>
-          <span className='text-black/65 line-through'>
+          <span className='text-black/80 line-through'>
             <Text size='md' faded>
               {compareAtPrice}
             </Text>
