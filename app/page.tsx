@@ -27,15 +27,18 @@ export default function Home() {
       </div>
       <div className='py-4 mt-10'>
         <div className='flex justify-between items-center gap-10'>
-        <Text size='lg'>Featured</Text>
-        <Button onClick={() => console.log('Sort clicked')} outline>Sort by</Button>
+          <Text size='lg'>Featured</Text>
+          <Button onClick={() => console.log('Sort clicked')} outline>
+            Sort by
+          </Button>
         </div>
         <div className='flex justify-start items-center gap-24 mt-4'>
           <Card
             product={{
               title: 'The Classic Handbag By Prada 2023',
               handle: 'the-classic-handbag-by-prada-2023',
-              featuredImage: 'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
+              featuredImage:
+                'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
               price: '$200',
               compareAtPrice: '$300',
               collectionHandle: 'prada-handbags',
@@ -45,7 +48,8 @@ export default function Home() {
             product={{
               title: 'The Classic Handbag By Prada 2023',
               handle: 'the-classic-handbag-by-prada-2023',
-              featuredImage: 'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
+              featuredImage:
+                'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
               price: '$200',
               compareAtPrice: '$300',
               collectionHandle: 'prada-handbags',
@@ -55,7 +59,8 @@ export default function Home() {
             product={{
               title: 'The Classic Handbag By Prada 2023',
               handle: 'the-classic-handbag-by-prada-2023',
-              featuredImage: 'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
+              featuredImage:
+                'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
               price: '$200',
               compareAtPrice: '$300',
               collectionHandle: 'prada-handbags',
@@ -65,7 +70,8 @@ export default function Home() {
             product={{
               title: 'The Classic Handbag By Prada 2023',
               handle: 'the-classic-handbag-by-prada-2023',
-              featuredImage: 'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
+              featuredImage:
+                'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
               price: '$200',
               compareAtPrice: '$300',
               collectionHandle: 'prada-handbags',
