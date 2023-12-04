@@ -20,9 +20,9 @@ export default function Home() {
             Search
           </Button>
         </div>
-        <div className='flex justify-end items-center gap-4'>
-          <PiShoppingCartThin className='text-3xl' />
-          <PiHeartStraightThin className='text-3xl' />
+        <div className='flex justify-end items-center gap-10'>
+          <PiHeartStraightThin className='text-4xl' />
+          <PiShoppingCartThin className='text-4xl' />
         </div>
       </div>
     </div>
