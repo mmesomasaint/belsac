@@ -1,6 +1,6 @@
 'use client'
 
-import { PiShoppingCartThin } from "react-icons/pi"
+import { PiShoppingCartThin } from 'react-icons/pi'
 import { Button, Text, TextLink } from './components/elements'
 import Card from './components/product/card'
 
@@ -12,10 +12,12 @@ export default function Home() {
           <Text size='xl'>Belsac</Text>
         </div>
         <div className=''>
-          <Button onClick={() => console.log('Search button clicked')}>Search</Button>
+          <Button onClick={() => console.log('Search button clicked')}>
+            Search
+          </Button>
         </div>
         <div className='flex justify-end items-center gap-4'>
-        <PiShoppingCartThin className='text-3xl' />
+          <PiShoppingCartThin className='text-3xl' />
         </div>
       </div>
     </div>
