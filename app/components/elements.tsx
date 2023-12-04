@@ -66,7 +66,7 @@ export function Button({
 
   return (
     <button
-      className={`py-5 px-10 shadow-md border border-black/90 ${outlineStyles}`}
+      className={`py-4 px-10 shadow-md border border-black/90 ${outlineStyles}`}
       onClick={onClick}
     >
       {children}
