@@ -12,7 +12,10 @@ export default function Home() {
           <Text size='xl'>Belsac</Text>
         </div>
         <div className='flex justify-center items-stretch w-[40%]'>
-          <input placeholder='Search bags' className='grow self-stretch p-4 text-xl font-light border border-black/90 focus:outline-none placeholder:text-black/90 placeholder:text-xl' />
+          <input
+            placeholder='Search bags'
+            className='grow self-stretch p-4 text-xl font-light border border-black/90 focus:outline-none placeholder:text-black/90 placeholder:text-xl'
+          />
           <Button onClick={() => console.log('Search button clicked')}>
             Search
           </Button>
