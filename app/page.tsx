@@ -1,6 +1,7 @@
 'use client'
 
 import { Button, Text, TextLink } from './components/elements'
+import Card from './components/product/card'
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         </Text>
       </Button>
       <TextLink href='/' size='sm'>A Product Name</TextLink>
+      <Card product={{title: 'A Product Name For A Beautiful Bag', handle: 'a-product-name-for-a-beautiful-bag', featuredImage: 'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0', price: '$100', compareAtPrice: '$200', collectionHandle: 'collection-handle'}} />
     </div>
   )
 }
