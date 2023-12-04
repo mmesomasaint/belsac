@@ -43,7 +43,7 @@ export function TextLink({
 }) {
   return (
     <Link href={href} className='text-black/70 hover:underline hover:underline-offset-4 line-clamp-2'>
-      <Text size={size} copy faded>{children}</Text>
+      <Text size={size} copy>{children}</Text>
     </Link>
   )
 }
