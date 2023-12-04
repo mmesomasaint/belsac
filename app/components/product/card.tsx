@@ -23,7 +23,7 @@ export default function Card({ product }: Props) {
   } = product
 
   return (
-    <div className='shadow-lg w-1/5 border border-black/65 flex flex-col gap-0 '>
+    <div className='shadow-lg w-1/5 border border-black/65 flex flex-col gap-0 group'>
       <Image
         src={featuredImage}
         alt={title}
