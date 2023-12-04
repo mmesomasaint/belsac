@@ -6,8 +6,8 @@ import Card from './components/product/card'
 
 export default function Home() {
   return (
-    <div>
-      <div className='flex justify-between items-center gap-10'>
+    <div className='px-7'>
+      <div className='flex justify-between items-center gap-10 py-4'>
         <div className=''>
           <Text size='xl'>Belsac</Text>
         </div>
