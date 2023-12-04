@@ -27,21 +27,21 @@ export default function Card({ product }: Props) {
       <Image
         src={featuredImage}
         alt={title}
-        width={300}
-        height={300}
+        width={400}
+        height={400}
         className='grow'
       />
-      <div className='flex flex-col w-fullp-4'>
+      <div className='flex flex-col w-full gap-4 p-4'>
         <div className='flex justify-start items-end gap-3'>
-          <Text size='md'>{price}</Text>
-          <span className=' line-through'>
-            <Text size='xs' faded>
+          <Text size='xl'>{price}</Text>
+          <span className='text-black/65 line-through'>
+            <Text size='md' faded>
               {compareAtPrice}
             </Text>
           </span>
         </div>
         <TextLink
-          size='sm'
+          size='lg'
           href={`/collection/${collectionHandle}/product/${handle}`}
         >
           {title}
