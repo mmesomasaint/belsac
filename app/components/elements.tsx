@@ -49,14 +49,18 @@ export function TextLink({
 }
 
 export function Button({
+  outline,
   children,
   onClick,
 }: {
+  outline: boolean
   children: React.ReactNode
   onClick: () => void
 }) {
+  const outlineStyles = `${outline ? 'bg-transparent' : 'bg-black/90'}`
+
   return (
-    <button className='bg-black py-5 px-10 shadow-md' onClick={onClick}>
+    <button className={`py-5 px-10 shadow-md border border-black/90 ${outlineStyles}`} onClick={onClick}>
       {children}
     </button>
   )
