@@ -32,6 +32,10 @@ export default function Home() {
           <DropDown title='Sort by' initialActive='Name (ascending)'>
             <DropItem onClick={() => console.log("First dropitem clicked")}>Name (ascending)</DropItem>
             <DropItem onClick={() => console.log("Second dropitem clicked")}>Name (descending)</DropItem>
+            <DropItem onClick={() => console.log("Second dropitem clicked")}>Date (ascending)</DropItem>
+            <DropItem onClick={() => console.log("Second dropitem clicked")}>Date (descending)</DropItem>
+            <DropItem onClick={() => console.log("Second dropitem clicked")}>Price (ascending)</DropItem>
+            <DropItem onClick={() => console.log("Second dropitem clicked")}>Price (descending)</DropItem>
           </DropDown>
         </div>
         <div className='flex justify-start items-center gap-24 mt-4'>
