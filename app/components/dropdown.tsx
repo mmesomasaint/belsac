@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 import { BsCheckLg } from 'react-icons/bs'
-import { PiArrowDownThin } from 'react-icons/pi'
+import { PiCaretDownThin } from 'react-icons/pi'
 import { Button } from './elements'
 
 const DropContext = createContext<{
@@ -37,7 +37,7 @@ export default function DropDown({
         >
           <span className='flex justify-center itmes-center gap-4'>
             {title}
-            <PiArrowDownThin className='text-4xl' />
+            <PiCaretDownThin className='text-4xl' />
           </span>
         </Button>
         <div className={`${isOpen ? 'flex' : 'hidden'} flex-col items-stretch`}>
