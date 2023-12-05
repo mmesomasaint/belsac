@@ -31,10 +31,7 @@ export default function DropDown({
       value={{ active, setActive: (value: string) => setActive(value) }}
     >
       <div className='relative' aria-haspopup='menu'>
-        <Button
-          onClick={() => setIsOpen(prev => !prev)}
-          outline
-        >
+        <Button onClick={() => setIsOpen((prev) => !prev)} outline>
           <span className='flex justify-center items-center gap-4'>
             {title}
             <PiCaretDownThin className='text-4xl' />
