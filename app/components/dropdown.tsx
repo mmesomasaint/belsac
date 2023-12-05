@@ -56,7 +56,7 @@ export function DropItem({
 }: {
   value: string
   onClick: () => void
-  children: string
+  children: React.ReactNode
 }) {
   const { active, setActive } = useDrop()
   const isActive = active === value
