@@ -35,7 +35,7 @@ export default function DropDown({
           onClick={() => console.log('dropdown main button clicked')}
           outline
         >
-          <span className='flex justify-center itmes-center gap-4'>
+          <span className='flex justify-center items-center gap-4'>
             {title}
             <PiCaretDownThin className='text-4xl' />
           </span>
