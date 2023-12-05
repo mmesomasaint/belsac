@@ -3,6 +3,7 @@
 import { PiShoppingCartThin, PiHeartStraightThin } from 'react-icons/pi'
 import { Button, Text, TextLink } from './components/elements'
 import Card from './components/product/card'
+import DropDown, { DropItem } from './components/dropdown'
 
 export default function Home() {
   return (
@@ -28,9 +29,10 @@ export default function Home() {
       <div className='py-4 mt-10'>
         <div className='flex justify-between items-center gap-10'>
           <Text size='lg'>Featured</Text>
-          <Button onClick={() => console.log('Sort clicked')} outline>
-            Sort by
-          </Button>
+          <DropDown title='Sort by' initialActive='Name (ascending)'>
+            <DropItem onClick={() => console.log("First dropitem clicked")}>Name (ascending)</DropItem>
+            <DropItem onClick={() => console.log("Second dropitem clicked")}>Name (descending)</DropItem>
+          </DropDown>
         </div>
         <div className='flex justify-start items-center gap-24 mt-4'>
           <Card
