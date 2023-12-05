@@ -55,7 +55,7 @@ export function DropItem({
   onClick: () => void
   children: string
 }) {
-  const { active } = useDrop()
+  const { active, setActive } = useDrop()
   const isActive = active === children
 
   const outlineStyles = `${
@@ -65,7 +65,10 @@ export function DropItem({
   return (
     <button
       className={`py-4 px-10 shadow-md border border-black/90 leading-none text-2xl font-light ${outlineStyles}`}
-      onClick={onClick}
+      onClick={() => {
+        setActive(children)
+        onClick()
+      }}
     >
       <span className='flex justify-center items-center gap-4'>
         {children}
