@@ -56,7 +56,7 @@ export function DropItem({
   const isActive = active === children
 
   const outlineStyles = `${
-    isActive ? 'bg-black/90 text-white' : 'bg-transparent text-black/90'
+    isActive ? 'bg-black/90 text-white' : 'bg-white text-black/90'
   }`
 
   return (
