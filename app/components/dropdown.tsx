@@ -37,7 +37,11 @@ export default function DropDown({
             <PiCaretDownThin className='text-4xl' />
           </span>
         </Button>
-        <div className={`absolute top-[100%] right-0 ${isOpen ? 'flex' : 'hidden'} flex-col items-stretch`}>
+        <div
+          className={`absolute top-[100%] right-0 ${
+            isOpen ? 'flex' : 'hidden'
+          } flex-col items-stretch`}
+        >
           {children}
         </div>
       </div>
