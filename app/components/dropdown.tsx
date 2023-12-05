@@ -40,7 +40,7 @@ export default function DropDown({
             <PiArrowDownThin className='text-4xl' />
           </span>
         </Button>
-        <div className={`${isOpen ? 'flex' : 'block'} flex-col items-stretch`}>
+        <div className={`${isOpen ? 'flex' : 'hidden'} flex-col items-stretch`}>
           {children}
         </div>
       </div>
