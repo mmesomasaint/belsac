@@ -75,7 +75,7 @@ export function DropItem({
     >
       <span className='flex justify-center items-center gap-4'>
         {children}
-        {isActive && <BsCheckLg className='text-4xl' />}
+        <BsCheckLg className='text-4xl text-white' />
       </span>
     </button>
   )
