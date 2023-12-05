@@ -46,14 +46,16 @@ export default function DropDown({
 }
 
 export function DropItem({
+  value,
   onClick,
   children,
 }: {
+  value: string
   onClick: () => void
   children: string
 }) {
   const { active, setActive } = useDrop()
-  const isActive = active === children
+  const isActive = active === value
 
   const outlineStyles = `${
     isActive ? 'bg-black/90 text-white' : 'bg-white text-black/90'
@@ -63,7 +65,7 @@ export function DropItem({
     <button
       className={`py-4 px-10 shadow-md border border-black/90 leading-none text-2xl font-light ${outlineStyles}`}
       onClick={() => {
-        setActive(children)
+        setActive(value)
         onClick()
       }}
     >
