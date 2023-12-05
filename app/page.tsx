@@ -72,7 +72,7 @@ export default function Home() {
               </span>
             </DropItem>
             <DropItem
-              value='Price (descending)'
+              value='Price (ascending)'
               onClick={() => console.log('Second dropitem clicked')}
             >
               <span className='flex justify-center items-center gap-0'>
