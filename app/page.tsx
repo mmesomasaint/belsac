@@ -1,6 +1,11 @@
 'use client'
 
-import { PiShoppingCartThin, PiHeartStraightThin, PiArrowDownThin, PiArrowUpThin } from 'react-icons/pi'
+import {
+  PiShoppingCartThin,
+  PiHeartStraightThin,
+  PiArrowDownThin,
+  PiArrowUpThin,
+} from 'react-icons/pi'
 import { Button, Text, TextLink } from './components/elements'
 import Card from './components/product/card'
 import DropDown, { DropItem } from './components/dropdown'
@@ -30,37 +35,60 @@ export default function Home() {
         <div className='flex justify-between items-center gap-10'>
           <Text size='lg'>Featured</Text>
           <DropDown title='Sort by' initialActive='Name (ascending)'>
-            <DropItem value='Name (ascending)' onClick={() => console.log("First dropitem clicked")}>
+            <DropItem
+              value='Name (ascending)'
+              onClick={() => console.log('First dropitem clicked')}
+            >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowUpThin className='text-4xl' />
                 Name
               </span>
             </DropItem>
-            <DropItem value='Name (descending)' onClick={() => console.log("Second dropitem clicked")}>
+            <DropItem
+              value='Name (descending)'
+              onClick={() => console.log('Second dropitem clicked')}
+            >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowDownThin className='text-4xl' />
                 Name
-              </span></DropItem>
-            <DropItem value='Date (ascending)' onClick={() => console.log("Second dropitem clicked")}>
+              </span>
+            </DropItem>
+            <DropItem
+              value='Date (ascending)'
+              onClick={() => console.log('Second dropitem clicked')}
+            >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowUpThin className='text-4xl' />
                 Date
-              </span></DropItem>
-            <DropItem value='Date (descending)' onClick={() => console.log("Second dropitem clicked")}>
+              </span>
+            </DropItem>
+            <DropItem
+              value='Date (descending)'
+              onClick={() => console.log('Second dropitem clicked')}
+            >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowDownThin className='text-4xl' />
                 Date
-              </span></DropItem>
-            <DropItem value='Price (descending)' onClick={() => console.log("Second dropitem clicked")}>
+              </span>
+            </DropItem>
+            <DropItem
+              value='Price (descending)'
+              onClick={() => console.log('Second dropitem clicked')}
+            >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowUpThin className='text-4xl' />
                 Price
-              </span></DropItem>
-            <DropItem value='Price (descending)' onClick={() => console.log("Second dropitem clicked")}>
+              </span>
+            </DropItem>
+            <DropItem
+              value='Price (descending)'
+              onClick={() => console.log('Second dropitem clicked')}
+            >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowDownThin className='text-4xl' />
                 Price
-              </span></DropItem>
+              </span>
+            </DropItem>
           </DropDown>
         </div>
         <div className='flex justify-start items-center gap-24 mt-4'>
