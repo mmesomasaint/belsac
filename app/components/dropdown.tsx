@@ -3,7 +3,7 @@ import { BsCheckLg } from 'react-icons/bs'
 import { PiArrowDownThin } from 'react-icons/pi'
 import { Button } from './elements'
 
-const DropContext = createContext<{ active: string }>({ active: '' })
+const DropContext = createContext<{ active: string; setActive: (value: string) => void }>({ active: '', setActive: () => {return} })
 const useDrop = () => useContext(DropContext)
 
 export default function DropDown({
@@ -19,7 +19,7 @@ export default function DropDown({
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <DropContext.Provider value={{ active }}>
+    <DropContext.Provider value={{ active, setActive: (value: string) => setActive(value) }}>
       <div className='relative' aria-haspopup='menu'>
         <Button
           onClick={() => console.log('dropdown main button clicked')}
