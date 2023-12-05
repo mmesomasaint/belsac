@@ -32,7 +32,7 @@ export default function DropDown({
     >
       <div className='relative' aria-haspopup='menu'>
         <Button
-          onClick={() => console.log('dropdown main button clicked')}
+          onClick={() => setIsOpen(prev => !prev)}
           outline
         >
           <span className='flex justify-center items-center gap-4'>
