@@ -59,7 +59,7 @@ export function Button({
   onClick,
 }: {
   outline?: boolean
-  children: string
+  children: React.ReactNode
   onClick: () => void
 }) {
   const outlineStyles = `${outline ? 'bg-transparent' : 'bg-black/90'}`
