@@ -3,11 +3,13 @@ import { BsCheckLg } from 'react-icons/bs'
 import { PiCaretDownThin } from 'react-icons/pi'
 import { Button } from './elements'
 
-const DropContext = createContext<{
+type DropContextType = {
   active: string
   setActive: (value: string) => void
   setIsOpen: (value: boolean) => void
-}>({
+}
+
+const DropContext = createContext<DropContextType>({
   active: '',
   setActive: () => {
     return
