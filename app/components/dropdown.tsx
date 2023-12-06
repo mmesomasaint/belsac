@@ -38,6 +38,7 @@ export default function DropDown({
         setIsOpen: (value: boolean) => setIsOpen(value),
       }}
     >
+      {isOpen && <div className='fixed inset-0 bg-transparent' onClick={() => setIsOpen(false)} />}
       <div className='relative' aria-haspopup='menu'>
         <Button onClick={() => setIsOpen((prev) => !prev)} outline>
           <span className='flex justify-center items-center gap-4'>
