@@ -6,11 +6,13 @@ import { Button } from './elements'
 const DropContext = createContext<{
   active: string
   setActive: (value: string) => void
+  setIsOpen: (value: boolean) => void
 }>({
   active: '',
   setActive: () => {
     return
   },
+  setIsOpen: () => {return},
 })
 const useDrop = () => useContext(DropContext)
 
@@ -28,7 +30,7 @@ export default function DropDown({
 
   return (
     <DropContext.Provider
-      value={{ active, setActive: (value: string) => setActive(value) }}
+      value={{active, setActive: (value: string) => setActive(value), setIsOpen: (value: boolean) => setIsOpen(value) }}
     >
       <div className='relative' aria-haspopup='menu'>
         <Button onClick={() => setIsOpen((prev) => !prev)} outline>
@@ -58,7 +60,7 @@ export function DropItem({
   onClick: () => void
   children: React.ReactNode
 }) {
-  const { active, setActive } = useDrop()
+  const { active, setActive, setIsOpen } = useDrop()
   const isActive = active === value
 
   const outlineStyles = `${
@@ -71,6 +73,7 @@ export function DropItem({
       onClick={() => {
         setActive(value)
         onClick()
+        setIsOpen(false)
       }}
     >
       <span className='flex justify-center items-center gap-4'>
