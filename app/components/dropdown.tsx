@@ -12,7 +12,9 @@ const DropContext = createContext<{
   setActive: () => {
     return
   },
-  setIsOpen: () => {return},
+  setIsOpen: () => {
+    return
+  },
 })
 const useDrop = () => useContext(DropContext)
 
@@ -30,7 +32,11 @@ export default function DropDown({
 
   return (
     <DropContext.Provider
-      value={{active, setActive: (value: string) => setActive(value), setIsOpen: (value: boolean) => setIsOpen(value) }}
+      value={{
+        active,
+        setActive: (value: string) => setActive(value),
+        setIsOpen: (value: boolean) => setIsOpen(value),
+      }}
     >
       <div className='relative' aria-haspopup='menu'>
         <Button onClick={() => setIsOpen((prev) => !prev)} outline>
