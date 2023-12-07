@@ -1,4 +1,4 @@
-import {MiniProductQueryResult} from './types'
+import { MiniProductQueryResult } from './types'
 
 /**
  * Cleans up the query result of mini product
