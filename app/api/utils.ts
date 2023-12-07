@@ -30,10 +30,9 @@ export function cleanMiniProduct(queryResult: MiniProductQueryResult) {
     id,
     title,
     handle,
-    colors,
     src: url,
     price: parseInt(minVariantPrice.amount),
-    discount: parseInt(maxVariantPrice.amount),
+    compareAtPrice: parseInt(maxVariantPrice.amount),
     collectionHandle: collectionHandles[0],
   }
 }
