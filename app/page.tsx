@@ -3,6 +3,7 @@
 import {
   PiShoppingCartThin,
   PiHeartStraightThin,
+  PiCaretRightThin,
   PiArrowDownThin,
   PiArrowUpThin,
 } from 'react-icons/pi'
@@ -120,12 +121,16 @@ export default function Home() {
           </DropDown>
         </div>
         <div className='flex justify-start items-center gap-24 mt-4'>
-          {products.map((product) => (
-            <Card
-              key={product.id}
-              product={product}
-            />
-          ))}
+          {loading ? <Text size='lg'>Loading...</Text> : (
+            hasError ? <Text size='lg'>Error occurred...</Text> : (
+              products.map((product) => (
+                <Card
+                  key={product.id}
+                  product={product}
+                />
+              ))
+            )
+          )}
         </div>
       </div>
     </div>
