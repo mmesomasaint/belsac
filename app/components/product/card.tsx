@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Text, TextLink } from '../elements'
 import { MiniProduct } from '@/lib/product'
 
-export default function Card({ product }: {product: MiniProduct}) {
+export default function Card({ product }: { product: MiniProduct }) {
   const {
     title,
     handle,
