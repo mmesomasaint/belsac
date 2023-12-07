@@ -124,7 +124,7 @@ export default function Home() {
           {loading ? (
             <Text size='lg'>Loading...</Text>
           ) : hasError ? (
-            <Text size='lg'>Error occurred...</Text>
+            <Text size='lg'>Something went wrong.</Text>
           ) : (
             products.map((product) => (
               <Card key={product.id} product={product} />
