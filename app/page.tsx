@@ -123,12 +123,7 @@ export default function Home() {
           {products.map((product) => (
             <Card
               key={product.id}
-              title={product.name}
-              handle={product.handle}
-              featuredImage={product.featuredImage}
-              price={product.price}
-              compareAtPrice={product.compareAtPrice}
-              collectionHandle={product.collectionHandle}
+              product={product}
             />
           ))}
         </div>
