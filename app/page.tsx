@@ -152,13 +152,13 @@ export default function Home() {
           )}
           {hasMore && (
             <div className='w-full flex justify-center items-center'>
-            <Button onClick={loadMore} outline>
-              <span className='flex justify-center items-center gap-0'>
-                More
-                <PiCaretRightThin className='text-4xl' />
-              </span>
-            </Button>
-          </div>
+              <Button onClick={loadMore} outline>
+                <span className='flex justify-center items-center gap-0'>
+                  More
+                  <PiCaretRightThin className='text-4xl' />
+                </span>
+              </Button>
+            </div>
           )}
         </div>
       </div>
