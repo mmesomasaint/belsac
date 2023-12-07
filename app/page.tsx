@@ -10,9 +10,10 @@ import { Button, Text, TextLink } from './components/elements'
 import Card from './components/product/card'
 import DropDown, { DropItem } from './components/dropdown'
 import { useEffect, useState } from 'react'
+import { MiniProduct } from '@/lib/product'
 
 export default function Home() {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState<MiniProduct[]>([])
   const [loading, setLoading] = useState(false)
   const [cursor, setCursor] = useState(null)
   const [hasError, setHasError] = useState(false)

@@ -1,18 +1,8 @@
 import Image from 'next/image'
 import { Text, TextLink } from '../elements'
+import { MiniProduct } from '@/lib/product'
 
-type Props = {
-  product: {
-    title: string
-    handle: string
-    featuredImage: string
-    price: string
-    compareAtPrice: string
-    collectionHandle: string
-  }
-}
-
-export default function Card({ product }: Props) {
+export default function Card({ product }: {product: MiniProduct}) {
   const {
     title,
     handle,
