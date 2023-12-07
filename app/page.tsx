@@ -9,8 +9,35 @@ import {
 import { Button, Text, TextLink } from './components/elements'
 import Card from './components/product/card'
 import DropDown, { DropItem } from './components/dropdown'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [cursor, setCursor] = useState(null)
+  const [hasError, setHasError] = useState(false)
+  const [hasMore, setHasMore] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    setHasError(false)
+
+    fetch('/api/get/products', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data.body?.results)
+        setHasMore(data.body?.pageInfo?.hasNext)
+        setCursor(data.body?.pageInfo?.cursor)
+      })
+      .catch(() => setHasError(true))
+      .finally(() => setLoading(false))
+  }, [])
+
   return (
     <div className='px-7'>
       <div className='flex justify-between items-center gap-10 py-4'>
@@ -92,50 +119,17 @@ export default function Home() {
           </DropDown>
         </div>
         <div className='flex justify-start items-center gap-24 mt-4'>
-          <Card
-            product={{
-              title: 'The Classic Handbag By Prada 2023',
-              handle: 'the-classic-handbag-by-prada-2023',
-              featuredImage:
-                'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
-              price: '$200',
-              compareAtPrice: '$300',
-              collectionHandle: 'prada-handbags',
-            }}
-          />
-          <Card
-            product={{
-              title: 'The Classic Handbag By Prada 2023',
-              handle: 'the-classic-handbag-by-prada-2023',
-              featuredImage:
-                'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
-              price: '$200',
-              compareAtPrice: '$300',
-              collectionHandle: 'prada-handbags',
-            }}
-          />
-          <Card
-            product={{
-              title: 'The Classic Handbag By Prada 2023',
-              handle: 'the-classic-handbag-by-prada-2023',
-              featuredImage:
-                'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
-              price: '$200',
-              compareAtPrice: '$300',
-              collectionHandle: 'prada-handbags',
-            }}
-          />
-          <Card
-            product={{
-              title: 'The Classic Handbag By Prada 2023',
-              handle: 'the-classic-handbag-by-prada-2023',
-              featuredImage:
-                'https://images.selfridges.com/is/image/selfridges/R04229467_SAND_M?wid=476&hei=634&fmt=webp&qlt=80,1&bgc=F6F6F6&extend=-18,0,-18,0',
-              price: '$200',
-              compareAtPrice: '$300',
-              collectionHandle: 'prada-handbags',
-            }}
-          />
+          {products.map((product) => (
+            <Card
+              key={product.id}
+              title={product.name}
+              handle={product.handle}
+              featuredImage={product.featuredImage}
+              price={product.price}
+              compareAtPrice={product.compareAtPrice}
+              collectionHandle={product.collectionHandle}
+            />
+          ))}
         </div>
       </div>
     </div>
