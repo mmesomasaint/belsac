@@ -6,7 +6,7 @@ import { MiniProduct } from './product'
  * @param products The list of products to sort.
  * @returns The sorted list of products.
  */
-function sortByNameAsc(products: MiniProduct[]) {
+export function sortByNameAsc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
     return a.title.localeCompare(b.title)
   })
@@ -18,7 +18,7 @@ function sortByNameAsc(products: MiniProduct[]) {
  * @param products The list of products to sort.
  * @returns The sorted list of products.
  */
-function sortByNameDesc(products: MiniProduct[]) {
+export function sortByNameDesc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
     return b.title.localeCompare(a.title)
   })
@@ -30,7 +30,7 @@ function sortByNameDesc(products: MiniProduct[]) {
  * @param products The list of products to sort.
  * @returns The sorted list of products.
  */
-function sortByDateAsc(products: MiniProduct[]) {
+export function sortByDateAsc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
     const aDate = new Date(a.createdAt)
     const bDate = new Date(b.createdAt)
@@ -44,7 +44,7 @@ function sortByDateAsc(products: MiniProduct[]) {
  * @param products The list of products to sort.
  * @returns The sorted list of products.
  */
-function sortByDateDesc(products: MiniProduct[]) {
+export function sortByDateDesc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
     const aDate = new Date(a.createdAt)
     const bDate = new Date(b.createdAt)
@@ -58,7 +58,7 @@ function sortByDateDesc(products: MiniProduct[]) {
  * @param products The list of products to sort.
  * @returns The sorted list of products.
  */
-function sortByPriceAsc(products: MiniProduct[]) {
+export function sortByPriceAsc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
     return a.price - b.price
   })
@@ -70,7 +70,7 @@ function sortByPriceAsc(products: MiniProduct[]) {
  * @param products The list of products to sort.
  * @returns The sorted list of products.
  */
-function sortByPriceDesc(products: MiniProduct[]) {
+export function sortByPriceDesc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
     return b.price - a.price
   })
