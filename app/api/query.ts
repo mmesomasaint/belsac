@@ -74,10 +74,10 @@ query AllProducts($first: Int!, $cursor: String!) {
           }
         }
       }
+      cursor
     }
     pageInfo {
       hasNextPage
-      cursor
     }
   }
 }
