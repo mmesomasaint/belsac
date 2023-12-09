@@ -1,4 +1,4 @@
-import { MiniProduct } from "./product";
+import { MiniProduct } from './product'
 
 /**
  * Sorts a list of products objects based on the title field,
@@ -8,8 +8,8 @@ import { MiniProduct } from "./product";
  */
 function sortByNameAsc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
-    return a.name.localeCompare(b.name);
-  });
+    return a.name.localeCompare(b.name)
+  })
 }
 
 /**
@@ -20,8 +20,8 @@ function sortByNameAsc(products: MiniProduct[]) {
  */
 function sortByNameDesc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
-    return b.name.localeCompare(a.name);
-  });
+    return b.name.localeCompare(a.name)
+  })
 }
 
 /**
@@ -32,8 +32,8 @@ function sortByNameDesc(products: MiniProduct[]) {
  */
 function sortByDateAsc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
-    return a.date - b.date;
-  });
+    return a.date - b.date
+  })
 }
 
 /**
@@ -44,8 +44,8 @@ function sortByDateAsc(products: MiniProduct[]) {
  */
 function sortByDateDesc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
-    return b.date - a.date;
-  });
+    return b.date - a.date
+  })
 }
 
 /**
@@ -56,8 +56,8 @@ function sortByDateDesc(products: MiniProduct[]) {
  */
 function sortByPriceAsc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
-    return a.price - b.price;
-  });
+    return a.price - b.price
+  })
 }
 
 /**
@@ -68,6 +68,6 @@ function sortByPriceAsc(products: MiniProduct[]) {
  */
 function sortByPriceDesc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
-    return b.price - a.price;
-  });
+    return b.price - a.price
+  })
 }
