@@ -142,9 +142,13 @@ export default function Home() {
         </div>
         <div className='flex justify-start items-center gap-24 mt-4'>
           {loading ? (
-            <Text size='md'>Loading...</Text>
+            <div className='w-full flex justify-center items-center'>
+              <Text size='md'>Loading...</Text>
+            </div>
           ) : hasError ? (
-            <Text size='md'>Something went wrong.</Text>
+            <div className='w-full flex justify-center items-center'>
+              <Text size='md'>Something went wrong.</Text>
+            </div>
           ) : (
             products.map((product) => (
               <Card key={product.id} product={product} />
