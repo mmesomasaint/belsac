@@ -19,6 +19,7 @@ export async function GET() {
   if (status === 200) {
     const results = body.data?.products.edges
     const pageInfo = body.data?.products.pageInfo
+    const len = results.length
 
     const cleanedResults = results.map(
       ({ node }: { node: MiniProductQueryResult }) => cleanMiniProduct(node)
@@ -28,7 +29,7 @@ export async function GET() {
       status,
       body: {
         results: cleanedResults,
-        pageInfo: { ...pageInfo, cursor: results.cursor },
+        pageInfo: { ...pageInfo, cursor: results[len - 1].cursor },
       },
     })
   } else
@@ -52,6 +53,7 @@ export async function POST(Request: NextRequest) {
   if (status === 200) {
     const results = body.data?.products.edges
     const pageInfo = body.data?.products.pageInfo
+    const len = results.length
 
     const cleanedResults = results.map(
       ({ node }: { node: MiniProductQueryResult }) => cleanMiniProduct(node)
@@ -59,7 +61,8 @@ export async function POST(Request: NextRequest) {
 
     return Response.json({
       status,
-      body: { results: cleanedResults, pageInfo },
+      body: { results: cleanedResults, 
+        pageInfo: { ...pageInfo, cursor: results[len - 1].cursor } },
     })
   } else
     return Response.json({ status: 500, message: 'Error receiving data..' })
