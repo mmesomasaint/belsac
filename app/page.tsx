@@ -27,6 +27,7 @@ export default function Home() {
   const [cursor, setCursor] = useState(null)
   const [hasError, setHasError] = useState(false)
   const [hasMore, setHasMore] = useState(false)
+  const [sort, setSort] = useState('Name (asc)')
 
   const loadMore = () => {
     setLoading(true)
@@ -70,6 +71,32 @@ export default function Home() {
       .finally(() => setLoading(false))
   }, [])
 
+  useEffect(() => {
+    switch (sort) {
+      case 'Name (asc)':
+        setProducts(sortByNameAsc(products))
+        break;
+      case 'Name (desc)':
+        setProducts(sortByNameDesc(products))
+        break;
+      case 'Date (asc)':
+        setProducts(sortByDateAsc(products))
+        break;
+      case 'Date (desc)':
+        setProducts(sortByDateDesc(products))
+        break;
+      case 'Price (asc)':
+        setProducts(sortByPriceAsc(products))
+        break;
+      case 'Price (desc)':
+        setProducts(sortByPriceDesc(products))
+        break;
+      default:
+        setProducts(sortByNameAsc(products))
+        break;
+    }
+  }, [products, sort])
+
   return (
     <div className='px-7'>
       <div className='flex justify-between items-center gap-10 py-4'>
@@ -93,10 +120,10 @@ export default function Home() {
       <div className='py-4 mt-12'>
         <div className='flex justify-between items-center gap-10'>
           <Text size='lg'>Featured</Text>
-          <DropDown title='Sort by' initialActive='Name (ascending)'>
+          <DropDown title='Sort by' initialActive='Name (asc)'>
             <DropItem
-              value='Name (ascending)'
-              onClick={() => setProducts(sortByNameAsc(products))}
+              value='Name (asc)'
+              onClick={() => setSort('Name (asc)')}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowUpThin className='text-4xl' />
@@ -104,8 +131,8 @@ export default function Home() {
               </span>
             </DropItem>
             <DropItem
-              value='Name (descending)'
-              onClick={() => setProducts(sortByNameDesc(products))}
+              value='Name (desc)'
+              onClick={() => setSort('Name (desc)')}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowDownThin className='text-4xl' />
@@ -113,8 +140,8 @@ export default function Home() {
               </span>
             </DropItem>
             <DropItem
-              value='Date (ascending)'
-              onClick={() => setProducts(sortByDateAsc(products))}
+              value='Date (asc)'
+              onClick={() => setSort('Date (asc)')}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowUpThin className='text-4xl' />
@@ -122,8 +149,8 @@ export default function Home() {
               </span>
             </DropItem>
             <DropItem
-              value='Date (descending)'
-              onClick={() => setProducts(sortByDateDesc(products))}
+              value='Date (desc)'
+              onClick={() => setSort('Date (desc)')}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowDownThin className='text-4xl' />
@@ -132,7 +159,7 @@ export default function Home() {
             </DropItem>
             <DropItem
               value='Price (ascending)'
-              onClick={() => setProducts(sortByPriceAsc(products))}
+              onClick={() => setSort('Price (asc)')}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowUpThin className='text-4xl' />
@@ -141,7 +168,7 @@ export default function Home() {
             </DropItem>
             <DropItem
               value='Price (descending)'
-              onClick={() => setProducts(sortByPriceDesc(products))}
+              onClick={() => setSort('Price (desc)')}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowDownThin className='text-4xl' />
