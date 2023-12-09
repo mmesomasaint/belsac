@@ -2,7 +2,13 @@ import Image from 'next/image'
 import { Text, TextLink } from '../elements'
 import { MiniProduct, formatMoney } from '@/lib/product'
 
-export default function Card({ product, full }: { product: MiniProduct, full?: boolean }) {
+export default function Card({
+  product,
+  full,
+}: {
+  product: MiniProduct
+  full?: boolean
+}) {
   const {
     title,
     handle,
@@ -14,7 +20,9 @@ export default function Card({ product, full }: { product: MiniProduct, full?: b
   const width = full ? 'w-full' : 'w-1/5'
 
   return (
-    <div className={`shadow-lg ${width} border border-black/65 flex flex-col gap-0 group hover:border-black/90`}>
+    <div
+      className={`shadow-lg ${width} border border-black/65 flex flex-col gap-0 group hover:border-black/90`}
+    >
       <Image
         src={featuredImage}
         alt={title}
