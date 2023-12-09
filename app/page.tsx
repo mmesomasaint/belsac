@@ -23,6 +23,7 @@ export default function Home() {
   const loadMore = () => {
     setLoading(true)
     setHasError(false)
+    setHasMore(false)
 
     fetch(`/api/products?cursor=${cursor}`, {
       method: 'POST',
@@ -43,6 +44,7 @@ export default function Home() {
   useEffect(() => {
     setLoading(true)
     setHasError(false)
+    setHasMore(false)
 
     fetch('/api/products', {
       method: 'GET',
