@@ -4,7 +4,7 @@ import { cleanMiniProduct } from '@/app/api/utils'
 import { shopifyFetch } from '@/lib/fetch'
 import { NextRequest } from 'next/server'
 
-const LIMIT = 24
+const LIMIT = 5
 
 export async function GET() {
   const variables = {

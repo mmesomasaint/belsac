@@ -33,7 +33,7 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.body?.results)
-        setHasMore(data.body?.pageInfo?.hasNext)
+        setHasMore(data.body?.pageInfo?.hasNextPage)
         setCursor(data.body?.pageInfo?.cursor)
       })
       .catch(() => setHasError(true))
@@ -53,7 +53,7 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.body?.results)
-        setHasMore(data.body?.pageInfo?.hasNext)
+        setHasMore(data.body?.pageInfo?.hasNextPage)
         setCursor(data.body?.pageInfo?.cursor)
       })
       .catch(() => setHasError(true))
