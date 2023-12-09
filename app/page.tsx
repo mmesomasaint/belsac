@@ -80,7 +80,7 @@ export default function Home() {
           <PiShoppingCartThin className='text-4xl' />
         </div>
       </div>
-      <div className='py-4 mt-10'>
+      <div className='py-4 mt-12'>
         <div className='flex justify-between items-center gap-10'>
           <Text size='lg'>Featured</Text>
           <DropDown title='Sort by' initialActive='Name (ascending)'>
@@ -140,7 +140,7 @@ export default function Home() {
             </DropItem>
           </DropDown>
         </div>
-        <div className='grid grid-cols-4 place-content-between items-stretch gap-2 mt-4'>
+        <div className='grid grid-cols-4 place-content-between items-stretch gap-16 mt-8'>
           {loading ? (
             <div className='w-full col-span-full flex justify-center items-center'>
               <Text size='md'>Loading...</Text>
@@ -151,7 +151,7 @@ export default function Home() {
             </div>
           ) : (
             products.map((product) => (
-              <Card key={product.id} product={product} full/>
+              <Card key={product.id} product={product} full />
             ))
           )}
           {hasMore && (
