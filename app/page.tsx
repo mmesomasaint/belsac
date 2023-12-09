@@ -140,13 +140,13 @@ export default function Home() {
             </DropItem>
           </DropDown>
         </div>
-        <div className='flex justify-start items-stretch gap-24 mt-4'>
+        <div className='grid grid-cols-4 place-content-between items-stretch gap-2 mt-4'>
           {loading ? (
-            <div className='w-full flex justify-center items-center'>
+            <div className='w-full col-span-full flex justify-center items-center'>
               <Text size='md'>Loading...</Text>
             </div>
           ) : hasError ? (
-            <div className='w-full flex justify-center items-center'>
+            <div className='w-full col-span-full flex justify-center items-center'>
               <Text size='md'>Something went wrong.</Text>
             </div>
           ) : (
