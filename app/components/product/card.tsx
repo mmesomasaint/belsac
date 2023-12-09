@@ -35,7 +35,7 @@ export default function Card({
           <Text size='lg'>{formatMoney(price)}</Text>
           <span className='text-black/80 line-through'>
             <Text size='xs' faded>
-              {compareAtPrice}
+              {formatMoney(compareAtPrice)}
             </Text>
           </span>
         </div>
