@@ -8,7 +8,7 @@ import { MiniProduct } from './product'
  */
 function sortByNameAsc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
-    return a.name.localeCompare(b.name)
+    return a.title.localeCompare(b.title)
   })
 }
 
@@ -20,7 +20,7 @@ function sortByNameAsc(products: MiniProduct[]) {
  */
 function sortByNameDesc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
-    return b.name.localeCompare(a.name)
+    return b.title.localeCompare(a.title)
   })
 }
 
