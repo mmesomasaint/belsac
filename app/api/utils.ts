@@ -32,7 +32,7 @@ export function cleanMiniProduct(queryResult: MiniProductQueryResult) {
     title,
     handle,
     createdAt,
-    src: url,
+    featuredImage: url,
     price: parseInt(minVariantPrice.amount),
     compareAtPrice: parseInt(maxVariantPrice.amount),
     collectionHandle: collectionHandles[0],
