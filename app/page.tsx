@@ -140,7 +140,7 @@ export default function Home() {
             </DropItem>
           </DropDown>
         </div>
-        <div className='flex justify-start items-center gap-24 mt-4'>
+        <div className='flex justify-start items-stretch gap-24 mt-4'>
           {loading ? (
             <div className='w-full flex justify-center items-center'>
               <Text size='md'>Loading...</Text>
