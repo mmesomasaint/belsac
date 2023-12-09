@@ -15,6 +15,7 @@ export function cleanMiniProduct(queryResult: MiniProductQueryResult) {
     compareAtPriceRange,
     options,
     collections,
+    createdAt
   } = queryResult
   const { url } = featuredImage
   const { minVariantPrice } = priceRange
@@ -30,6 +31,7 @@ export function cleanMiniProduct(queryResult: MiniProductQueryResult) {
     id,
     title,
     handle,
+    createdAt,
     src: url,
     price: parseInt(minVariantPrice.amount),
     compareAtPrice: parseInt(maxVariantPrice.amount),

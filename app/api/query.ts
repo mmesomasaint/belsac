@@ -7,6 +7,7 @@ query AllProducts($first: Int!) {
         id
         title
         handle
+        createdAt
         featuredImage {
           url
         }
@@ -48,6 +49,7 @@ query AllProducts($first: Int!, $cursor: String!) {
         id
         title
         handle
+        createdAt
         featuredImage {
           url
         }
