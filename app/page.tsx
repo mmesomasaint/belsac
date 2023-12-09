@@ -142,9 +142,9 @@ export default function Home() {
         </div>
         <div className='flex justify-start items-center gap-24 mt-4'>
           {loading ? (
-            <Text size='lg'>Loading...</Text>
+            <Text size='md'>Loading...</Text>
           ) : hasError ? (
-            <Text size='lg'>Something went wrong.</Text>
+            <Text size='md'>Something went wrong.</Text>
           ) : (
             products.map((product) => (
               <Card key={product.id} product={product} />
