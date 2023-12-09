@@ -8,7 +8,7 @@ export type MiniProduct = {
   collectionHandle: string
 }
 
-export function formatMoney(number: number, dp=0) {
+export function formatMoney(number: number, dp = 0) {
   const formatter = new Intl.NumberFormat('en-NG', {
     style: 'currency',
     currency: 'NGN',
