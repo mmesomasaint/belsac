@@ -12,6 +12,7 @@ import Card from './components/product/card'
 import DropDown, { DropItem } from './components/dropdown'
 import { useEffect, useState } from 'react'
 import { MiniProduct } from '@/lib/product'
+import { sortByDateAsc, sortByDateDesc, sortByNameAsc, sortByNameDesc, sortByPriceAsc, sortByPriceDesc } from '@/lib/sort'
 
 export default function Home() {
   const [products, setProducts] = useState<MiniProduct[]>([])
@@ -88,7 +89,7 @@ export default function Home() {
           <DropDown title='Sort by' initialActive='Name (ascending)'>
             <DropItem
               value='Name (ascending)'
-              onClick={() => console.log('First dropitem clicked')}
+              onClick={() => setProducts(sortByNameAsc(products))}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowUpThin className='text-4xl' />
@@ -97,7 +98,7 @@ export default function Home() {
             </DropItem>
             <DropItem
               value='Name (descending)'
-              onClick={() => console.log('Second dropitem clicked')}
+              onClick={() => setProducts(sortByNameDesc(products))}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowDownThin className='text-4xl' />
@@ -106,7 +107,7 @@ export default function Home() {
             </DropItem>
             <DropItem
               value='Date (ascending)'
-              onClick={() => console.log('Second dropitem clicked')}
+              onClick={() => setProducts(sortByDateAsc(products))}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowUpThin className='text-4xl' />
@@ -115,7 +116,7 @@ export default function Home() {
             </DropItem>
             <DropItem
               value='Date (descending)'
-              onClick={() => console.log('Second dropitem clicked')}
+              onClick={() => setProducts(sortByDateDesc(products))}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowDownThin className='text-4xl' />
@@ -124,7 +125,7 @@ export default function Home() {
             </DropItem>
             <DropItem
               value='Price (ascending)'
-              onClick={() => console.log('Second dropitem clicked')}
+              onClick={() => setProducts(sortByPriceAsc(products))}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowUpThin className='text-4xl' />
@@ -133,7 +134,7 @@ export default function Home() {
             </DropItem>
             <DropItem
               value='Price (descending)'
-              onClick={() => console.log('Second dropitem clicked')}
+              onClick={() => setProducts(sortByPriceDesc(products))}
             >
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowDownThin className='text-4xl' />
