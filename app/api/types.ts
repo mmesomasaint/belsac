@@ -3,6 +3,7 @@ export interface MiniProductQueryResult {
   title: string
   handle: string
   totalInventory: number
+  createdAt: string
   featuredImage: {
     url: string
   }
