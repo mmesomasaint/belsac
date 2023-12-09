@@ -24,7 +24,7 @@ export default function Home() {
     setLoading(true)
     setHasError(false)
 
-    fetch(`/api/get/product/all?cursor=${cursor}`, {
+    fetch(`/api/products?cursor=${cursor}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export default function Home() {
     setLoading(true)
     setHasError(false)
 
-    fetch('/api/get/products', {
+    fetch('/api/products', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
