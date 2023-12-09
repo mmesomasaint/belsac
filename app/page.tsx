@@ -151,7 +151,7 @@ export default function Home() {
             </div>
           ) : (
             products.map((product) => (
-              <Card key={product.id} product={product} />
+              <Card key={product.id} product={product} full/>
             ))
           )}
           {hasMore && (
