@@ -12,7 +12,14 @@ import Card from './components/product/card'
 import DropDown, { DropItem } from './components/dropdown'
 import { useEffect, useState } from 'react'
 import { MiniProduct } from '@/lib/product'
-import { sortByDateAsc, sortByDateDesc, sortByNameAsc, sortByNameDesc, sortByPriceAsc, sortByPriceDesc } from '@/lib/sort'
+import {
+  sortByDateAsc,
+  sortByDateDesc,
+  sortByNameAsc,
+  sortByNameDesc,
+  sortByPriceAsc,
+  sortByPriceDesc,
+} from '@/lib/sort'
 
 export default function Home() {
   const [products, setProducts] = useState<MiniProduct[]>([])
