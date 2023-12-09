@@ -32,7 +32,9 @@ function sortByNameDesc(products: MiniProduct[]) {
  */
 function sortByDateAsc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
-    return a.date - b.date
+    const aDate = new Date(a.createdAt)
+    const bDate = new Date(b.createdAt)
+    return aDate.getMilliseconds() - bDate.getMilliseconds()
   })
 }
 
@@ -44,7 +46,9 @@ function sortByDateAsc(products: MiniProduct[]) {
  */
 function sortByDateDesc(products: MiniProduct[]) {
   return products.slice().sort((a, b) => {
-    return b.date - a.date
+    const aDate = new Date(a.createdAt)
+    const bDate = new Date(b.createdAt)
+    return bDate.getMilliseconds() - aDate.getMilliseconds()
   })
 }
 
