@@ -75,25 +75,25 @@ export default function Home() {
     switch (sort) {
       case 'Name (asc)':
         setProducts(sortByNameAsc(products))
-        break;
+        break
       case 'Name (desc)':
         setProducts(sortByNameDesc(products))
-        break;
+        break
       case 'Date (asc)':
         setProducts(sortByDateAsc(products))
-        break;
+        break
       case 'Date (desc)':
         setProducts(sortByDateDesc(products))
-        break;
+        break
       case 'Price (asc)':
         setProducts(sortByPriceAsc(products))
-        break;
+        break
       case 'Price (desc)':
         setProducts(sortByPriceDesc(products))
-        break;
+        break
       default:
         setProducts(sortByNameAsc(products))
-        break;
+        break
     }
   }, [products, sort])
 
@@ -121,10 +121,7 @@ export default function Home() {
         <div className='flex justify-between items-center gap-10'>
           <Text size='lg'>Featured</Text>
           <DropDown title='Sort by' initialActive='Name (asc)'>
-            <DropItem
-              value='Name (asc)'
-              onClick={() => setSort('Name (asc)')}
-            >
+            <DropItem value='Name (asc)' onClick={() => setSort('Name (asc)')}>
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowUpThin className='text-4xl' />
                 Name
@@ -139,10 +136,7 @@ export default function Home() {
                 Name
               </span>
             </DropItem>
-            <DropItem
-              value='Date (asc)'
-              onClick={() => setSort('Date (asc)')}
-            >
+            <DropItem value='Date (asc)' onClick={() => setSort('Date (asc)')}>
               <span className='flex justify-center items-center gap-0'>
                 <PiArrowUpThin className='text-4xl' />
                 Date
