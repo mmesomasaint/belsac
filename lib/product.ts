@@ -3,7 +3,18 @@ export type MiniProduct = {
   title: string
   handle: string
   featuredImage: string
-  price: string
+  price: number
   compareAtPrice: string
   collectionHandle: string
+}
+
+function formatMoney(number: number, dp=0) {
+  const formatter = new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+    minimumFractionDigits: dp,
+    maximumFractionDigits: 2,
+  })
+
+  return formatter.format(number)
 }
