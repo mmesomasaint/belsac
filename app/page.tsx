@@ -7,7 +7,7 @@ import {
   PiArrowDownThin,
   PiArrowUpThin,
 } from 'react-icons/pi'
-import { Button, Text, TextLink } from './components/elements'
+import { Button, Text } from './components/elements'
 import Card from './components/product/card'
 import DropDown, { DropItem } from './components/dropdown'
 import { useEffect, useState } from 'react'
