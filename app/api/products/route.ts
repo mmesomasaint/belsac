@@ -1,4 +1,4 @@
-import { RETRIEVE_ALL_PRODUCTS } from '@/app/api/query'
+import { RETRIEVE_ALL_PRODUCTS, RETRIEVE_PRODUCTS_AFTER_CURSOR } from '@/app/api/query'
 import { MiniProductQueryResult } from '@/app/api/types'
 import { cleanMiniProduct } from '@/app/api/utils'
 import { shopifyFetch } from '@/lib/fetch'
@@ -28,7 +28,7 @@ export async function GET() {
       status,
       body: {
         results: cleanedResults,
-        pageInfo: { ...pageInfo, rcursor: results.cursor },
+        pageInfo: { ...pageInfo, cursor: results.cursor },
       },
     })
   } else
@@ -45,7 +45,7 @@ export async function POST(Request: NextRequest) {
   }
 
   const { status, body } = await shopifyFetch({
-    query: RETRIEVE_ALL_PRODUCTS,
+    query: RETRIEVE_PRODUCTS_AFTER_CURSOR,
     variables,
   })
 
