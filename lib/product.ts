@@ -10,9 +10,9 @@ export type MiniProduct = {
 }
 
 export function formatMoney(number: number, dp = 0) {
-  const formatter = new Intl.NumberFormat('en-NG', {
+  const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'NGN',
+    currency: 'USD',
     minimumFractionDigits: dp,
     maximumFractionDigits: 2,
   })
