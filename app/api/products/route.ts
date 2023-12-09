@@ -1,4 +1,7 @@
-import { RETRIEVE_ALL_PRODUCTS, RETRIEVE_PRODUCTS_AFTER_CURSOR } from '@/app/api/query'
+import {
+  RETRIEVE_ALL_PRODUCTS,
+  RETRIEVE_PRODUCTS_AFTER_CURSOR,
+} from '@/app/api/query'
 import { MiniProductQueryResult } from '@/app/api/types'
 import { cleanMiniProduct } from '@/app/api/utils'
 import { shopifyFetch } from '@/lib/fetch'
@@ -61,8 +64,10 @@ export async function POST(Request: NextRequest) {
 
     return Response.json({
       status,
-      body: { results: cleanedResults, 
-        pageInfo: { ...pageInfo, cursor: results[len - 1].cursor } },
+      body: {
+        results: cleanedResults,
+        pageInfo: { ...pageInfo, cursor: results[len - 1].cursor },
+      },
     })
   } else
     return Response.json({ status: 500, message: 'Error receiving data..' })
