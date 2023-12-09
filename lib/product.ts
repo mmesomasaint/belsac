@@ -4,7 +4,7 @@ export type MiniProduct = {
   handle: string
   featuredImage: string
   price: number
-  compareAtPrice: string
+  compareAtPrice: number
   collectionHandle: string
   createdAt: string
 }
