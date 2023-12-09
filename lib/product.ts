@@ -6,7 +6,7 @@ export type MiniProduct = {
   price: number
   compareAtPrice: string
   collectionHandle: string
-  createdAt
+  createdAt: string
 }
 
 export function formatMoney(number: number, dp = 0) {
