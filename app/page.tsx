@@ -155,9 +155,9 @@ export default function Home() {
             ))
           )}
           {hasMore && (
-            <div className='w-full flex justify-center items-center'>
+            <div className='col-span-full flex justify-center items-center'>
               <Button onClick={loadMore} outline>
-                <span className='flex justify-center items-center gap-0'>
+                <span className='flex justify-center items-center gap-4'>
                   More
                   <PiCaretRightThin className='text-4xl' />
                 </span>
