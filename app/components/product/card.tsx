@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Text, TextLink } from '../elements'
-import { MiniProduct } from '@/lib/product'
+import { MiniProduct, formatMoney } from '@/lib/product'
 
 export default function Card({ product }: { product: MiniProduct }) {
   const {
@@ -23,7 +23,7 @@ export default function Card({ product }: { product: MiniProduct }) {
       />
       <div className='flex flex-col w-full gap-2 p-4'>
         <div className='flex justify-start items-end gap-3'>
-          <Text size='lg'>{price}</Text>
+          <Text size='lg'>{formatMoney(price)}</Text>
           <span className='text-black/80 line-through'>
             <Text size='xs' faded>
               {compareAtPrice}
