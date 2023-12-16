@@ -29,6 +29,32 @@ export default function Home() {
   const [hasMore, setHasMore] = useState(false)
   const [sort, setSort] = useState('Name (asc)')
 
+  const sortProducts = (products: MiniProduct[], sortType: string) => {
+    switch (sortType) {
+      case 'Name (asc)':
+        setProducts(sortByNameAsc(products))
+        break
+      case 'Name (desc)':
+        setProducts(sortByNameDesc(products))
+        break
+      case 'Date (asc)':
+        setProducts(sortByDateAsc(products))
+        break
+      case 'Date (desc)':
+        setProducts(sortByDateDesc(products))
+        break
+      case 'Price (asc)':
+        setProducts(sortByPriceAsc(products))
+        break
+      case 'Price (desc)':
+        setProducts(sortByPriceDesc(products))
+        break
+      default:
+        setProducts(sortByNameAsc(products))
+        break
+    }
+  }
+
   const loadMore = () => {
     setLoading(true)
     setHasError(false)
@@ -72,29 +98,7 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    switch (sort) {
-      case 'Name (asc)':
-        setProducts(prev => sortByNameAsc(prev))
-        break
-      case 'Name (desc)':
-        setProducts(prev => sortByNameDesc(prev))
-        break
-      case 'Date (asc)':
-        setProducts(prev => sortByDateAsc(prev))
-        break
-      case 'Date (desc)':
-        setProducts(prev => sortByDateDesc(prev))
-        break
-      case 'Price (asc)':
-        setProducts(prev => sortByPriceAsc(prev))
-        break
-      case 'Price (desc)':
-        setProducts(prev => sortByPriceDesc(prev))
-        break
-      default:
-        setProducts(sortByNameAsc(products))
-        break
-    }
+    sortProducts(products, sort)
   }, [sort])
 
   return (
