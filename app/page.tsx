@@ -95,7 +95,7 @@ export default function Home() {
         setProducts(sortByNameAsc(products))
         break
     }
-  }, [products, sort])
+  }, [sort])
 
   return (
     <div className='px-7'>
