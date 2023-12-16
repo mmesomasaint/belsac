@@ -68,7 +68,7 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data.body?.results)
+        sortProducts(data.body?.results, sort)
         setHasMore(data.body?.pageInfo?.hasNextPage)
         setCursor(data.body?.pageInfo?.cursor)
       })
@@ -89,7 +89,7 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data.body?.results)
+        sortProducts(data.body?.results, sort)
         setHasMore(data.body?.pageInfo?.hasNextPage)
         setCursor(data.body?.pageInfo?.cursor)
       })
