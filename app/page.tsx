@@ -74,22 +74,22 @@ export default function Home() {
   useEffect(() => {
     switch (sort) {
       case 'Name (asc)':
-        setProducts(sortByNameAsc(products))
+        setProducts(prev => sortByNameAsc(prev))
         break
       case 'Name (desc)':
-        setProducts(sortByNameDesc(products))
+        setProducts(prev => sortByNameDesc(prev))
         break
       case 'Date (asc)':
-        setProducts(sortByDateAsc(products))
+        setProducts(prev => sortByDateAsc(prev))
         break
       case 'Date (desc)':
-        setProducts(sortByDateDesc(products))
+        setProducts(prev => sortByDateDesc(prev))
         break
       case 'Price (asc)':
-        setProducts(sortByPriceAsc(products))
+        setProducts(prev => sortByPriceAsc(prev))
         break
       case 'Price (desc)':
-        setProducts(sortByPriceDesc(products))
+        setProducts(prev => sortByPriceDesc(prev))
         break
       default:
         setProducts(sortByNameAsc(products))
