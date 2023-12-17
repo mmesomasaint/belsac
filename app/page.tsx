@@ -178,7 +178,6 @@ export default function Home() {
               <Card key={product.id} product={product} full />
             ))
           )}
-          {}
           <div className='col-span-full flex justify-center items-center gap-8'>
             {hasPrev && (
               <Button onClick={() => load(beforeCursor, null)} outline>
