@@ -179,21 +179,23 @@ export default function Home() {
           )}
           {}
           <div className='col-span-full flex justify-center items-center gap-8'>
-          {hasPrev && (<Button onClick={() => load(beforeCursor, null)} outline>
+            {hasPrev && (
+              <Button onClick={() => load(beforeCursor, null)} outline>
                 <span className='flex justify-center items-center gap-4'>
                   <PiCaretLeftThin className='text-4xl' />
                   Prev
                 </span>
-              </Button>)}
-          {hasMore && (
+              </Button>
+            )}
+            {hasMore && (
               <Button onClick={() => load(null, afterCursor)} outline>
                 <span className='flex justify-center items-center gap-4'>
                   More
                   <PiCaretRightThin className='text-4xl' />
                 </span>
               </Button>
-          )}
-            </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
