@@ -1,47 +1,4 @@
-
-export const RETRIEVE_ALL_PRODUCTS = `
-query AllProducts($first: Int!) {
-  products(first: $first) {
-    edges {
-      node {
-        id
-        title
-        handle
-        createdAt
-        featuredImage {
-          url
-        }
-        priceRange {
-          minVariantPrice {
-            amount
-          }
-        }
-        compareAtPriceRange {
-          maxVariantPrice {
-            amount
-          }
-        }
-        options {
-          name
-          values
-        }
-        collections(first: 10) {
-          nodes {
-            handle
-            title
-          }
-        }
-      }
-      cursor
-    }
-    pageInfo {
-      hasNextPage
-    }
-  }
-}
-`
-
-export const RETRIEVE_PRODUCTS_AFTER_CURSOR = `
+export const RETRIEVE_PRODUCTS = `
 query AllProducts($first: Int, $last: Int, $before: String, $after: String) {
   products(first: $first, last: $last, after: $after, before: $before) {
     edges {
