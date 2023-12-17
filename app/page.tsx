@@ -4,6 +4,7 @@ import {
   PiShoppingCartThin,
   PiHeartStraightThin,
   PiCaretRightThin,
+  PiCaretLeftThin,
   PiArrowDownThin,
   PiArrowUpThin,
 } from 'react-icons/pi'
@@ -24,9 +25,11 @@ import {
 export default function Home() {
   const [products, setProducts] = useState<MiniProduct[]>([])
   const [loading, setLoading] = useState(false)
-  const [cursor, setCursor] = useState(null)
+  const [beforeCursor, setBeforeCursor] = useState(null)
+  const [afterCursor, setAfterCursor] = useState(null)
   const [hasError, setHasError] = useState(false)
   const [hasMore, setHasMore] = useState(false)
+  const [hasPrev, setHasPrev] = useState(false)
   const [sort, setSort] = useState('Name (asc)')
 
   const sortProducts = (products: MiniProduct[], sortType: string) => {
@@ -55,12 +58,12 @@ export default function Home() {
     }
   }
 
-  const loadMore = () => {
+  const load = (before?: string | null, after?: string | null) => {
     setLoading(true)
     setHasError(false)
     setHasMore(false)
 
-    fetch(`/api/products?cursor=${cursor}`, {
+    fetch(`/api/products?before=${before ?? before}&after=${after && after}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -70,31 +73,16 @@ export default function Home() {
       .then((data) => {
         sortProducts(data.body?.results, sort)
         setHasMore(data.body?.pageInfo?.hasNextPage)
-        setCursor(data.body?.pageInfo?.cursor)
+        setHasPrev(data.body?.pageInfo?.hasPreviousPage)
+        setBeforeCursor(data.body?.pageInfo?.before)
+        setAfterCursor(data.body?.pageInfo?.after)
       })
       .catch(() => setHasError(true))
       .finally(() => setLoading(false))
   }
 
   useEffect(() => {
-    setLoading(true)
-    setHasError(false)
-    setHasMore(false)
-
-    fetch('/api/products', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        sortProducts(data.body?.results, sort)
-        setHasMore(data.body?.pageInfo?.hasNextPage)
-        setCursor(data.body?.pageInfo?.cursor)
-      })
-      .catch(() => setHasError(true))
-      .finally(() => setLoading(false))
+    load(null, null)
   }, [])
 
   useEffect(() => {
@@ -189,16 +177,23 @@ export default function Home() {
               <Card key={product.id} product={product} full />
             ))
           )}
+          {}
+          <div className='col-span-full flex justify-center items-center gap-8'>
+          {hasPrev && (<Button onClick={() => load(beforeCursor, null)} outline>
+                <span className='flex justify-center items-center gap-4'>
+                  <PiCaretLeftThin className='text-4xl' />
+                  Prev
+                </span>
+              </Button>)}
           {hasMore && (
-            <div className='col-span-full flex justify-center items-center'>
-              <Button onClick={loadMore} outline>
+              <Button onClick={() => load(null, afterCursor)} outline>
                 <span className='flex justify-center items-center gap-4'>
                   More
                   <PiCaretRightThin className='text-4xl' />
                 </span>
               </Button>
-            </div>
           )}
+            </div>
         </div>
       </div>
     </div>

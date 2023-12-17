@@ -42,8 +42,8 @@ query AllProducts($first: Int!) {
 `
 
 export const RETRIEVE_PRODUCTS_AFTER_CURSOR = `
-query AllProducts($first: Int!, $cursor: String!) {
-  products(first: $first, after: $cursor) {
+query AllProducts($first: Int, $last: Int, $before: String, $after: String) {
+  products(first: $first, last: $last, after: $after, before: $before) {
     edges {
       node {
         id
@@ -78,6 +78,7 @@ query AllProducts($first: Int!, $cursor: String!) {
     }
     pageInfo {
       hasNextPage
+      hasPreviousPage
     }
   }
 }

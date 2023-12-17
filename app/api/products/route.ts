@@ -41,11 +41,25 @@ export async function GET() {
 
 export async function POST(Request: NextRequest) {
   const searchParams = Request.nextUrl.searchParams
-  const cursor = searchParams.get('cursor')
+  const after = searchParams.get('after')
+  const before = searchParams.get('before')
+  
+  console.log("before: ", before)
+  console.log("after: ", after)
 
-  const variables = {
-    first: LIMIT,
-    cursor,
+  let variables
+
+  if (before !== 'null') {
+    variables = {
+      last: LIMIT,
+      before: before=== 'null' ? null : before,
+    }
+  } else {
+    console.log("this ran!!")
+    variables = {
+      first: LIMIT,
+      after: after === 'null' ? null : after,
+    }
   }
 
   const { status, body } = await shopifyFetch({
@@ -54,6 +68,7 @@ export async function POST(Request: NextRequest) {
   })
 
   if (status === 200) {
+    console.log("body: ", body)
     const results = body.data?.products.edges
     const pageInfo = body.data?.products.pageInfo
     const len = results.length
@@ -66,7 +81,7 @@ export async function POST(Request: NextRequest) {
       status,
       body: {
         results: cleanedResults,
-        pageInfo: { ...pageInfo, cursor: results[len - 1].cursor },
+        pageInfo: { ...pageInfo, after: results[len - 1].cursor, before: results[0].cursor },
       },
     })
   } else
