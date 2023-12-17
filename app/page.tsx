@@ -62,6 +62,7 @@ export default function Home() {
     setLoading(true)
     setHasError(false)
     setHasMore(false)
+    setHasPrev(false)
 
     fetch(`/api/products?before=${before ?? before}&after=${after && after}`, {
       method: 'POST',
