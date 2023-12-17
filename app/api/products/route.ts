@@ -12,19 +12,15 @@ export async function POST(Request: NextRequest) {
   const searchParams = Request.nextUrl.searchParams
   const after = searchParams.get('after')
   const before = searchParams.get('before')
-  
-  console.log("before: ", before)
-  console.log("after: ", after)
 
   let variables
 
   if (before !== 'null') {
     variables = {
       last: LIMIT,
-      before: before=== 'null' ? null : before,
+      before: before === 'null' ? null : before,
     }
   } else {
-    console.log("this ran!!")
     variables = {
       first: LIMIT,
       after: after === 'null' ? null : after,
