@@ -31,7 +31,6 @@ export async function POST(Request: NextRequest) {
   })
 
   if (status === 200) {
-    console.log('body: ', body)
     const results = body.data?.products.edges
     const pageInfo = body.data?.products.pageInfo
     const len = results.length
