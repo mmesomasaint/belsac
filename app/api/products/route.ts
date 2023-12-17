@@ -1,6 +1,4 @@
-import {
-  RETRIEVE_PRODUCTS,
-} from '@/app/api/query'
+import { RETRIEVE_PRODUCTS } from '@/app/api/query'
 import { MiniProductQueryResult } from '@/app/api/types'
 import { cleanMiniProduct } from '@/app/api/utils'
 import { shopifyFetch } from '@/lib/fetch'
@@ -33,7 +31,7 @@ export async function POST(Request: NextRequest) {
   })
 
   if (status === 200) {
-    console.log("body: ", body)
+    console.log('body: ', body)
     const results = body.data?.products.edges
     const pageInfo = body.data?.products.pageInfo
     const len = results.length
@@ -46,7 +44,11 @@ export async function POST(Request: NextRequest) {
       status,
       body: {
         results: cleanedResults,
-        pageInfo: { ...pageInfo, after: results[len - 1].cursor, before: results[0].cursor },
+        pageInfo: {
+          ...pageInfo,
+          after: results[len - 1].cursor,
+          before: results[0].cursor,
+        },
       },
     })
   } else
