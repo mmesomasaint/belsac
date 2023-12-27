@@ -11,7 +11,7 @@ export async function POST(Request: NextRequest) {
   const variables = {
     first: LIMIT,
     query: searchParams.get('query'),
-    after: searchParams.get('cursor')
+    after: searchParams.get('cursor'),
   }
 
   const { status, body } = await shopifyFetch({
