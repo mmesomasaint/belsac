@@ -67,7 +67,7 @@ query SearchProducts($query: String!, $first: Int) {
             name
             values
           }
-          collections(first: 10) {
+          collections(first: 1) {
             nodes {
               handle
               title
