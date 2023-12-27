@@ -41,24 +41,38 @@ query AllProducts($first: Int, $last: Int, $before: String, $after: String) {
 }
 `
 
-export const GET_SEARCH_FILTER_KEYS = `
-query GetFilters($first: Int) {
-  products(first: $first) {
-    nodes {
-      id
-      createdAt
-      priceRange {
-        minVariantPrice {
-          amount
-        }
-      }
-      options {
-        name
-        values
-      }
-      collections (first: $first) {
-        nodes {
+export const SEARCH_PRODUCTS = `
+query SearchProducts($query: String!, $first: Int) {
+  search(query: $query, first: $first, types: PRODUCT) {
+    edges {
+      node {
+        ... on Product {
+          id
           title
+          handle
+          featuredImage {
+            url
+          }
+          priceRange {
+            minVariantPrice {
+              amount
+            }
+          }
+          compareAtPriceRange {
+            maxVariantPrice {
+              amount
+            }
+          }
+          options {
+            name
+            values
+          }
+          collections(first: 10) {
+            nodes {
+              handle
+              title
+            }
+          }
         }
       }
     }
