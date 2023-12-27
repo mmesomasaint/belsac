@@ -8,9 +8,6 @@ const LIMIT = 4
 
 export async function POST(Request: NextRequest) {
   const searchParams = Request.nextUrl.searchParams
-  const after = searchParams.get('after')
-  const before = searchParams.get('before')
-
   const variables = {
     first: LIMIT,
     query: searchParams.get('query'),
@@ -23,8 +20,8 @@ export async function POST(Request: NextRequest) {
   })
 
   if (status === 200) {
-    const results = body.data?.products.edges
-    const pageInfo = body.data?.products.pageInfo
+    const results = body.data?.search.edges
+    const pageInfo = body.data?.search.pageInfo
     const len = results.length
 
     const cleanedResults = results.map(
