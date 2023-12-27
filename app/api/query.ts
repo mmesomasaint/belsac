@@ -76,6 +76,9 @@ query SearchProducts($query: String!, $first: Int) {
         }
       }
     }
+    pageInfo {
+      hasNextPage
+    }
   }
 }
 `
