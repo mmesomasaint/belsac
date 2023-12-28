@@ -9,6 +9,7 @@ import Header from '../components/header'
 import useSort from '../hooks/usesort'
 import Sort from '../components/sort'
 import { Filter } from '@/lib/filter'
+import FilterBar from '../components/filter'
 
 export default function Search() {
   const searchParams = useSearchParams()
@@ -83,9 +84,15 @@ export default function Search() {
               <Text size='md'>No products found. Search something else.</Text>
             </div>
           ) : (
-            products.map((product) => (
+            <>
+              {filter && (<FilterBar filter={filter} setFilter={setFilter} />)}
+              <div className='col-span-3 grid grid-cols-3 place-content-between items-stretch gap-16'>
+                
+            {products.map((product) => (
               <Card key={product.id} product={product} full />
-            ))
+            ))}
+              </div>
+            </>
           )}
           <div className='col-span-full flex justify-center items-center gap-8'>
             {hasMore && (
