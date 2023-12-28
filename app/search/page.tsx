@@ -1,9 +1,9 @@
 'use client'
 
 import {
-  PiCaretRightThin,
   PiArrowDownThin,
   PiArrowUpThin,
+  PiCaretDownThin,
 } from 'react-icons/pi'
 import { Button, Text } from '@/app/components/elements'
 import Card from '@/app/components/product/card'
@@ -130,7 +130,7 @@ export default function Search() {
               <Button onClick={() => load(afterCursor)} outline>
                 <span className='flex justify-center items-center gap-4'>
                   More
-                  <PiCaretRightThin className='text-4xl' />
+                  <PiCaretDownThin className='text-4xl' />
                 </span>
               </Button>
             )}
