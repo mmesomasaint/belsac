@@ -1,12 +1,21 @@
 import { useState, ReactNode } from 'react'
 import { BsCheckLg } from 'react-icons/bs'
-import {PiCaretDownThin} from 'react-icons/pi'
-import type { Filter, FilterSubKey } from "@/lib/filter";
-import { Text } from './elements';
+import { PiCaretDownThin } from 'react-icons/pi'
+import type { Filter, FilterSubKey } from '@/lib/filter'
+import { Text } from './elements'
 
-export default function FilterBar({filter, setFilter}: {filter: Filter, setFilter: (filter: Filter) => void}) {
+export default function FilterBar({
+  filter,
+  setFilter,
+}: {
+  filter: Filter
+  setFilter: (filter: Filter) => void
+}) {
   const setPrice = (min: number, max: number) => {
-    const newFilter: Filter = { ...filter, ['price']: {highest: filter.price.highest as number, min, max} }
+    const newFilter: Filter = {
+      ...filter,
+      ['price']: { highest: filter.price.highest as number, min, max },
+    }
     setFilter(newFilter)
   }
 
@@ -21,24 +30,30 @@ export default function FilterBar({filter, setFilter}: {filter: Filter, setFilte
           />
         </Accordion>
       </HR>
-      {Object.keys(filter).filter(key => key !== 'price').map((key) => (
-        <HR>
-          <Accordion title={key}>
-            {Object.keys(filter[key]).map((subKey) => (
-              <div className='flex flex-col gap-4'>
-                <KeySelector 
-                  check={(filter[key] as FilterSubKey)[subKey] as boolean}
-                  setCheck={ (prev) => {
-                    const newFilter: Filter = { ...filter, [key]: { ...filter[key], [subKey]: prev } }
-                    setFilter(newFilter)
-                  }}>
-                  {subKey}
-                </KeySelector>
-              </div>
-            ))}
-          </Accordion>      
-        </HR>
-      ))}
+      {Object.keys(filter)
+        .filter((key) => key !== 'price')
+        .map((key) => (
+          <HR>
+            <Accordion title={key}>
+              {Object.keys(filter[key]).map((subKey) => (
+                <div className='flex flex-col gap-4'>
+                  <KeySelector
+                    check={(filter[key] as FilterSubKey)[subKey] as boolean}
+                    setCheck={(prev) => {
+                      const newFilter: Filter = {
+                        ...filter,
+                        [key]: { ...filter[key], [subKey]: prev },
+                      }
+                      setFilter(newFilter)
+                    }}
+                  >
+                    {subKey}
+                  </KeySelector>
+                </div>
+              ))}
+            </Accordion>
+          </HR>
+        ))}
     </div>
   )
 }
@@ -92,12 +107,12 @@ export function Accordion({
         <PiCaretDownThin className={`${open && 'rotate-180'} text-4xl`} />
       </div>
       <div
-  className={`transition-all duration-300 ease-in-out ${
-    open ? 'block max-h-full' : 'max-h-0 hidden'
-  } relative flex flex-col gap-3 items-start justify-start mt-3`}
->
-  {children}
-</div>
+        className={`transition-all duration-300 ease-in-out ${
+          open ? 'block max-h-full' : 'max-h-0 hidden'
+        } relative flex flex-col gap-3 items-start justify-start mt-3`}
+      >
+        {children}
+      </div>
     </div>
   )
 }
@@ -120,11 +135,10 @@ export function HR({
   )
 }
 
-
 interface PriceRangeButtonProps {
-  minPrice: number;
-  maxPrice: number;
-  onRangeClick: (min: number, max: number) => void;
+  minPrice: number
+  maxPrice: number
+  onRangeClick: (min: number, max: number) => void
 }
 
 const PriceRangeButton: React.FC<PriceRangeButtonProps> = ({
@@ -132,49 +146,50 @@ const PriceRangeButton: React.FC<PriceRangeButtonProps> = ({
   maxPrice,
   onRangeClick,
 }) => {
-  const [selectedRange, setSelectedRange] = useState([minPrice, maxPrice]);
+  const [selectedRange, setSelectedRange] = useState([minPrice, maxPrice])
 
   const handleRangeClick = (min: number, max: number) => {
-    setSelectedRange([min, max]);
-    onRangeClick(min, max);
-  };
+    setSelectedRange([min, max])
+    onRangeClick(min, max)
+  }
 
   const createPriceRanges = () => {
     return Array.from({ length: maxPrice + 1 }, (_, i) => i).reduce(
       (acc, price) => {
-        const steps = 50; // Adjust as needed
-        const stepAmount = Math.ceil((maxPrice - minPrice) / steps);
-        const roundedPrice = Math.round(price / stepAmount) * stepAmount;
+        const steps = 50 // Adjust as needed
+        const stepAmount = Math.ceil((maxPrice - minPrice) / steps)
+        const roundedPrice = Math.round(price / stepAmount) * stepAmount
 
         if (roundedPrice >= minPrice && roundedPrice <= maxPrice) {
           acc.push({
             label: `${roundedPrice}`, // Format as desired
             min: roundedPrice,
             max: roundedPrice,
-          });
+          })
         }
 
         if (price !== maxPrice) {
-          const nextPrice = price + 1;
-          const nextRoundedPrice = Math.round(nextPrice / stepAmount) * stepAmount;
+          const nextPrice = price + 1
+          const nextRoundedPrice =
+            Math.round(nextPrice / stepAmount) * stepAmount
 
           if (roundedPrice !== nextRoundedPrice) {
             acc.push({
               label: `${roundedPrice} - ${nextRoundedPrice - 1}`, // Format as desired
               min: roundedPrice,
               max: nextRoundedPrice - 1,
-            });
+            })
           }
         }
 
-        return acc;
+        return acc
       },
       [] as { label: string; min: number; max: number }[]
-    );
-  };
+    )
+  }
 
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className='flex flex-wrap gap-4'>
       {createPriceRanges().map(({ label, min, max }) => (
         <button
           key={label}
@@ -189,5 +204,5 @@ const PriceRangeButton: React.FC<PriceRangeButtonProps> = ({
         </button>
       ))}
     </div>
-  );
-};
+  )
+}
