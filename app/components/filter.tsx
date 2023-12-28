@@ -156,39 +156,24 @@ const PriceRangeButton: React.FC<PriceRangeButtonProps> = ({
     onRangeClick(min, max)
   }
 
-  const createPriceRanges = () => {
-    return Array.from({ length: maxPrice + 1 }, (_, i) => i).reduce(
-      (acc, price) => {
-        const steps = 50 // Adjust as needed
-        const stepAmount = Math.ceil((maxPrice - minPrice) / steps)
-        const roundedPrice = Math.round(price / stepAmount) * stepAmount
-
-        if (roundedPrice >= minPrice && roundedPrice <= maxPrice) {
-          acc.push({
-            label: `${roundedPrice}`, // Format as desired
-            min: roundedPrice,
-            max: roundedPrice,
-          })
-        }
-
-        if (price !== maxPrice) {
-          const nextPrice = price + 1
-          const nextRoundedPrice =
-            Math.round(nextPrice / stepAmount) * stepAmount
-
-          if (roundedPrice !== nextRoundedPrice) {
-            acc.push({
-              label: `${roundedPrice} - ${nextRoundedPrice - 1}`, // Format as desired
-              min: roundedPrice,
-              max: nextRoundedPrice - 1,
-            })
-          }
-        }
-
-        return acc
-      },
-      [] as { label: string; min: number; max: number }[]
-    )
+  function createPriceRanges(numRanges = 8) {
+    const stepAmount = (maxPrice - minPrice) / (numRanges - 1); // Calculate step size
+  
+    const ranges = [];
+    let currentPrice = minPrice;
+  
+    for (let i = 0; i < numRanges; i++) {
+      if (currentPrice >= maxPrice) break
+      const maxRangePrice = Math.min(currentPrice + stepAmount, maxPrice); // Ensure max doesn't exceed maxPrice
+      ranges.push({
+        min: currentPrice,
+        max: maxRangePrice,
+        label: `${currentPrice.toFixed(2)} - ${maxRangePrice.toFixed(2)}` // Format label
+      });
+      currentPrice = maxRangePrice + 0.01; // Slight offset for non-overlapping ranges
+    }
+  
+    return ranges;
   }
 
   return (
