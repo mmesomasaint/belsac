@@ -1,10 +1,6 @@
 'use client'
 
-import {
-  PiArrowDownThin,
-  PiArrowUpThin,
-  PiCaretDownThin,
-} from 'react-icons/pi'
+import { PiArrowDownThin, PiArrowUpThin, PiCaretDownThin } from 'react-icons/pi'
 import { Button, Text } from '@/app/components/elements'
 import Card from '@/app/components/product/card'
 import DropDown, { DropItem } from '@/app/components/dropdown'
