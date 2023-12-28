@@ -36,7 +36,7 @@ export default function Search() {
         const results = data.body?.results
         const newProducts =
           products.length > 0 ? [...products, ...results] : results
-        
+
         sortProducts(newProducts, sort)
         setHasMore(data.body?.pageInfo?.hasNextPage)
         setAfterCursor(data.body?.pageInfo?.after)
