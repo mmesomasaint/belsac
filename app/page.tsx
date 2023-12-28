@@ -1,9 +1,6 @@
 'use client'
 
-import {
-  PiCaretRightThin,
-  PiCaretLeftThin,
-} from 'react-icons/pi'
+import { PiCaretRightThin, PiCaretLeftThin } from 'react-icons/pi'
 import { Button, Text } from '@/app/components/elements'
 import Card from '@/app/components/product/card'
 import { useEffect, useState } from 'react'
