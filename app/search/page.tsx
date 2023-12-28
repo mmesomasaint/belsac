@@ -1,8 +1,6 @@
 'use client'
 
 import {
-  PiShoppingCartThin,
-  PiHeartStraightThin,
   PiCaretRightThin,
   PiArrowDownThin,
   PiArrowUpThin,
