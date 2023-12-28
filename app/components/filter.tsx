@@ -180,6 +180,7 @@ const PriceRangeButton: React.FC<PriceRangeButtonProps> = ({
     <div className='flex flex-wrap gap-4'>
       {createPriceRanges().map(({ label, min, max }) => (
         <button
+          type='button'
           key={label}
           className={`px-4 py-2 border border-black/20 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black ${
             selectedRange[0] === min && selectedRange[1] === max
