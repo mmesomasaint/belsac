@@ -58,15 +58,17 @@ export default function FilterBar({
   )
 }
 
-export function KeySelector({
-  check,
-  setCheck,
-  children,
-}: {
+interface KeySelectorProps {
   children: string
   check?: boolean
   setCheck?: (prev: boolean) => void
-}) {
+}
+
+const KeySelector: React.FC<KeySelectorProps> = ({
+  check,
+  setCheck,
+  children,
+}) => {
   return (
     <div
       className='flex justify-start items-center gap-4'
@@ -86,15 +88,17 @@ export function KeySelector({
   )
 }
 
-export function Accordion({
-  title,
-  defaultOpen,
-  children,
-}: {
+interface AccordionProps {
   title: string
   children: ReactNode[] | ReactNode
   defaultOpen?: boolean
-}) {
+}
+
+const Accordion: React.FC<AccordionProps> = ({
+  title,
+  defaultOpen,
+  children,
+}) => {
   const [open, setOpen] = useState(defaultOpen)
 
   return (
@@ -117,13 +121,15 @@ export function Accordion({
   )
 }
 
-export function HR({
-  dashed,
-  children,
-}: {
+interface HRProps {
   dashed?: boolean
   children?: React.ReactNode
-}) {
+}
+
+const HR: React.FC<HRProps> = ({
+  dashed,
+  children,
+}) => {
   return (
     <div
       className={`border-b ${
@@ -206,3 +212,5 @@ const PriceRangeButton: React.FC<PriceRangeButtonProps> = ({
     </div>
   )
 }
+
+export { KeySelector, Accordion, HR, PriceRangeButton }
