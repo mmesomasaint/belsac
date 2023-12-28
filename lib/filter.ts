@@ -1,13 +1,13 @@
 export interface Filter {
-  [key: string]: Price | FilterSubKey;
+  [key: string]: Price | FilterSubKey
 }
 
 type Price = {
-  min: number;
-  max: number;
-  highest: number;
-};
+  min: number
+  max: number
+  highest: number
+}
 
 type FilterSubKey = {
-  [subKey: string]: boolean; 
+  [subKey: string]: boolean
 }
