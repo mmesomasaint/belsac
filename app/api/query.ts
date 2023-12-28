@@ -42,8 +42,8 @@ query AllProducts($first: Int, $last: Int, $before: String, $after: String) {
 `
 
 export const SEARCH_PRODUCTS = `
-query SearchProducts($query: String!, $first: Int) {
-  search(query: $query, first: $first, types: PRODUCT) {
+query SearchProducts($query: String!, $first: Int, $after: String) {
+  search(query: $query, first: $first, after: $after, types: PRODUCT) {
     edges {
       node {
         ... on Product {
@@ -75,6 +75,7 @@ query SearchProducts($query: String!, $first: Int) {
           }
         }
       }
+      cursor
     }
     pageInfo {
       hasNextPage

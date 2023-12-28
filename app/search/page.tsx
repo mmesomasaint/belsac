@@ -18,12 +18,14 @@ export default function Search() {
   const [hasMore, setHasMore] = useState(false)
   const { products, sort, setSort, sortProducts } = useSort()
 
-  const load = (after?: string | null) => {
+  const load = () => {
     setLoading(true)
     setHasError(false)
     setHasMore(false)
 
-    fetch(`/api/search?query=${query}&cursor=${after && after}`, {
+    const cursor = afterCursor ?? ''
+
+    fetch(`/api/search?query=${query}&cursor=${cursor}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +35,8 @@ export default function Search() {
       .then((data) => {
         const results = data.body?.results
         const newProducts =
-          products.length > 0 ? [...products, results] : results
+          products.length > 0 ? [...products, ...results] : results
+        
         sortProducts(newProducts, sort)
         setHasMore(data.body?.pageInfo?.hasNextPage)
         setAfterCursor(data.body?.pageInfo?.after)
@@ -43,7 +46,7 @@ export default function Search() {
   }
 
   useEffect(() => {
-    load(null)
+    load()
   }, [])
 
   return (
@@ -74,7 +77,7 @@ export default function Search() {
           )}
           <div className='col-span-full flex justify-center items-center gap-8'>
             {hasMore && (
-              <Button onClick={() => load(afterCursor)} outline>
+              <Button onClick={() => load()} outline>
                 <span className='flex justify-center items-center gap-4'>
                   More
                   <PiCaretDownThin className='text-4xl' />
