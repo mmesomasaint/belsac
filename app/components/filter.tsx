@@ -126,10 +126,7 @@ interface HRProps {
   children?: React.ReactNode
 }
 
-const HR: React.FC<HRProps> = ({
-  dashed,
-  children,
-}) => {
+const HR: React.FC<HRProps> = ({ dashed, children }) => {
   return (
     <div
       className={`border-b ${
