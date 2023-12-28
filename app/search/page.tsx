@@ -12,52 +12,17 @@ import Card from '@/app/components/product/card'
 import DropDown, { DropItem } from '@/app/components/dropdown'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { MiniProduct } from '@/lib/product'
-import {
-  sortByDateAsc,
-  sortByDateDesc,
-  sortByNameAsc,
-  sortByNameDesc,
-  sortByPriceAsc,
-  sortByPriceDesc,
-} from '@/lib/sort'
 import Header from '../components/header'
+import useSort from '../hooks/usesort'
 
 export default function Search() {
   const searchParams = useSearchParams()
   const query = searchParams.get('q')
-  const [products, setProducts] = useState<MiniProduct[]>([])
   const [loading, setLoading] = useState(false)
   const [afterCursor, setAfterCursor] = useState(null)
   const [hasError, setHasError] = useState(false)
   const [hasMore, setHasMore] = useState(false)
-  const [sort, setSort] = useState('Name (asc)')
-
-  const sortProducts = (products: MiniProduct[], sortType: string) => {
-    switch (sortType) {
-      case 'Name (asc)':
-        setProducts(sortByNameAsc(products))
-        break
-      case 'Name (desc)':
-        setProducts(sortByNameDesc(products))
-        break
-      case 'Date (asc)':
-        setProducts(sortByDateAsc(products))
-        break
-      case 'Date (desc)':
-        setProducts(sortByDateDesc(products))
-        break
-      case 'Price (asc)':
-        setProducts(sortByPriceAsc(products))
-        break
-      case 'Price (desc)':
-        setProducts(sortByPriceDesc(products))
-        break
-      default:
-        setProducts(sortByNameAsc(products))
-        break
-    }
-  }
+  const {products, sort, setSort, sortProducts} = useSort()
 
   const load = (after?: string | null) => {
     setLoading(true)
@@ -86,10 +51,6 @@ export default function Search() {
   useEffect(() => {
     load(null)
   }, [])
-
-  useEffect(() => {
-    sortProducts(products, sort)
-  }, [sort])
 
   return (
     <div className='px-7'>

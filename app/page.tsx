@@ -12,52 +12,17 @@ import { Button, Text } from '@/app/components/elements'
 import Card from '@/app/components/product/card'
 import DropDown, { DropItem } from '@/app/components/dropdown'
 import { useEffect, useState } from 'react'
-import { MiniProduct } from '@/lib/product'
-import {
-  sortByDateAsc,
-  sortByDateDesc,
-  sortByNameAsc,
-  sortByNameDesc,
-  sortByPriceAsc,
-  sortByPriceDesc,
-} from '@/lib/sort'
 import Header from './components/header'
+import useSort from './hooks/usesort'
 
 export default function Home() {
-  const [products, setProducts] = useState<MiniProduct[]>([])
   const [loading, setLoading] = useState(false)
   const [beforeCursor, setBeforeCursor] = useState(null)
   const [afterCursor, setAfterCursor] = useState(null)
   const [hasError, setHasError] = useState(false)
   const [hasMore, setHasMore] = useState(false)
   const [hasPrev, setHasPrev] = useState(false)
-  const [sort, setSort] = useState('Name (asc)')
-
-  const sortProducts = (products: MiniProduct[], sortType: string) => {
-    switch (sortType) {
-      case 'Name (asc)':
-        setProducts(sortByNameAsc(products))
-        break
-      case 'Name (desc)':
-        setProducts(sortByNameDesc(products))
-        break
-      case 'Date (asc)':
-        setProducts(sortByDateAsc(products))
-        break
-      case 'Date (desc)':
-        setProducts(sortByDateDesc(products))
-        break
-      case 'Price (asc)':
-        setProducts(sortByPriceAsc(products))
-        break
-      case 'Price (desc)':
-        setProducts(sortByPriceDesc(products))
-        break
-      default:
-        setProducts(sortByNameAsc(products))
-        break
-    }
-  }
+  const {products, sort, setSort, sortProducts} = useSort()
 
   const load = (before?: string | null, after?: string | null) => {
     setLoading(true)
@@ -86,10 +51,6 @@ export default function Home() {
   useEffect(() => {
     load(null, null)
   }, [])
-
-  useEffect(() => {
-    sortProducts(products, sort)
-  }, [sort])
 
   return (
     <div className='px-7'>
