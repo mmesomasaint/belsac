@@ -20,7 +20,6 @@ export async function POST(Request: NextRequest) {
   })
 
   if (status === 200) {
-    console.log("Body: ", body)
     const results = body.data?.search.edges
     const pageInfo = body.data?.search.pageInfo
     const len = results.length
