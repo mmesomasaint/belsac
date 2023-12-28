@@ -1,13 +1,13 @@
 'use client'
 
-import { PiArrowDownThin, PiArrowUpThin, PiCaretDownThin } from 'react-icons/pi'
+import { PiCaretDownThin } from 'react-icons/pi'
 import { Button, Text } from '@/app/components/elements'
 import Card from '@/app/components/product/card'
-import DropDown, { DropItem } from '@/app/components/dropdown'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Header from '../components/header'
 import useSort from '../hooks/usesort'
+import Sort from '../components/sort'
 
 export default function Search() {
   const searchParams = useSearchParams()
@@ -52,56 +52,7 @@ export default function Search() {
       <div className='py-4 mt-12'>
         <div className='flex justify-between items-center gap-10'>
           <Text size='lg'>Featured</Text>
-          <DropDown title='Sort by' initialActive='Name (asc)'>
-            <DropItem value='Name (asc)' onClick={() => setSort('Name (asc)')}>
-              <span className='flex justify-center items-center gap-0'>
-                <PiArrowUpThin className='text-4xl' />
-                Name
-              </span>
-            </DropItem>
-            <DropItem
-              value='Name (desc)'
-              onClick={() => setSort('Name (desc)')}
-            >
-              <span className='flex justify-center items-center gap-0'>
-                <PiArrowDownThin className='text-4xl' />
-                Name
-              </span>
-            </DropItem>
-            <DropItem value='Date (asc)' onClick={() => setSort('Date (asc)')}>
-              <span className='flex justify-center items-center gap-0'>
-                <PiArrowUpThin className='text-4xl' />
-                Date
-              </span>
-            </DropItem>
-            <DropItem
-              value='Date (desc)'
-              onClick={() => setSort('Date (desc)')}
-            >
-              <span className='flex justify-center items-center gap-0'>
-                <PiArrowDownThin className='text-4xl' />
-                Date
-              </span>
-            </DropItem>
-            <DropItem
-              value='Price (ascending)'
-              onClick={() => setSort('Price (asc)')}
-            >
-              <span className='flex justify-center items-center gap-0'>
-                <PiArrowUpThin className='text-4xl' />
-                Price
-              </span>
-            </DropItem>
-            <DropItem
-              value='Price (descending)'
-              onClick={() => setSort('Price (desc)')}
-            >
-              <span className='flex justify-center items-center gap-0'>
-                <PiArrowDownThin className='text-4xl' />
-                Price
-              </span>
-            </DropItem>
-          </DropDown>
+          <Sort setSort={setSort} />
         </div>
         <div className='grid grid-cols-4 place-content-between items-stretch gap-16 mt-8'>
           {loading ? (
