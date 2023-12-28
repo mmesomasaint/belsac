@@ -4,7 +4,6 @@ import {
   PiShoppingCartThin,
   PiHeartStraightThin,
   PiCaretRightThin,
-  PiCaretLeftThin,
   PiArrowDownThin,
   PiArrowUpThin,
 } from 'react-icons/pi'
