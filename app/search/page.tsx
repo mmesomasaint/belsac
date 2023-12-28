@@ -58,7 +58,7 @@ export default function Search() {
       <div className='py-4 mt-12'>
         <div className='flex justify-between items-center gap-10'>
           {loading ? (
-            <Text size='md'>...</Text>
+            <Text size='lg'>&middot;&middot;&middot;</Text>
           ) : (
             <Text size='lg'>
               {`${total} result${total > 1 ? 's' : ''} for "${query ?? ''}"`}
