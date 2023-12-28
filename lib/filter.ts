@@ -8,6 +8,6 @@ type Price = {
   highest: number
 }
 
-type FilterSubKey = {
+export type FilterSubKey = {
   [subKey: string]: boolean
 }
