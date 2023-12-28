@@ -59,9 +59,11 @@ export default function Search() {
         <div className='flex justify-between items-center gap-10'>
           {loading ? (
             <Text size='md'>...</Text>
-          ) : (<Text size='lg'>
-            {`${total} result${total > 1 ? 's' : ''} for "${query ?? ''}"`}
-          </Text>)}
+          ) : (
+            <Text size='lg'>
+              {`${total} result${total > 1 ? 's' : ''} for "${query ?? ''}"`}
+            </Text>
+          )}
           <Sort setSort={setSort} />
         </div>
         <div className='grid grid-cols-4 place-content-between items-stretch gap-16 mt-8'>
