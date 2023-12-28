@@ -46,7 +46,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className='px-7'>
+    <div className='px-7 max-w-[120rem] mx-auto'>
       <Header />
       <div className='py-4 mt-12'>
         <div className='flex justify-between items-center gap-10'>

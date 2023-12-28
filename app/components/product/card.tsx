@@ -28,7 +28,7 @@ export default function Card({
         alt={title}
         width={400}
         height={400}
-        className='grow'
+        className='grow w-full'
       />
       <div className='flex flex-col w-full gap-2 p-4'>
         <div className='flex justify-start items-end gap-3'>
