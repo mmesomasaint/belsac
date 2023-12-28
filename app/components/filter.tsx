@@ -157,23 +157,23 @@ const PriceRangeButton: React.FC<PriceRangeButtonProps> = ({
   }
 
   function createPriceRanges(numRanges = 8) {
-    const stepAmount = (maxPrice - minPrice) / (numRanges - 1); // Calculate step size
-  
-    const ranges = [];
-    let currentPrice = minPrice;
-  
+    const stepAmount = (maxPrice - minPrice) / (numRanges - 1) // Calculate step size
+
+    const ranges = []
+    let currentPrice = minPrice
+
     for (let i = 0; i < numRanges; i++) {
       if (currentPrice >= maxPrice) break
-      const maxRangePrice = Math.min(currentPrice + stepAmount, maxPrice); // Ensure max doesn't exceed maxPrice
+      const maxRangePrice = Math.min(currentPrice + stepAmount, maxPrice) // Ensure max doesn't exceed maxPrice
       ranges.push({
         min: currentPrice,
         max: maxRangePrice,
-        label: `${currentPrice.toFixed(2)} - ${maxRangePrice.toFixed(2)}` // Format label
-      });
-      currentPrice = maxRangePrice + 0.01; // Slight offset for non-overlapping ranges
+        label: `${currentPrice.toFixed(2)} - ${maxRangePrice.toFixed(2)}`, // Format label
+      })
+      currentPrice = maxRangePrice + 0.01 // Slight offset for non-overlapping ranges
     }
-  
-    return ranges;
+
+    return ranges
   }
 
   return (
