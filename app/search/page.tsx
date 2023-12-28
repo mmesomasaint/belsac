@@ -60,7 +60,15 @@ export default function Search() {
     <div className='px-7 max-w-[120rem] mx-auto'>
       <Header />
       <div className='py-4 mt-12'>
-        <div className='flex justify-between items-center gap-10'>
+        <div className='grid grid-cols-4 place-content-between items-stretch gap-8'>
+          
+        <div className='flex flex-col gap-8 p-8 w-full bg-gray-300'>
+          <Text size='lg'>Filter</Text>
+          {filter && <FilterBar filter={filter} setFilter={setFilter} />}
+        </div>
+        <div className='col-span-3 w-full'>
+          
+        <div className='flex justify-between items-end gap-10 py-8'>
           {loading ? (
             <Text size='lg'>&middot;&middot;&middot;</Text>
           ) : (
@@ -70,8 +78,9 @@ export default function Search() {
           )}
           <Sort setSort={setSort} />
         </div>
-        <div className='grid grid-cols-4 place-content-between items-stretch gap-16 mt-8'>
-          {loading ? (
+        <div className='grid grid-cols-3 place-content-between items-stretch gap-16'>
+          
+        {loading ? (
             <div className='w-full col-span-full flex justify-center items-center'>
               <Text size='md'>Loading...</Text>
             </div>
@@ -83,17 +92,9 @@ export default function Search() {
             <div className='w-full col-span-full flex justify-center items-center'>
               <Text size='md'>No products found. Search something else.</Text>
             </div>
-          ) : (
-            <>
-              {filter && (<FilterBar filter={filter} setFilter={setFilter} />)}
-              <div className='col-span-3 grid grid-cols-3 place-content-between items-stretch gap-16'>
-                
-            {products.map((product) => (
-              <Card key={product.id} product={product} full />
-            ))}
-              </div>
-            </>
-          )}
+          ) : products.map((product) => (
+            <Card key={product.id} product={product} full />
+          ))}
           <div className='col-span-full flex justify-center items-center gap-8'>
             {hasMore && (
               <Button onClick={() => load()} outline>
@@ -104,6 +105,8 @@ export default function Search() {
               </Button>
             )}
           </div>
+        </div>
+        </div>
         </div>
       </div>
     </div>
