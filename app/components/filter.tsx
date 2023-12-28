@@ -24,8 +24,8 @@ export default function FilterBar({
       <HR>
         <Accordion title='Price'>
           <PriceRangeButton
-            minPrice={filter.price.min as number}
-            maxPrice={filter.price.max as number}
+            minPrice={0}
+            maxPrice={filter.price.highest as number}
             onRangeClick={setPrice}
           />
         </Accordion>
@@ -177,12 +177,12 @@ const PriceRangeButton: React.FC<PriceRangeButtonProps> = ({
   }
 
   return (
-    <div className='flex flex-wrap gap-4'>
+    <div className='flex justify-between flex-wrap gap-4'>
       {createPriceRanges().map(({ label, min, max }) => (
         <button
           type='button'
           key={label}
-          className={`px-4 py-2 border border-black/20 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black ${
+          className={`px-4 py-2 border border-black/20 rounded-md hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black ${
             selectedRange[0] === min && selectedRange[1] === max
               ? 'bg-black text-white'
               : ''
