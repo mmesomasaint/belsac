@@ -20,7 +20,7 @@ export default function FilterBar({
   }
 
   return (
-    <div className='flex flex-col w-full justify-start h-fit gap-6'>
+    <div className='flex flex-col w-full justify-start h-fit gap-16'>
       <HR>
         <Accordion title='Price'>
           <PriceRangeButton
@@ -104,10 +104,10 @@ const Accordion: React.FC<AccordionProps> = ({
   return (
     <div className='w-full'>
       <div
-        className='flex justify-between items-center gap-8'
+        className='flex justify-between items-center gap-8 capitalize'
         onClick={() => setOpen((prev) => !prev)}
       >
-        <Text size='sm'>{title}</Text>
+        <Text size='md'>{title}</Text>
         <PiCaretDownThin className={`${open && 'rotate-180'} text-4xl`} />
       </div>
       <div
