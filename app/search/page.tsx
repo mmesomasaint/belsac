@@ -174,6 +174,10 @@ export default function Search() {
             <div className='w-full col-span-full flex justify-center items-center'>
               <Text size='md'>Something went wrong.</Text>
             </div>
+          ) : products.length < 1 ? (
+            <div className='w-full col-span-full flex justify-center items-center'>
+              <Text size='md'>No products found. Search something else.</Text>
+            </div>
           ) : (
             products.map((product) => (
               <Card key={product.id} product={product} full />
