@@ -16,6 +16,7 @@ export default function Search() {
   const [afterCursor, setAfterCursor] = useState(null)
   const [hasError, setHasError] = useState(false)
   const [hasMore, setHasMore] = useState(false)
+  const [total, setTotal] = useState(0)
   const { products, sort, setSort, sortProducts } = useSort()
 
   const load = () => {
@@ -40,6 +41,7 @@ export default function Search() {
         sortProducts(newProducts, sort)
         setHasMore(data.body?.pageInfo?.hasNextPage)
         setAfterCursor(data.body?.pageInfo?.after)
+        setTotal(data.body?.total ?? 0)
       })
       .catch(() => setHasError(true))
       .finally(() => setLoading(false))
@@ -54,7 +56,9 @@ export default function Search() {
       <Header />
       <div className='py-4 mt-12'>
         <div className='flex justify-between items-center gap-10'>
-          <Text size='lg'>Featured</Text>
+          <Text size='lg'>
+            {`${total} result${total > 1 ? 's' : ''} for "${query}"`}
+          </Text>
           <Sort setSort={setSort} />
         </div>
         <div className='grid grid-cols-4 place-content-between items-stretch gap-16 mt-8'>

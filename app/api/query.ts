@@ -44,6 +44,7 @@ query AllProducts($first: Int, $last: Int, $before: String, $after: String) {
 export const SEARCH_PRODUCTS = `
 query SearchProducts($query: String!, $first: Int, $after: String) {
   search(query: $query, first: $first, after: $after, types: PRODUCT) {
+    totalCount
     edges {
       node {
         ... on Product {

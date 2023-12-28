@@ -26,6 +26,7 @@ export async function POST(Request: NextRequest) {
     const results = body.data?.search.edges
     const pageInfo = body.data?.search.pageInfo
     const len = results.length
+    const total = body.data?.search.totalCount
 
     const cleanedResults = results.map(
       ({ node }: { node: MiniProductQueryResult }) => cleanMiniProduct(node)
@@ -35,6 +36,7 @@ export async function POST(Request: NextRequest) {
       status,
       body: {
         results: cleanedResults,
+        total,
         pageInfo: {
           ...pageInfo,
           after: results[len - 1]?.cursor,
