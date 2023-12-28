@@ -1,4 +1,5 @@
-import { MiniProductQueryResult } from './types'
+import { Filter } from '@/lib/filter'
+import { MiniProductQueryResult, SearchProductsQueryResult } from './types'
 
 /**
  * Cleans up the query result of mini product
@@ -36,5 +37,57 @@ export function cleanMiniProduct(queryResult: MiniProductQueryResult) {
     price: parseInt(minVariantPrice.amount),
     compareAtPrice: parseInt(maxVariantPrice.amount),
     collectionHandle: collectionHandles[0],
+  }
+}
+
+/**
+ * Extracts the filter from the query result
+ * @param queryResult The result of fetching the search products query.
+ * @returns A Filter containing keys partaining to query result.
+ */
+export function extractFilter(queryResult: SearchProductsQueryResult): Filter {
+  const { edges } = queryResult
+  const brands = Array()
+  let maxPrice = 0
+  let optionValues = {}
+
+  edges.forEach(({ node }) => {
+    const { options, collections, priceRange } = node
+
+    // Extract collections as brands
+    const collectionTitles = collections.nodes.map((node) => node.title)
+    brands.push(collectionTitles[0])
+
+    // Extract prices
+    const { minVariantPrice } = priceRange
+    maxPrice = Math.max(maxPrice, parseInt(minVariantPrice.amount))
+
+    // Extract other options
+    // 1. Extract all the names with no duplicates.
+    const optionNames = Array.from(
+      new Set(options.map((option) => option.name))
+    )
+    // 2. Extract all the values attached to the extracted names and place them in an object with boolean false value
+    // e.g. {'Color': {'blue': false, 'orange': false}, Size: {'small': false, 'medium': false}}
+    optionValues = Object.fromEntries(
+      optionNames.map((name) => [
+        name,
+        Object.fromEntries(
+          options
+            .filter((option) => option.name === name)
+            .map((option) => [option.values, false])
+        ),
+      ])
+    )
+  })
+
+  return {
+    price: {
+      min: 0,
+      max: maxPrice,
+      highest: maxPrice
+    },
+    brands: Object.fromEntries(brands.map(item => [item, false])),
+    ...optionValues
   }
 }
