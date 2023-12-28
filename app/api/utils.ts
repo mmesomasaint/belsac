@@ -74,8 +74,8 @@ export function extractFilter(queryResult: SearchProductsQueryResult): Filter {
         name,
         Object.fromEntries(
           options
-            .filter((option) => option.name === name)
-            .map((option) => [option.values, false])
+            .filter((option) => option.name === name)[0]
+            .values.map((value) => [value, false])
         ),
       ])
     )

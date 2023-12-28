@@ -8,16 +8,18 @@ import { useSearchParams } from 'next/navigation'
 import Header from '../components/header'
 import useSort from '../hooks/usesort'
 import Sort from '../components/sort'
+import { Filter } from '@/lib/filter'
 
 export default function Search() {
   const searchParams = useSearchParams()
   const query = searchParams.get('q')
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [afterCursor, setAfterCursor] = useState(null)
   const [hasError, setHasError] = useState(false)
   const [hasMore, setHasMore] = useState(false)
   const [total, setTotal] = useState(0)
   const { products, sort, setSort, sortProducts } = useSort()
+  const [filter, setFilter] = useState<Filter>()
 
   const load = () => {
     setLoading(true)
@@ -43,6 +45,7 @@ export default function Search() {
         setHasMore(data.body?.pageInfo?.hasNextPage)
         setAfterCursor(data.body?.pageInfo?.after)
         setTotal(data.body?.total ?? 0)
+        setFilter(data.body?.filter)
       })
       .catch(() => setHasError(true))
       .finally(() => setLoading(false))

@@ -1,6 +1,6 @@
 import { SEARCH_PRODUCTS } from '@/app/api/query'
 import { MiniProductQueryResult } from '@/app/api/types'
-import { cleanMiniProduct } from '@/app/api/utils'
+import { cleanMiniProduct, extractFilter } from '@/app/api/utils'
 import { shopifyFetch } from '@/lib/fetch'
 import { NextRequest } from 'next/server'
 
@@ -27,6 +27,7 @@ export async function POST(Request: NextRequest) {
     const pageInfo = body.data?.search.pageInfo
     const len = results.length
     const total = body.data?.search.totalCount
+    const filter = extractFilter(body.data?.search)
 
     const cleanedResults = results.map(
       ({ node }: { node: MiniProductQueryResult }) => cleanMiniProduct(node)
@@ -35,6 +36,7 @@ export async function POST(Request: NextRequest) {
     return Response.json({
       status,
       body: {
+        filter,
         results: cleanedResults,
         total,
         pageInfo: {
