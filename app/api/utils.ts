@@ -16,7 +16,7 @@ export function cleanMiniProduct(queryResult: MiniProductQueryResult) {
     compareAtPriceRange,
     options,
     collections,
-    createdAt
+    createdAt,
   } = queryResult
   const { url } = featuredImage
   const { minVariantPrice } = priceRange
@@ -85,9 +85,9 @@ export function extractFilter(queryResult: SearchProductsQueryResult): Filter {
     price: {
       min: 0,
       max: maxPrice,
-      highest: maxPrice
+      highest: maxPrice,
     },
-    brands: Object.fromEntries(brands.map(item => [item, false])),
-    ...optionValues
+    brands: Object.fromEntries(brands.map((item) => [item, false])),
+    ...optionValues,
   }
 }
