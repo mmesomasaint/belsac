@@ -28,3 +28,15 @@ export interface MiniProductQueryResult {
     }[]
   }
 }
+
+export interface SearchProductsQueryResult {
+  totalCount: number
+  edges: {
+    node: MiniProductQueryResult
+    cursor: string
+  }[]
+  pageInfo: {
+    hasNextPage: boolean
+    hasPreviousPage: boolean
+  }
+}
