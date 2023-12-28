@@ -20,6 +20,7 @@ export async function POST(Request: NextRequest) {
   })
 
   if (status === 200) {
+    console.log("Body: ", body)
     const results = body.data?.search.edges
     const pageInfo = body.data?.search.pageInfo
     const len = results.length
@@ -34,7 +35,7 @@ export async function POST(Request: NextRequest) {
         results: cleanedResults,
         pageInfo: {
           ...pageInfo,
-          after: results[len - 1].cursor,
+          after: results[len - 1]?.cursor,
         },
       },
     })
