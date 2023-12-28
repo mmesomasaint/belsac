@@ -23,6 +23,7 @@ export default function Search() {
     setLoading(true)
     setHasError(false)
     setHasMore(false)
+    setTotal(0)
 
     const cursor = afterCursor ?? ''
 
