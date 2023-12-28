@@ -22,7 +22,7 @@ export default function Home() {
   const [hasError, setHasError] = useState(false)
   const [hasMore, setHasMore] = useState(false)
   const [hasPrev, setHasPrev] = useState(false)
-  const {products, sort, setSort, sortProducts} = useSort()
+  const { products, sort, setSort, sortProducts } = useSort()
 
   const load = (before?: string | null, after?: string | null) => {
     setLoading(true)

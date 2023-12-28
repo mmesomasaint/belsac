@@ -22,7 +22,7 @@ export default function Search() {
   const [afterCursor, setAfterCursor] = useState(null)
   const [hasError, setHasError] = useState(false)
   const [hasMore, setHasMore] = useState(false)
-  const {products, sort, setSort, sortProducts} = useSort()
+  const { products, sort, setSort, sortProducts } = useSort()
 
   const load = (after?: string | null) => {
     setLoading(true)
