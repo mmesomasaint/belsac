@@ -7,9 +7,11 @@ import { Text } from './elements'
 export default function FilterBar({
   filter,
   setFilter,
+  loadFilter,
 }: {
   filter: Filter
   setFilter: (filter: Filter) => void
+  loadFilter: () => void
 }) {
   const setPrice = (min: number, max: number) => {
     const newFilter: Filter = {
@@ -17,6 +19,7 @@ export default function FilterBar({
       ['price']: { highest: filter.price.highest as number, min, max },
     }
     setFilter(newFilter)
+    loadFilter()
   }
 
   const setFilterField = (key: string, subKey: string, value: boolean) => {
@@ -25,6 +28,7 @@ export default function FilterBar({
       [key]: { ...filter[key], [subKey]: value },
     }
     setFilter(newFilter)
+    loadFilter()
   }
 
   return (

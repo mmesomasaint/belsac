@@ -28,7 +28,7 @@ export default function Search() {
     setHasMore(false)
     setTotal(0)
 
-    const cursor = afterCursor && !filterTriggered ? afterCursor : ''
+    const cursor = (afterCursor && !filterTriggered) ? afterCursor : ''
 
     fetch(`/api/search?query=${query}&cursor=${cursor}`, {
       method: 'POST',
@@ -59,10 +59,6 @@ export default function Search() {
     load()
   }, [])
 
-  useEffect(() => {
-    load(true)
-  }, [filter])
-
   return (
     <div className='px-7 max-w-[120rem] mx-auto'>
       <Header />
@@ -70,7 +66,7 @@ export default function Search() {
         <div className='grid grid-cols-4 place-content-between items-stretch gap-8'>
           <div className='flex flex-col gap-16 p-8 h-fit w-full ring ring-gray-200'>
             <Text size='lg'>Filter</Text>
-            {filter && <FilterBar filter={filter} setFilter={setFilter} />}
+            {filter && <FilterBar filter={filter} setFilter={setFilter} loadFilter={() => load(true)} />}
           </div>
           <div className='col-span-3 w-full'>
             <div className='flex justify-between items-end gap-10 pb-8'>
