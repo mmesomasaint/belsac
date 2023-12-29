@@ -165,7 +165,8 @@ const PriceRangeButton: React.FC<PriceRangeButtonProps> = ({
     let currentPrice = minPrice
 
     for (let i = 0; i < numRanges; i++) {
-      if (currentPrice >= maxPrice) break
+      if (currentPrice >= maxPrice) break // maxPrice is limit.
+
       const maxRangePrice = Math.min(currentPrice + stepAmount, maxPrice) // Ensure max doesn't exceed maxPrice
       ranges.push({
         min: currentPrice,
