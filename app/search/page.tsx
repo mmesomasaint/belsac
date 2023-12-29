@@ -61,7 +61,7 @@ export default function Search() {
       <Header />
       <div className='py-4 mt-12'>
         <div className='grid grid-cols-4 place-content-between items-stretch gap-8'>
-          <div className='flex flex-col gap-16 p-8 w-full ring ring-gray-200'>
+          <div className='flex flex-col gap-16 p-8 h-fit w-full ring ring-gray-200'>
             <Text size='lg'>Filter</Text>
             {filter && <FilterBar filter={filter} setFilter={setFilter} />}
           </div>
