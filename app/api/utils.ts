@@ -94,11 +94,23 @@ export function extractFilter(queryResult: SearchProductsQueryResult): Filter {
 
 export function parseFilter(filter: Filter) {
   // Extract price
-  const price = {price: {'min': filter.price.min, 'max': filter.price.max}}
+  const price = { price: { min: filter.price.min, max: filter.price.max } }
 
   // Extract other variants
   // [{variantOption: {name: 'color', value: 'natural'}}]
-  const otherVariants = Object.keys(filter).filter(key => key !== 'price').map(key => Object.fromEntries(Object.keys(filter[key]).map(subKey => ["variantOptions", [["name", key], ["value", subKey]]])))
-  
+  const otherVariants = Object.keys(filter)
+    .filter((key) => key !== 'price')
+    .map((key) =>
+      Object.fromEntries(
+        Object.keys(filter[key]).map((subKey) => [
+          'variantOptions',
+          [
+            ['name', key],
+            ['value', subKey],
+          ],
+        ])
+      )
+    )
+
   return [price, ...otherVariants]
 }
