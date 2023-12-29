@@ -170,7 +170,7 @@ const PriceRangeButton: React.FC<PriceRangeButtonProps> = ({
       ranges.push({
         min: currentPrice,
         max: maxRangePrice,
-        label: `$${currentPrice.toFixed(2)} - $${maxRangePrice.toFixed(2)}`, // Format label
+        label: `$${Math.ceil(currentPrice)} - $${Math.ceil(maxRangePrice)}`, // Format label
       })
       currentPrice = maxRangePrice + 0.01 // Slight offset for non-overlapping ranges
     }
