@@ -7,12 +7,17 @@ import { NextRequest } from 'next/server'
 const LIMIT = 6
 
 export async function POST(Request: NextRequest) {
-  const {filter} = await Request.json()
+  const { filter } = await Request.json()
   const searchParams = Request.nextUrl.searchParams
   const query = searchParams.get('query')
   const after = searchParams.get('cursor')
 
-  const variables: { first: number; query: string | null; after?: string; filter?: any } = {
+  const variables: {
+    first: number
+    query: string | null
+    after?: string
+    filter?: any
+  } = {
     first: LIMIT,
     query,
   }

@@ -22,7 +22,7 @@ export default function Search() {
   const { products, sort, setSort, sortProducts } = useSort()
   const [filter, setFilter] = useState<Filter>()
 
-  const load = (filterTriggered=false) => {
+  const load = (filterTriggered = false) => {
     setLoading(true)
     setHasError(false)
     setHasMore(false)
@@ -41,7 +41,9 @@ export default function Search() {
       .then((data) => {
         const results = data.body?.results
         const newProducts =
-          products.length > 0 && !filterTriggered ? [...products, ...results] : results
+          products.length > 0 && !filterTriggered
+            ? [...products, ...results]
+            : results
 
         sortProducts(newProducts, sort)
         setHasMore(data.body?.pageInfo?.hasNextPage)
