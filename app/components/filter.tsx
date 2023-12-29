@@ -41,10 +41,10 @@ export default function FilterBar({
       {Object.keys(filter)
         .filter((key) => key !== 'price')
         .map((key) => (
-          <HR>
+          <HR key={key}>
             <Accordion title={key}>
               {Object.keys(filter[key]).map((subKey) => (
-                <div className='flex flex-col gap-4'>
+                <div key={subKey} className='flex flex-col gap-4'>
                   <KeySelector
                     check={(filter[key] as FilterSubKey)[subKey] as boolean}
                     setCheck={(value) => setFilterField(key, subKey, value)}
