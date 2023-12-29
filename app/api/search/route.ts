@@ -4,6 +4,13 @@ import { cleanMiniProduct, extractFilter, parseFilter } from '@/app/api/utils'
 import { shopifyFetch } from '@/lib/fetch'
 import { NextRequest } from 'next/server'
 
+type VariablesType = {
+  first: number
+  query: string | null
+  after?: string
+  filter?: any
+}
+
 const LIMIT = 6
 
 export async function POST(Request: NextRequest) {
@@ -12,12 +19,7 @@ export async function POST(Request: NextRequest) {
   const query = searchParams.get('query')
   const after = searchParams.get('cursor')
 
-  const variables: {
-    first: number
-    query: string | null
-    after?: string
-    filter?: any
-  } = {
+  const variables: VariablesType = {
     first: LIMIT,
     query,
   }
