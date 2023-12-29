@@ -19,6 +19,14 @@ export default function FilterBar({
     setFilter(newFilter)
   }
 
+  const setFilterField = (key: string, subKey: string, value: boolean) => {
+    const newFilter: Filter = {
+      ...filter,
+      [key]: { ...filter[key], [subKey]: value },
+    }
+    setFilter(newFilter)
+  }
+
   return (
     <div className='flex flex-col w-full justify-start h-fit gap-16'>
       <HR>
@@ -39,13 +47,7 @@ export default function FilterBar({
                 <div className='flex flex-col gap-4'>
                   <KeySelector
                     check={(filter[key] as FilterSubKey)[subKey] as boolean}
-                    setCheck={(prev) => {
-                      const newFilter: Filter = {
-                        ...filter,
-                        [key]: { ...filter[key], [subKey]: prev },
-                      }
-                      setFilter(newFilter)
-                    }}
+                    setCheck={(value) => setFilterField(key, subKey, value)}
                   >
                     {subKey}
                   </KeySelector>
