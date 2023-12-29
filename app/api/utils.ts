@@ -98,7 +98,7 @@ export function parseFilter(filter: Filter) {
 
   // Extract other variants
   // [{variantOption: {name: 'color', value: 'natural'}}]
-  const otherVariants = Object.keys(filter)
+  const variants = Object.keys(filter)
     .filter((key) => key !== 'price')
     .map((key) =>
       Object.fromEntries(
@@ -112,5 +112,5 @@ export function parseFilter(filter: Filter) {
       )
     )
 
-  return [price, ...otherVariants]
+  return [price, ...variants]
 }
