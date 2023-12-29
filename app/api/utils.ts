@@ -1,4 +1,4 @@
-import { Filter } from '@/lib/filter'
+import { Filter, FilterSubKey } from '@/lib/filter'
 import { MiniProductQueryResult, SearchProductsQueryResult } from './types'
 
 /**
@@ -109,15 +109,15 @@ export function parseFilter(filter: Filter) {
     .filter((key) => key !== 'price')
     .map((key) =>
       Object.fromEntries(
-        Object.keys(filter[key]).map((subKey) => [
+        Object.keys(filter[key]).filter(subKey => (filter[key] as FilterSubKey)[subKey] === true).map((subKey) => [
           'variantOptions',
-          [
+          Object.fromEntries([
             ['name', key],
             ['value', subKey],
-          ],
+          ])
         ])
       )
-    )
+    ).filter(obj => Object.keys(obj).length > 0)
 
   return [price, ...variants]
 }

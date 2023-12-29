@@ -1,21 +1,23 @@
 import { SEARCH_PRODUCTS } from '@/app/api/query'
 import { MiniProductQueryResult } from '@/app/api/types'
-import { cleanMiniProduct, extractFilter } from '@/app/api/utils'
+import { cleanMiniProduct, extractFilter, parseFilter } from '@/app/api/utils'
 import { shopifyFetch } from '@/lib/fetch'
 import { NextRequest } from 'next/server'
 
 const LIMIT = 6
 
 export async function POST(Request: NextRequest) {
+  const {filter} = await Request.json()
   const searchParams = Request.nextUrl.searchParams
   const query = searchParams.get('query')
   const after = searchParams.get('cursor')
 
-  const variables: { first: number; query: string | null; after?: string } = {
+  const variables: { first: number; query: string | null; after?: string; filter?: any } = {
     first: LIMIT,
     query,
   }
   if (after) variables['after'] = after
+  if (filter) variables['filter'] = parseFilter(filter)
 
   const { status, body } = await shopifyFetch({
     query: SEARCH_PRODUCTS,

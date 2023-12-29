@@ -22,31 +22,32 @@ export default function Search() {
   const { products, sort, setSort, sortProducts } = useSort()
   const [filter, setFilter] = useState<Filter>()
 
-  const load = () => {
+  const load = (filterTriggered=false) => {
     setLoading(true)
     setHasError(false)
     setHasMore(false)
     setTotal(0)
 
-    const cursor = afterCursor ?? ''
+    const cursor = afterCursor && !filterTriggered ? afterCursor : ''
 
     fetch(`/api/search?query=${query}&cursor=${cursor}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ filter: filter ?? null }),
     })
       .then((res) => res.json())
       .then((data) => {
         const results = data.body?.results
         const newProducts =
-          products.length > 0 ? [...products, ...results] : results
+          products.length > 0 && !filterTriggered ? [...products, ...results] : results
 
         sortProducts(newProducts, sort)
         setHasMore(data.body?.pageInfo?.hasNextPage)
         setAfterCursor(data.body?.pageInfo?.after)
         setTotal(data.body?.total ?? 0)
-        setFilter(data.body?.filter)
+        !filterTriggered && setFilter(data.body?.filter)
       })
       .catch(() => setHasError(true))
       .finally(() => setLoading(false))
@@ -55,6 +56,10 @@ export default function Search() {
   useEffect(() => {
     load()
   }, [])
+
+  useEffect(() => {
+    load(true)
+  }, [filter])
 
   return (
     <div className='px-7 max-w-[120rem] mx-auto'>
