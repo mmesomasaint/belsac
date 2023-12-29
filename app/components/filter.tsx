@@ -113,7 +113,7 @@ const Accordion: React.FC<AccordionProps> = ({
       <div
         className={`transition-all duration-300 ease-in-out ${
           open ? 'block max-h-full' : 'max-h-0 hidden'
-        } relative flex flex-col gap-3 items-start justify-start mt-3`}
+        } relative flex flex-col gap-3 items-start justify-start mt-3 py-5`}
       >
         {children}
       </div>
