@@ -22,7 +22,7 @@ export default function FilterBar({
   return (
     <div className='flex flex-col w-full justify-start h-fit gap-16'>
       <HR>
-        <Accordion title='Price'>
+        <Accordion title='Price' defaultOpen>
           <PriceRangeButton
             minPrice={0}
             maxPrice={filter.price.highest as number}
