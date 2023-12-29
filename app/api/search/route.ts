@@ -4,7 +4,7 @@ import { cleanMiniProduct, extractFilter } from '@/app/api/utils'
 import { shopifyFetch } from '@/lib/fetch'
 import { NextRequest } from 'next/server'
 
-const LIMIT = 4
+const LIMIT = 6
 
 export async function POST(Request: NextRequest) {
   const searchParams = Request.nextUrl.searchParams
