@@ -92,9 +92,16 @@ export function extractFilter(queryResult: SearchProductsQueryResult): Filter {
   }
 }
 
+/**
+ * Parses the filter into a format that can be used by the query
+ * @param filter The filter to be parsed.
+ * @returns An array of objects that can be used by the query.
+ */
 export function parseFilter(filter: Filter) {
   // Extract price
-  const price = { price: { min: filter.price.min, max: filter.price.max } }
+  const price = {
+    price: { min: filter.price.min as number, max: filter.price.max as number },
+  }
 
   // Extract other variants
   // [{variantOption: {name: 'color', value: 'natural'}}]
