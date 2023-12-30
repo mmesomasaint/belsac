@@ -46,10 +46,17 @@ export function cleanMiniProduct(queryResult: MiniProductQueryResult) {
  * @param filterCollections The collections to filter by.
  * @returns The filtered products.
  */
-export function filterProductByCollection(result: {node: MiniProductQueryResult}[], filterCollections: string[]) {
+export function filterProductByCollection(
+  result: { node: MiniProductQueryResult }[],
+  filterCollections: string[]
+) {
   return result.reduce((acc, { node }) => {
-    const {collections: {nodes}} = node
-    const isPassed = nodes.some(({handle}) => filterCollections.includes(handle))
+    const {
+      collections: { nodes },
+    } = node
+    const isPassed = nodes.some(({ handle }) =>
+      filterCollections.includes(handle)
+    )
 
     if (isPassed) return [...acc, cleanMiniProduct(node)]
     return acc
@@ -125,15 +132,18 @@ export function parseFilter(filter: Filter) {
     .filter((key) => key !== 'price')
     .map((key) =>
       Object.fromEntries(
-        Object.keys(filter[key]).filter(subKey => (filter[key] as FilterSubKey)[subKey] === true).map((subKey) => [
-          'variantOptions',
-          Object.fromEntries([
-            ['name', key],
-            ['value', subKey],
+        Object.keys(filter[key])
+          .filter((subKey) => (filter[key] as FilterSubKey)[subKey] === true)
+          .map((subKey) => [
+            'variantOptions',
+            Object.fromEntries([
+              ['name', key],
+              ['value', subKey],
+            ]),
           ])
-        ])
       )
-    ).filter(obj => Object.keys(obj).length > 0)
+    )
+    .filter((obj) => Object.keys(obj).length > 0)
 
   return [price, ...variants]
 }
