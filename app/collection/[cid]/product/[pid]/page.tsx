@@ -1,7 +1,11 @@
-import Header from "@/app/components/header"
+import Header from '@/app/components/header'
 
-export default async function Product({params}: {params: {cid: string, pid: string}}) {
-  const {cid, pid} = params
+export default async function Product({
+  params,
+}: {
+  params: { cid: string; pid: string }
+}) {
+  const { cid, pid } = params
   const res = await fetch(`/api/products/product?handle=${pid}`)
   const product = await res.json()
   return (
