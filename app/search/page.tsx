@@ -22,13 +22,11 @@ export default function Search() {
   const { products, sort, setSort, sortProducts } = useSort()
   const [filter, setFilter] = useState<Filter>()
 
-  const load = (filterTriggered = false, newFilter = filter) => {
+  const load = (filterTriggered?: boolean, newFilter?: Filter, cursor = afterCursor && !filterTriggered ? afterCursor : '') => {
     setLoading(true)
     setHasError(false)
     setHasMore(false)
     setTotal(0)
-
-    const cursor = afterCursor && !filterTriggered ? afterCursor : ''
 
     fetch(`/api/search?query=${query}&cursor=${cursor}`, {
       method: 'POST',
@@ -41,7 +39,7 @@ export default function Search() {
       .then((data) => {
         const results = data.body?.results
         const newProducts =
-          products.length > 0 && !filterTriggered
+          products.length > 0 && !filterTriggered && cursor === afterCursor
             ? [...products, ...results]
             : results
 
@@ -56,7 +54,8 @@ export default function Search() {
   }
 
   useEffect(() => {
-    load()
+    // Reload the entire page.
+    load(false, undefined, '')
   }, [query])
 
   return (
