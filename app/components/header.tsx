@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import { Button, Text } from './elements'
 import { useState } from 'react'
 
-export default function Header({defaultText}: {defaultText?: string}) {
+export default function Header({ defaultText }: { defaultText?: string }) {
   const [searchText, setSearchText] = useState(defaultText)
   const router = useRouter()
 
@@ -14,8 +14,8 @@ export default function Header({defaultText}: {defaultText?: string}) {
       </div>
       <div className='flex justify-center items-stretch w-[40%]'>
         <input
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
           placeholder='Search bags'
           className='grow self-stretch p-4 text-xl font-light border border-black/90 focus:outline-none placeholder:text-black/90 placeholder:text-xl'
         />
