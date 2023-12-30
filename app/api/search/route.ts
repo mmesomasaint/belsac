@@ -40,7 +40,7 @@ export async function POST(Request: NextRequest) {
     const pageInfo = body.data?.search.pageInfo
     const len = results.length
     const total = body.data?.search.totalCount
-    const filterExtract = extractFilter(body.data?.search)
+    const filterKeys = extractFilter(body.data?.search)
 
     const cleanedResults = results.map(
       ({ node }: { node: MiniProductQueryResult }) => cleanMiniProduct(node)
@@ -62,7 +62,7 @@ export async function POST(Request: NextRequest) {
       status,
       body: {
         total,
-        filter: filterExtract,
+        filter: filterKeys,
         results: filterResults,
         pageInfo: {
           ...pageInfo,
