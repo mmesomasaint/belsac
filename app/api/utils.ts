@@ -1,5 +1,9 @@
 import { Filter, FilterSubKey } from '@/lib/filter'
-import { MiniProductQueryResult, RetrieveProductQueryResult, SearchProductsQueryResult } from './types'
+import {
+  MiniProductQueryResult,
+  RetrieveProductQueryResult,
+  SearchProductsQueryResult,
+} from './types'
 
 /**
  * Cleans up the query result of mini product
@@ -154,19 +158,27 @@ export function parseFilter(filter: Filter) {
  * @returns A cleaner version of the returned product that can be used by components
  */
 export function cleanProduct(queryResult: RetrieveProductQueryResult) {
-  const {id, title, handle, description, descriptionHtml, images, options, priceRange, compareAtPriceRange} = queryResult
+  const {
+    id,
+    title,
+    handle,
+    description,
+    descriptionHtml,
+    images,
+    options,
+    priceRange,
+    compareAtPriceRange,
+  } = queryResult
 
   return {
     id,
     title,
     handle,
-    description, 
+    description,
     descriptionHtml,
     options,
     images: images.nodes,
-    price: priceRange
-      ? Number(priceRange.minVariantPrice.amount)
-      : null,
+    price: priceRange ? Number(priceRange.minVariantPrice.amount) : null,
     discount: compareAtPriceRange
       ? Number(compareAtPriceRange.maxVariantPrice.amount)
       : null,
