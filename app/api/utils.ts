@@ -54,8 +54,8 @@ export function filterProductByCollection(
     const {
       collections: { nodes },
     } = node
-    const isPassed = nodes.some(({ handle }) =>
-      filterCollections.includes(handle)
+    const isPassed = nodes.some(({ title }) =>
+      filterCollections.includes(title)
     )
 
     if (isPassed) return [...acc, cleanMiniProduct(node)]
