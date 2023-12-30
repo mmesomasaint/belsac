@@ -47,13 +47,19 @@ export default async function Product({
             {product?.title ?? ''}
           </Text>
         </div>
-        <div className='grid grid-cols-2 place-content-between items-stretch gap-16'>
+        <div className='grid grid-cols-2 place-content-between items-stretch gap-8 py-6'>
           <div className='col-span-1'>
             <ProductSlider images={product?.images ?? []} />
           </div>
           <div className='col-span-1'>
+            <div className='flex flex-col gap-3'>
+              
             <Text size='xl'>{product?.title ?? '...'}</Text>
-            <Text size='sm'>{formatMoney(product?.price ?? 0)}</Text>
+            <div className='flex justify-start items-center gap-3'>
+            <Text size='lg'>{formatMoney(product?.price ?? 0)}</Text>
+            <span className='line-through decoration-from-font'><Text size='sm'>{formatMoney(product?.discount ?? 0)}</Text></span>
+            </div>
+            </div>
           </div>
         </div>
       </div>
