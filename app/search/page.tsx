@@ -22,7 +22,7 @@ export default function Search() {
   const { products, sort, setSort, sortProducts } = useSort()
   const [filter, setFilter] = useState<Filter>()
 
-  const load = (filterTriggered = false) => {
+  const load = (filterTriggered = false, newFilter=filter) => {
     setLoading(true)
     setHasError(false)
     setHasMore(false)
@@ -35,7 +35,7 @@ export default function Search() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ filter: filter ?? null }),
+      body: JSON.stringify({ filter: newFilter ?? null }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -69,8 +69,9 @@ export default function Search() {
             {filter && (
               <FilterBar
                 filter={filter}
-                setFilter={setFilter}
-                loadFilter={() => load(true)}
+                loadFilter={(newFilter: Filter) => {
+                  setFilter(newFilter)
+                  load(true, newFilter)}}
               />
             )}
           </div>
