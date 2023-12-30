@@ -22,7 +22,11 @@ export default function Search() {
   const { products, sort, setSort, sortProducts } = useSort()
   const [filter, setFilter] = useState<Filter>()
 
-  const load = (filterTriggered?: boolean, newFilter?: Filter, cursor = afterCursor && !filterTriggered ? afterCursor : '') => {
+  const load = (
+    filterTriggered?: boolean,
+    newFilter?: Filter,
+    cursor = afterCursor && !filterTriggered ? afterCursor : ''
+  ) => {
     setLoading(true)
     setHasError(false)
     setHasMore(false)
