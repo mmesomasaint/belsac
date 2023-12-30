@@ -57,11 +57,11 @@ export default function Search() {
 
   useEffect(() => {
     load()
-  }, [])
+  }, [query])
 
   return (
     <div className='px-7 max-w-[120rem] mx-auto'>
-      <Header />
+      <Header defaultText={query ?? undefined} />
       <div className='py-4 mt-12'>
         <div className='grid grid-cols-4 place-content-between items-stretch gap-8'>
           <div className='flex flex-col gap-16 p-8 h-fit w-full ring ring-gray-200'>
