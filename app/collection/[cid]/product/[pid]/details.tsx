@@ -55,9 +55,9 @@ export default function DetailsPanel({
       <div>
         <div className='flex flex-col gap-5 m-3 mb-1'>
           <Text size='md'>Description</Text>
-            <Text size='sm' copy>
-              {description}
-            </Text>
+          <Text size='sm' copy>
+            {description}
+          </Text>
         </div>
       </div>
     </>
