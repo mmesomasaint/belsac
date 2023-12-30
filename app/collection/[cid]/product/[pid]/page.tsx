@@ -58,13 +58,8 @@ export default async function Product({
               price={product?.price ?? 0}
               discount={product?.discount ?? 0}
               options={product?.options ?? []}
+              description={product?.description ?? '...'}
             />
-            <div>
-              <div className='flex flex-col gap-5 m-3 mb-1'><Text size='md'>Description</Text>
-              <div className='flex flex-col gap-5 m-3 mb-1'>
-                <Text size='sm' copy>{product?.description ?? '...'}</Text>
-              </div></div>
-            </div>
           </div>
         </div>
       </div>

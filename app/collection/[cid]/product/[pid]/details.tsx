@@ -9,6 +9,7 @@ interface DetailsPanelProps {
   price: number
   discount: number
   options: { name: string; values: string[] }[]
+  description: string
 }
 
 export default function DetailsPanel({
@@ -16,6 +17,7 @@ export default function DetailsPanel({
   price,
   discount,
   options,
+  description,
 }: DetailsPanelProps) {
   return (
     <>
@@ -50,6 +52,12 @@ export default function DetailsPanel({
           </div>
         ))}
       </HR>
+            <div>
+              <div className='flex flex-col gap-5 m-3 mb-1'><Text size='md'>Description</Text>
+              <div className='flex flex-col gap-5 m-3 mb-1'>
+                <Text size='sm' copy>{description}</Text>
+              </div></div>
+            </div>
     </>
   )
 }
