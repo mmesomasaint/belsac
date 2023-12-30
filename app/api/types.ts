@@ -70,3 +70,18 @@ export interface RetrieveProductQueryResult {
     }
   }
 }
+
+export interface GetVariantQueryResult {
+  handle: string
+  variantBySelectedOptions: {
+    id: string
+    sku: string
+    price: {
+      amount: string
+    }
+    compareAtPrice: {
+      amount: string
+    }
+    quantityAvailable: number
+  }
+}

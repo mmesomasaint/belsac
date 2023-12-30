@@ -184,3 +184,20 @@ export function cleanProduct(queryResult: RetrieveProductQueryResult) {
       : null,
   }
 }
+
+/**
+ * Converts a query result variant into a usable object.
+ * @param variant The version of the product based on some key options
+ * @returns A version that can be used by components
+ */
+export function cleanProductVariant(variant: Variant) {
+  return {
+    id: variant.id,
+    sku: variant.sku,
+    price: variant.price ? Number(variant.price.amount) : null,
+    discount: variant.compareAtPrice
+      ? Number(variant.compareAtPrice.amount)
+      : null,
+    quantityAvailable: variant.quantityAvailable,
+  }
+}
