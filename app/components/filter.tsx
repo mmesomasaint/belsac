@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, ReactNode } from 'react'
 import { BsCheckLg } from 'react-icons/bs'
 import { PiCaretDownThin } from 'react-icons/pi'
