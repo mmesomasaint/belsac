@@ -1,6 +1,11 @@
 import { SEARCH_PRODUCTS } from '@/app/api/query'
 import { MiniProductQueryResult } from '@/app/api/types'
-import { cleanMiniProduct, extractFilter, filterProductByCollection, parseFilter } from '@/app/api/utils'
+import {
+  cleanMiniProduct,
+  extractFilter,
+  filterProductByCollection,
+  parseFilter,
+} from '@/app/api/utils'
 import { shopifyFetch } from '@/lib/fetch'
 import { NextRequest } from 'next/server'
 
@@ -44,9 +49,14 @@ export async function POST(Request: NextRequest) {
     // Filter by collections/brands
     let brands = Array()
     if (filter) {
-      brands = Object.keys(filter['brands']).filter(subKey => filter['brands'][subKey] === true)
+      brands = Object.keys(filter['brands']).filter(
+        (subKey) => filter['brands'][subKey] === true
+      )
     }
-    const filterResults = brands.length > 0 ? filterProductByCollection(results, brands) : cleanedResults
+    const filterResults =
+      brands.length > 0
+        ? filterProductByCollection(results, brands)
+        : cleanedResults
 
     return Response.json({
       status,
