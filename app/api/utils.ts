@@ -41,6 +41,22 @@ export function cleanMiniProduct(queryResult: MiniProductQueryResult) {
 }
 
 /**
+ * Filter products whose collections contain at least on of the filter collections.
+ * @param result The result of fetching the search products query.
+ * @param filterCollections The collections to filter by.
+ * @returns The filtered products.
+ */
+export function filterProductByCollection(result: {node: MiniProductQueryResult}[], filterCollections: string[]) {
+  return result.reduce((acc, { node }) => {
+    const {collections: {nodes}} = node
+    const isPassed = nodes.some(({handle}) => filterCollections.includes(handle))
+
+    if (isPassed) return [...acc, cleanMiniProduct(node)]
+    return acc
+  }, Array())
+}
+
+/**
  * Extracts the filter from the query result
  * @param queryResult The result of fetching the search products query.
  * @returns A Filter containing keys partaining to query result.
