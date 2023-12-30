@@ -1,6 +1,7 @@
 import { RETRIEVE_A_PRODUCT } from '@/app/api/query'
 import { cleanProduct } from '@/app/api/utils'
 import { Text } from '@/app/components/elements'
+import { HR } from '@/app/components/filter'
 import Header from '@/app/components/header'
 import ProductSlider from '@/app/components/product/slider'
 import { shopifyFetch } from '@/lib/fetch'
@@ -52,6 +53,7 @@ export default async function Product({
             <ProductSlider images={product?.images ?? []} />
           </div>
           <div className='col-span-1'>
+            <HR>
             <div className='flex flex-col gap-3'>
               <Text size='xl'>{product?.title ?? '...'}</Text>
               <div className='flex justify-start items-center gap-3'>
@@ -61,6 +63,13 @@ export default async function Product({
                 </span>
               </div>
             </div>
+            </HR>
+            <HR>
+              
+            <div className='flex flex-col gap-3'>
+              Options go here
+            </div>
+            </HR>
           </div>
         </div>
       </div>
