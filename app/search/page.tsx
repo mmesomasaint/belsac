@@ -22,7 +22,7 @@ export default function Search() {
   const { products, sort, setSort, sortProducts } = useSort()
   const [filter, setFilter] = useState<Filter>()
 
-  const load = (filterTriggered = false, newFilter=filter) => {
+  const load = (filterTriggered = false, newFilter = filter) => {
     setLoading(true)
     setHasError(false)
     setHasMore(false)
@@ -71,7 +71,8 @@ export default function Search() {
                 filter={filter}
                 loadFilter={(newFilter: Filter) => {
                   setFilter(newFilter)
-                  load(true, newFilter)}}
+                  load(true, newFilter)
+                }}
               />
             )}
           </div>
