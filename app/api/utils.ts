@@ -129,7 +129,7 @@ export function parseFilter(filter: Filter) {
   // Parse other variants
   // Required format: [{variantOption: {name: 'color', value: 'natural'}}]
   const variants = Object.keys(filter)
-    .filter((key) => key !== 'price')
+    .filter((key) => key !== 'price' && key !== 'brands')
     .map((key) =>
       Object.fromEntries(
         Object.keys(filter[key])
