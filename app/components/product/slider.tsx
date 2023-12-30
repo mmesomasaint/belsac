@@ -20,7 +20,7 @@ const ProductSlider: React.FC<{ images: ProductImage[] }> = ({ images }) => {
         <img
           src={images[activeImageIndex].url}
           alt={images[activeImageIndex].altText}
-          className='w-full h-96 object-cover'
+          className='w-full h-[26rem] object-cover'
         />
       </div>
       <div className='mt-4'>
@@ -29,8 +29,8 @@ const ProductSlider: React.FC<{ images: ProductImage[] }> = ({ images }) => {
             <button
               key={index}
               type='button'
-              className={`relative w-1/5 mx-1 overflow-hidden cursor-pointer ${
-                activeImageIndex === index ? 'border-2 border-black' : ''
+              className={`relative w-1/5 mx-1 overflow-hidden cursor-pointer border-2 hover:border-black/40 ${
+                activeImageIndex === index ? 'border-black' : 'border-transparent'
               }`}
               onClick={() => handleImageClick(index)}
             >
