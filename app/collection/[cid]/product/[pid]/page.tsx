@@ -8,6 +8,7 @@ export default async function Product({
   const { cid, pid } = params
   const res = await fetch(`/api/products/product?handle=${pid}`)
   const product = await res.json()
+  
   return (
     <div className='px-7 max-w-[120rem] mx-auto'>
       <Header />
