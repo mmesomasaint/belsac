@@ -98,13 +98,13 @@ export function extractFilter(queryResult: SearchProductsQueryResult): Filter {
  * @returns An array of objects that can be used by the query.
  */
 export function parseFilter(filter: Filter) {
-  // Extract price
+  // Parse price
   const price = {
     price: { min: filter.price.min as number, max: filter.price.max as number },
   }
 
-  // Extract other variants
-  // [{variantOption: {name: 'color', value: 'natural'}}]
+  // Parse other variants
+  // Required format: [{variantOption: {name: 'color', value: 'natural'}}]
   const variants = Object.keys(filter)
     .filter((key) => key !== 'price')
     .map((key) =>
