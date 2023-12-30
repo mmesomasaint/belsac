@@ -54,21 +54,18 @@ export default async function Product({
           </div>
           <div className='col-span-1'>
             <HR>
-            <div className='flex flex-col gap-3'>
-              <Text size='xl'>{product?.title ?? '...'}</Text>
-              <div className='flex justify-start items-center gap-3'>
-                <Text size='lg'>{formatMoney(product?.price ?? 0)}</Text>
-                <span className='line-through decoration-from-font'>
-                  <Text size='sm'>{formatMoney(product?.discount ?? 0)}</Text>
-                </span>
+              <div className='flex flex-col gap-3'>
+                <Text size='xl'>{product?.title ?? '...'}</Text>
+                <div className='flex justify-start items-center gap-3'>
+                  <Text size='lg'>{formatMoney(product?.price ?? 0)}</Text>
+                  <span className='line-through decoration-from-font'>
+                    <Text size='sm'>{formatMoney(product?.discount ?? 0)}</Text>
+                  </span>
+                </div>
               </div>
-            </div>
             </HR>
             <HR>
-              
-            <div className='flex flex-col gap-3'>
-              Options go here
-            </div>
+              <div className='flex flex-col gap-3'>Options go here</div>
             </HR>
           </div>
         </div>
