@@ -188,12 +188,12 @@ export function cleanProduct(queryResult: RetrieveProductQueryResult) {
 
 /**
  * Converts a query result variant into a usable object.
- * @param variant The version of the product based on some key options
+ * @param queryResult The version of the product based on some key options
  * @returns A version that can be used by components
  */
 export function cleanProductVariant(queryResult: GetVariantQueryResult) {
   const {variantBySelectedOptions: variant} = queryResult
-  
+
   return {
     id: variant.id,
     sku: variant.sku,
