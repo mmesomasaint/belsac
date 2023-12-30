@@ -7,7 +7,7 @@ import { shopifyFetch } from '@/lib/fetch'
 import { PiCaretRightThin } from 'react-icons/pi'
 import DetailsPanel from './details'
 
-const fetchProduct = async (handle: string) => {
+const getProduct = async (handle: string) => {
   const variables = {
     handle,
   }
@@ -28,7 +28,7 @@ export default async function Product({
   params: { cid: string; pid: string }
 }) {
   const { cid, pid } = params
-  const product = await fetchProduct(pid)
+  const product = await getProduct(pid)
 
   return (
     <div className='px-7 max-w-[120rem] mx-auto'>
