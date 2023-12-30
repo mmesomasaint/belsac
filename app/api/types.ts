@@ -40,3 +40,33 @@ export interface SearchProductsQueryResult {
     hasPreviousPage: boolean
   }
 }
+
+export interface RetrieveProductQueryResult {
+  id: string
+  handle: string
+  title: string
+  descriptionHtml: string
+  description: string
+  images: {
+    nodes: {
+      url: string
+      width: number
+      height: number
+      altText: string
+    }[]
+  }
+  options: {
+    name: string
+    values: string[]
+  }[]
+  priceRange: {
+    minVariantPrice: {
+      amount: string
+    }
+  }
+  compareAtPriceRange: {
+    maxVariantPrice: {
+      amount: string
+    }
+  }
+}
