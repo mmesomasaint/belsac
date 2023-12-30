@@ -84,3 +84,36 @@ query SearchProducts($query: String!, $first: Int, $after: String, $filters: [Pr
   }
 }
 `
+
+export const RETRIEVE_A_PRODUCT = `
+query Product($handle: String!) {
+  product (handle: $handle){
+    id
+    handle
+    title
+    descriptionHtml
+    images (first: 10) {
+      nodes {
+        url
+        width
+        height
+        altText
+      }
+    }
+    options {
+      name
+      values
+    }
+    priceRange {
+      minVariantPrice {
+        amount
+      }
+    }
+    compareAtPriceRange {
+      maxVariantPrice {
+        amount
+      }
+    }
+  }
+}
+`
