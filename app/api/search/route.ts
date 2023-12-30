@@ -8,9 +8,8 @@ type VariablesType = {
   first: number
   query: string | null
   after?: string
-  filter?: any
+  filters?: any
 }
-
 const LIMIT = 6
 
 export async function POST(Request: NextRequest) {
@@ -24,7 +23,7 @@ export async function POST(Request: NextRequest) {
     query,
   }
   if (after) variables['after'] = after
-  if (filter) variables['filter'] = parseFilter(filter)
+  if (filter) variables['filters'] = parseFilter(filter)
 
   const { status, body } = await shopifyFetch({
     query: SEARCH_PRODUCTS,
