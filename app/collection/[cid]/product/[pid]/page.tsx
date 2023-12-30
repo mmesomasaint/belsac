@@ -1,12 +1,11 @@
 import { RETRIEVE_A_PRODUCT } from '@/app/api/query'
 import { cleanProduct } from '@/app/api/utils'
 import { Text } from '@/app/components/elements'
-import { HR } from '@/app/components/filter'
 import Header from '@/app/components/header'
 import ProductSlider from '@/app/components/product/slider'
 import { shopifyFetch } from '@/lib/fetch'
-import { formatMoney } from '@/lib/product'
 import { PiCaretRightThin } from 'react-icons/pi'
+import DetailsPanel from './details'
 
 const fetchProduct = async (handle: string) => {
   const variables = {
@@ -53,40 +52,12 @@ export default async function Product({
             <ProductSlider images={product?.images ?? []} />
           </div>
           <div className='col-span-1'>
-            <HR>
-              <div className='flex flex-col gap-3'>
-                <Text size='xl'>{product?.title ?? '...'}</Text>
-                <div className='flex justify-start items-center gap-3'>
-                  <Text size='lg'>{formatMoney(product?.price ?? 0)}</Text>
-                  <span className='line-through decoration-from-font'>
-                    <Text size='sm'>{formatMoney(product?.discount ?? 0)}</Text>
-                  </span>
-                </div>
-              </div>
-            </HR>
-            <HR>
-            {product?.options?.map((option) => (
-              <div key={option.name} className='flex flex-col gap-3'>
-                <Text size='sm'>{option.name}</Text>
-                <div className='flex flex gap-2'>
-                  {option.values.map((value) => (
-        <button
-          type='button'
-          key={value}
-          className={`px-4 py-2 border border-black/20 rounded-md hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black ${
-            value
-              ? 'bg-black text-white'
-              : ''
-          }`}
-          onClick={() => {return}}
-        >
-          {value}
-        </button>
-                  ))}
-                </div>
-              </div>
-            ))}
-            </HR>
+            <DetailsPanel
+              title={product?.title ?? '...'}
+              price={product?.price ?? 0}
+              discount={product?.discount ?? 0}
+              options={product?.options ?? []}
+            />
           </div>
         </div>
       </div>
