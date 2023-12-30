@@ -6,7 +6,6 @@ import ProductSlider from '@/app/components/product/slider'
 import { shopifyFetch } from '@/lib/fetch'
 import { PiCaretRightThin } from 'react-icons/pi'
 import DetailsPanel from './details'
-import { HR } from '@/app/components/filter'
 
 const fetchProduct = async (handle: string) => {
   const variables = {
