@@ -1,3 +1,5 @@
+'use client'
+
 import { PiHeartStraightThin, PiShoppingCartThin } from 'react-icons/pi'
 import { useRouter } from 'next/navigation'
 import { Button, Text } from './elements'
