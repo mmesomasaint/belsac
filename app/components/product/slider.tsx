@@ -15,22 +15,22 @@ const ProductSlider: React.FC<{ images: ProductImage[] }> = ({ images }) => {
   }
 
   return (
-    <div className='container mx-auto px-4'>
+    <div className='container mx-auto'>
       <div className='relative'>
         <img
           src={images[activeImageIndex].url}
           alt={images[activeImageIndex].altText}
-          className='w-full h-40 object-cover'
+          className='w-full h-96 object-cover'
         />
       </div>
       <div className='mt-4'>
-        <div className='flex overflow-x-auto'>
+        <div className='flex gap-4 overflow-x-auto'>
           {images.map((image, index) => (
             <button
               key={index}
               type='button'
-              className={`relative w-1/5 mx-1 border border-gray-300 overflow-hidden cursor-pointer ${
-                activeImageIndex === index ? 'ring-2 ring-black' : ''
+              className={`relative w-1/5 mx-1 overflow-hidden cursor-pointer ${
+                activeImageIndex === index ? 'border-2 border-black' : ''
               }`}
               onClick={() => handleImageClick(index)}
             >
