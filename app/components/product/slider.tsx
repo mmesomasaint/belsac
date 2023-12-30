@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 interface ProductImage {
-  src: string
-  alt: string
+  url: string
+  altText: string
 }
 
 const ProductSlider: React.FC<{ images: ProductImage[] }> = ({ images }) => {
@@ -16,9 +16,9 @@ const ProductSlider: React.FC<{ images: ProductImage[] }> = ({ images }) => {
     <div className='container mx-auto px-4'>
       <div className='relative'>
         <img
-          src={images[activeImageIndex].src}
-          alt={images[activeImageIndex].alt}
-          className='w-full h-40 object-cover rounded-lg'
+          src={images[activeImageIndex].url}
+          alt={images[activeImageIndex].altText}
+          className='w-full h-40 object-cover'
         />
       </div>
       <div className='mt-4'>
@@ -27,14 +27,14 @@ const ProductSlider: React.FC<{ images: ProductImage[] }> = ({ images }) => {
             <button
               key={index}
               type='button'
-              className={`relative w-1/5 mx-1 rounded-lg overflow-hidden cursor-pointer ${
-                activeImageIndex === index ? 'border-2 border-blue-500' : ''
+              className={`relative w-1/5 mx-1 border border-gray-300 overflow-hidden cursor-pointer ${
+                activeImageIndex === index ? 'ring-2 ring-black' : ''
               }`}
               onClick={() => handleImageClick(index)}
             >
               <img
-                src={image.src}
-                alt={image.alt}
+                src={image.url}
+                alt={image.altText}
                 className='w-full h-32 object-cover'
               />
             </button>
