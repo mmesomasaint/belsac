@@ -192,7 +192,7 @@ export function cleanProduct(queryResult: RetrieveProductQueryResult) {
  * @returns A version that can be used by components
  */
 export function cleanProductVariant(queryResult: GetVariantQueryResult) {
-  const {variantBySelectedOptions: variant} = queryResult
+  const { variantBySelectedOptions: variant } = queryResult
 
   return {
     id: variant.id,
