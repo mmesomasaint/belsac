@@ -6,6 +6,7 @@ import ProductSlider from '@/app/components/product/slider'
 import { shopifyFetch } from '@/lib/fetch'
 import { PiCaretRightThin } from 'react-icons/pi'
 import DetailsPanel from './details'
+import { HR } from '@/app/components/filter'
 
 const fetchProduct = async (handle: string) => {
   const variables = {
@@ -58,6 +59,12 @@ export default async function Product({
               discount={product?.discount ?? 0}
               options={product?.options ?? []}
             />
+            <div>
+              <div className='flex flex-col gap-5 m-3 mb-1'><Text size='md'>Description</Text>
+              <div className='flex flex-col gap-5 m-3 mb-1'>
+                <Text size='sm' copy>{product?.description ?? '...'}</Text>
+              </div></div>
+            </div>
           </div>
         </div>
       </div>
