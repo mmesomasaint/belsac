@@ -1,5 +1,6 @@
 import { Filter, FilterSubKey } from '@/lib/filter'
 import {
+  GetVariantQueryResult,
   MiniProductQueryResult,
   RetrieveProductQueryResult,
   SearchProductsQueryResult,
@@ -190,7 +191,9 @@ export function cleanProduct(queryResult: RetrieveProductQueryResult) {
  * @param variant The version of the product based on some key options
  * @returns A version that can be used by components
  */
-export function cleanProductVariant(variant: Variant) {
+export function cleanProductVariant(queryResult: GetVariantQueryResult) {
+  const {variantBySelectedOptions: variant} = queryResult
+  
   return {
     id: variant.id,
     sku: variant.sku,
