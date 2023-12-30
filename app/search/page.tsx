@@ -110,7 +110,7 @@ export default function Search() {
                 ))
               )}
               <div className='col-span-full flex justify-center items-center gap-8'>
-                {hasMore && (
+                {products.length > 0 && hasMore && (
                   <Button onClick={() => load()} outline>
                     <span className='flex justify-center items-center gap-4'>
                       More
