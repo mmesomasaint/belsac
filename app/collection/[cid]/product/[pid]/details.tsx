@@ -20,7 +20,7 @@ export default function DetailsPanel({
   return (
     <>
       <HR>
-        <div className='flex flex-col gap-3'>
+        <div className='flex flex-col gap-5 m-3 mb-1'>
           <Text size='xl'>{title}</Text>
           <div className='flex justify-start items-center gap-3'>
             <Text size='lg'>{formatMoney(price)}</Text>
@@ -32,8 +32,8 @@ export default function DetailsPanel({
       </HR>
       <HR>
         {options.map((option) => (
-          <div key={option.name} className='flex flex-col gap-5 mt-3'>
-            <Text size='sm'>{`${option.name}s`}</Text>
+          <div key={option.name} className='flex flex-col gap-5 m-3 mb-1'>
+            <Text size='md'>{`${option.name}s`}</Text>
             <div className='flex flex gap-2'>
               {option.values.map((value) => (
                 <OptionBox
