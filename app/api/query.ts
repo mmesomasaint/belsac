@@ -92,6 +92,7 @@ query Product($handle: String!) {
     handle
     title
     descriptionHtml
+    description
     images (first: 10) {
       nodes {
         url
