@@ -19,3 +19,22 @@ export function formatMoney(number: number, dp = 0) {
 
   return formatter.format(number)
 }
+
+export interface FullProduct {
+  id: string
+  handle: string
+  title: string
+  descriptionHtml: string
+  images: {
+    url: string
+    width: number
+    height: number
+    altText: string
+  }[]
+  options: {
+    name: string
+    values: string[]
+  }[]
+  price: number
+  discount: number | null
+}
