@@ -1,32 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 interface ProductImage {
-  src: string;
-  alt: string;
+  src: string
+  alt: string
 }
 
 const ProductSlider: React.FC<{ images: ProductImage[] }> = ({ images }) => {
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [activeImageIndex, setActiveImageIndex] = useState(0)
 
   const handleImageClick = (index: number) => {
-    setActiveImageIndex(index);
-  };
+    setActiveImageIndex(index)
+  }
 
   return (
-    <div className="container mx-auto px-4">
-      <div className="relative">
+    <div className='container mx-auto px-4'>
+      <div className='relative'>
         <img
           src={images[activeImageIndex].src}
           alt={images[activeImageIndex].alt}
-          className="w-full h-40 object-cover rounded-lg"
+          className='w-full h-40 object-cover rounded-lg'
         />
       </div>
-      <div className="mt-4">
-        <div className="flex overflow-x-auto">
+      <div className='mt-4'>
+        <div className='flex overflow-x-auto'>
           {images.map((image, index) => (
             <button
               key={index}
-              type="button"
+              type='button'
               className={`relative w-1/5 mx-1 rounded-lg overflow-hidden cursor-pointer ${
                 activeImageIndex === index ? 'border-2 border-blue-500' : ''
               }`}
@@ -35,14 +35,14 @@ const ProductSlider: React.FC<{ images: ProductImage[] }> = ({ images }) => {
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-32 object-cover"
+                className='w-full h-32 object-cover'
               />
             </button>
           ))}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductSlider;
+export default ProductSlider
