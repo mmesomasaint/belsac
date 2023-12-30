@@ -89,13 +89,11 @@ export function OptionBox({
       type='button'
       key={children}
       className={`px-4 py-2 border border-black/20 rounded-md hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black ${
-        active
-          ? 'bg-black text-white'
-          : ''
+        active ? 'bg-black text-white' : ''
       }`}
       onClick={onClick}
     >
       {children}
     </button>
-              )
+  )
 }
