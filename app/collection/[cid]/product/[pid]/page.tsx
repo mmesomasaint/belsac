@@ -65,7 +65,27 @@ export default async function Product({
               </div>
             </HR>
             <HR>
-              <div className='flex flex-col gap-3'>Options go here</div>
+            {product?.options?.map((option) => (
+              <div key={option.name} className='flex flex-col gap-3'>
+                <Text size='sm'>{option.name}</Text>
+                <div className='flex flex gap-2'>
+                  {option.values.map((value) => (
+        <button
+          type='button'
+          key={value}
+          className={`px-4 py-2 border border-black/20 rounded-md hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black ${
+            value
+              ? 'bg-black text-white'
+              : ''
+          }`}
+          onClick={() => {return}}
+        >
+          {value}
+        </button>
+                  ))}
+                </div>
+              </div>
+            ))}
             </HR>
           </div>
         </div>
