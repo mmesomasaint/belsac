@@ -1,6 +1,6 @@
 import { SEARCH_PRODUCTS } from '@/app/api/query'
 import { MiniProductQueryResult } from '@/app/api/types'
-import { cleanMiniProduct, extractFilter, parseFilter } from '@/app/api/utils'
+import { cleanMiniProduct, extractFilter, filterProductByCollection, parseFilter } from '@/app/api/utils'
 import { shopifyFetch } from '@/lib/fetch'
 import { NextRequest } from 'next/server'
 
@@ -35,18 +35,25 @@ export async function POST(Request: NextRequest) {
     const pageInfo = body.data?.search.pageInfo
     const len = results.length
     const total = body.data?.search.totalCount
-    const filter = extractFilter(body.data?.search)
+    const filterExtract = extractFilter(body.data?.search)
 
     const cleanedResults = results.map(
       ({ node }: { node: MiniProductQueryResult }) => cleanMiniProduct(node)
     )
 
+    // Filter by collections/brands
+    let brands = Array()
+    if (filter) {
+      brands = Object.keys(filter['brands']).filter(subKey => filter['brands'][subKey] === true)
+    }
+    const filterResults = brands.length > 0 ? filterProductByCollection(results, brands) : cleanedResults
+
     return Response.json({
       status,
       body: {
-        filter,
-        results: cleanedResults,
         total,
+        filter: filterExtract,
+        results: filterResults,
         pageInfo: {
           ...pageInfo,
           after: results[len - 1]?.cursor,
