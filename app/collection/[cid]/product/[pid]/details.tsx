@@ -53,18 +53,20 @@ export default function DetailsPanel({
         ))}
       </HR>
       <HR>
-      
-      <div>
-        <div className='flex flex-col gap-5 m-3 mb-1'>
-          <Text size='md'>Description</Text>
-          <Text size='sm' copy>
-            {description}
-          </Text>
+        <div>
+          <div className='flex flex-col gap-5 m-3 mb-1'>
+            <Text size='md'>Description</Text>
+            <Text size='sm' copy>
+              {description}
+            </Text>
+          </div>
         </div>
-      </div></HR>
+      </HR>
       <div className='flex justify-center items-center gap-8 m-3'>
-        <Button onClick={() => console.log("Product bought!!")}>Buy</Button>
-        <Button onClick={() => console.log("Added to cart")} outline>Add to cart</Button>
+        <Button onClick={() => console.log('Product bought!!')}>Buy</Button>
+        <Button onClick={() => console.log('Added to cart')} outline>
+          Add to cart
+        </Button>
       </div>
     </>
   )
