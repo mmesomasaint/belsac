@@ -1,7 +1,11 @@
 import { shopifyFetch } from '@/lib/fetch'
 import { NextRequest } from 'next/server'
 import { CREATE_CART, ADD_ITEMS_TO_CART } from '../query'
-import { generateCartLinesInput, cleanMiniCartResult, generateCreateCartInput } from '../utils'
+import {
+  generateCartLinesInput,
+  cleanMiniCartResult,
+  generateCreateCartInput,
+} from '../utils'
 
 // Create cart
 export async function POST(Request: NextRequest) {
