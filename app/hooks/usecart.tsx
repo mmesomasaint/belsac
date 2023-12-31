@@ -43,7 +43,7 @@ export default function useCart() {
 
     fetch(`/api/cart?cart_id=${cartId}`, {
       method: action,
-      body: JSON.stringify({lines: [merch]}),
+      body: JSON.stringify({ lines: [merch] }),
     })
       .then((res) => res.json())
       .then((data) => {
