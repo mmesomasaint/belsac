@@ -86,7 +86,26 @@ export interface GetVariantQueryResult {
   }
 }
 
-export type Merchandise = {
+export interface CartLine {
+  id: string
+  quantity: number
+  merchandise: {
+    id: string
+  }
+  attributes: {
+    key: string
+    value: string
+  }[]
+}
+
+export interface MiniCartQueryResult {
+  id: string
+  lines: {
+    nodes: CartLine[]
+  }
+}
+
+export interface Merchandise {
   quantity: number
   id: string
   attributes: {
