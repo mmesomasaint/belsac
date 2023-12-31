@@ -34,7 +34,7 @@ const CartContext = createContext<CartContextType>({
 
 export const useCart = () => useContext(CartContext)
 
-export function CartProvider({children}: {children: ReactNode}) {
+export function CartProvider({ children }: { children: ReactNode }) {
   const [adding, setAdding] = useState<boolean>(false)
   const [cartLines, setCartLines] = useState<Line[]>([])
   const [cartId, setCartId] = useState<string | null>(
@@ -67,7 +67,9 @@ export function CartProvider({children}: {children: ReactNode}) {
   }
 
   return (
-    <CartContext.Provider value={{ updateCart, adding, cartSize: cartLines.length }}>
+    <CartContext.Provider
+      value={{ updateCart, adding, cartSize: cartLines.length }}
+    >
       {children}
     </CartContext.Provider>
   )
