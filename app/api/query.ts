@@ -157,6 +157,9 @@ mutation ($input: CartInput) {
             value
           }
         }
+        pageInfo {
+          hasNextPage
+        }
       }
     }
   }
@@ -184,6 +187,9 @@ mutation ($cartId: ID!, $lines: [CartLineInput!]!) {
             key
             value
           }
+        }
+        pageInfo {
+          hasNextPage
         }
       }
     }
