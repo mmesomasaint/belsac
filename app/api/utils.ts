@@ -281,6 +281,6 @@ export function cleanMiniCartResult(queryResult: MiniCartQueryResult) {
   return {
     id,
     cartLines,
-    hasMore
+    hasMore,
   }
 }
