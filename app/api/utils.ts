@@ -1,6 +1,7 @@
 import { Filter, FilterSubKey } from '@/lib/filter'
 import {
   GetVariantQueryResult,
+  Merchandise,
   MiniProductQueryResult,
   RetrieveProductQueryResult,
   SearchProductsQueryResult,
