@@ -49,6 +49,8 @@ export default function useCart() {
       .then((data) => {
         setCartLines(data.body.lines)
         setCartId(data.body.id)
+
+        // Only store cartId if it's a new cart.
         !cartId && cookies.set('cart_id', data?.body.id, { expires: 7 })
       })
       .finally(() => setAdding(false))
