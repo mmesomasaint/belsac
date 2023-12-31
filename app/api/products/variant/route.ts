@@ -3,7 +3,7 @@ import { NextRequest } from 'next/server'
 import { GET_VARIANT_BY_SELECTED_OPTIONS } from '../../query'
 import { cleanProductVariant } from '../../utils'
 
-export async function GET(Request: NextRequest) {
+export async function POST(Request: NextRequest) {
   const { selectedOptions } = await Request.json()
   const searchParams = Request.nextUrl.searchParams
   const handle = searchParams.get('handle')

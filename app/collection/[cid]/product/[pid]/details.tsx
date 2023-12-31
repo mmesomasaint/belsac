@@ -46,6 +46,7 @@ export default function DetailsPanel({
     })
 
     setSelectedOptions(newSelectedOptions)
+    loadVariant(newSelectedOptions)
   }
 
   const inSelectedOptions = (name: string, value: string) => {
@@ -54,20 +55,20 @@ export default function DetailsPanel({
     )
   }
 
-  useEffect(() => {
+  const loadVariant = (newSelectedOptions: SelectedOptions) => {
     const handle = title.split(' ').join('-')
 
     fetch(`/api/products/variant?handle=${handle}`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ selectedOptions }),
+      body: JSON.stringify({ newSelectedOptions }),
     })
       .then((res) => res.json())
       .then((data) => console.log(data?.body))
-      .catch(() => console.log('An error occurred!'))
-  }, [selectedOptions])
+      .catch((e) => console.log('An error occurred!', e))
+  }
 
   return (
     <>
