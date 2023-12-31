@@ -20,7 +20,6 @@ interface Line {
   }[]
 }
 
-
 export default function useCart() {
   const [loading, setLoading] = useState<boolean>(true)
   const [cartId, setCartId] = useState<string | null>(
