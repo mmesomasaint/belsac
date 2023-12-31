@@ -85,3 +85,12 @@ export interface GetVariantQueryResult {
     quantityAvailable: number
   }
 }
+
+export type Merchandise = {
+  quantity: number
+  id: string
+  attributes: {
+    key: string
+    value: string
+  }[]
+}
