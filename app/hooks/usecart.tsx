@@ -25,17 +25,11 @@ export default function useCart() {
   const [cartId, setCartId] = useState<string | null>(
     cookies.get('cart_id') ?? null
   )
-  const [cartLines, setCartLines] = useState<Line[]>([])
 
   const updateCart = (newMerchandise: Merchandise) => {
-    const idx = cartLines.findIndex(
-      (line: Line) => line.merchandiseId === newMerchandise.id
-    )
-
-    if (idx === -1) {
-      if (cartId && cartId !== 'undefined') loadCart('PUT', newMerchandise)
-      else loadCart('POST', newMerchandise)
-    }
+    
+    if (cartId && cartId !== 'undefined') loadCart('PUT', newMerchandise)
+    else loadCart('POST', newMerchandise)
   }
 
   const loadCart = (action: 'POST' | 'PUT', merch?: Merchandise) => {
@@ -47,14 +41,15 @@ export default function useCart() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCartLines(data.body.lines)
-        setCartId(data.body.id)
-
+        const newCartId = data?.body.id
+        
         // Only store cartId if it's a new cart.
-        !cartId && cookies.set('cart_id', data?.body.id, { expires: 7 })
+        !cartId && cookies.set('cart_id', newCartId, { expires: 7 })
+        
+        setCartId(newCartId)
       })
       .finally(() => setAdding(false))
   }
 
-  return { adding, cartLines, updateCart }
+  return { adding, updateCart }
 }
