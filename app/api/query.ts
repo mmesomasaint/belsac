@@ -162,3 +162,31 @@ mutation ($input: CartInput) {
   }
 }
 `
+
+export const ADD_ITEMS_TO_CART = `
+mutation ($cartId: ID!, $lines: [CartLineInput!]!) {
+  cartLinesAdd(
+    cartId: $cartId
+    lines: $lines
+  ) {
+    cart {
+      id
+      lines(first: 10) {
+        nodes {
+          id
+          quantity
+          merchandise {
+            ... on ProductVariant {
+              id
+            }
+          }
+          attributes {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}
+`
