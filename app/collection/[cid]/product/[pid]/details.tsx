@@ -45,6 +45,7 @@ export default function DetailsPanel({
 }: DetailsPanelProps) {
   const [amount, setAmount] = useState<number>(1)
   const [variant, setVariant] = useState<Variant>()
+  const [loading, setLoading] = useState<boolean>(true)
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(
     extractDefaultOption(options)
   )
@@ -67,6 +68,8 @@ export default function DetailsPanel({
   }
 
   useEffect(() => {
+    setLoading(true)
+
     fetch(`/api/products/variant?handle=${handle}`, {
       method: 'POST',
       headers: {
@@ -77,6 +80,7 @@ export default function DetailsPanel({
       .then((res) => res.json())
       .then((data) => setVariant(data?.body))
       .catch((e) => console.log('An error occurred!', e))
+      .finally(() => setLoading(false))
   }, [selectedOptions])
 
   return (
@@ -85,10 +89,10 @@ export default function DetailsPanel({
         <div className='flex flex-col gap-5 m-6 mb-4'>
           <Text size='xl'>{title}</Text>
           <div className='flex justify-start items-center gap-3'>
-            <Text size='lg'>{formatMoney(variant?.price ?? price)}</Text>
+            <Text size='lg'>{loading ? '...' : (formatMoney(variant?.price ?? price))}</Text>
             <span className='line-through decoration-from-font'>
               <Text size='sm'>
-                {formatMoney(variant?.discount ?? discount)}
+                {loading ? '...' : (formatMoney(variant?.discount ?? discount))}
               </Text>
             </span>
           </div>
@@ -116,7 +120,7 @@ export default function DetailsPanel({
         <div className='flex flex-col justify-start items-start gap-8 m-6 mb-4'>
           <div className='flex flex-col gap-4'>
             <Text size='md'>Quantity</Text>
-            <Text size='sm'>{`Only ${variant?.quantityAvailable ?? 0} item${
+            <Text size='sm'>{`Only ${loading ? '...' : (variant?.quantityAvailable ?? 0)} item${
               variant?.quantityAvailable ?? 0 > 1 ? 's' : ''
             } left`}</Text>
             <div className='flex justify-start items-center gap-4'>
@@ -126,7 +130,7 @@ export default function DetailsPanel({
                 -
               </MiniBox>
               <Text size='md'>
-                {Math.min(amount, variant?.quantityAvailable ?? 0).toString()}
+                {loading ? '...' : (Math.min(amount, variant?.quantityAvailable ?? 0).toString())}
               </Text>
               <MiniBox
                 onClick={() =>
@@ -145,20 +149,20 @@ export default function DetailsPanel({
           <div className='flex flex-col gap-4'>
             <Text size='md'>Total</Text>
             <Text size='lg'>
-              {formatMoney((variant?.price ?? price) * amount)}
+              {loading ? '...' : (formatMoney((variant?.price ?? price) * amount))}
             </Text>
           </div>
 
           <div className='flex justify-start items-center gap-8'>
             <Button
               onClick={() => console.log('Product bought!!')}
-              disabled={amount < 1}
+              disabled={amount < 1 || loading}
             >
               Buy
             </Button>
             <Button
               onClick={() => console.log('Added to cart')}
-              disabled={amount < 1}
+              disabled={amount < 1 || loading}
               outline
             >
               Add to cart
