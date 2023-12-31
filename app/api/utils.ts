@@ -204,3 +204,47 @@ export function cleanProductVariant(queryResult: GetVariantQueryResult) {
     quantityAvailable: variant.quantityAvailable,
   }
 }
+
+/**
+ * Generates an input object from a list of products.
+ * @param lines The list of products id and quantity choosen by customer.
+ * @returns An input object that is passed to query to create a cart.
+ */
+export function generateCreateCartInput(lines: Merchandise[]) {
+  return {
+    input: {
+      lines: generateCartLinesInput(lines),
+      buyerIdentity: {
+        email: 'exampler@example.com',
+        countryCode: 'NG',
+        deliveryAddressPreferences: {
+          deliveryAddress: {
+            address1: 'No Example Street',
+            address2: '8th Example Floor',
+            city: 'Enugu',
+            province: 'South-east',
+            country: 'NG',
+            zip: '41001',
+          },
+        },
+      },
+      attributes: {
+        key: 'cart_attribute',
+        value: 'This is a cart attribute',
+      },
+    },
+  }
+}
+
+/**
+ * Generates a list of products that can be passed as parameter to query.
+ * @param lines The list of products id and quantity choosen by customer
+ * @returns A list of products(merchandise) that can be passed to query
+ */
+export function generateCartLinesInput(lines: Merchandise[]) {
+  return lines.map(({ id, quantity, attributes }) => ({
+    merchandiseId: id,
+    quantity,
+    attributes,
+  }))
+}
