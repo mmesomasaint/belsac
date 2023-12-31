@@ -27,7 +27,6 @@ export default function useCart() {
   )
 
   const updateCart = (newMerchandise: Merchandise) => {
-    
     if (cartId && cartId !== 'undefined') loadCart('PUT', newMerchandise)
     else loadCart('POST', newMerchandise)
   }
@@ -42,10 +41,10 @@ export default function useCart() {
       .then((res) => res.json())
       .then((data) => {
         const newCartId = data?.body.id
-        
+
         // Only store cartId if it's a new cart.
         !cartId && cookies.set('cart_id', newCartId, { expires: 7 })
-        
+
         setCartId(newCartId)
       })
       .finally(() => setAdding(false))
