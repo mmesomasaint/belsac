@@ -1,6 +1,6 @@
 'use client'
 
-import { OptionBox, Text } from '@/app/components/elements'
+import { Button, OptionBox, Text } from '@/app/components/elements'
 import { HR } from '@/app/components/filter'
 import { formatMoney } from '@/lib/product'
 
@@ -52,6 +52,8 @@ export default function DetailsPanel({
           </div>
         ))}
       </HR>
+      <HR>
+      
       <div>
         <div className='flex flex-col gap-5 m-3 mb-1'>
           <Text size='md'>Description</Text>
@@ -59,6 +61,10 @@ export default function DetailsPanel({
             {description}
           </Text>
         </div>
+      </div></HR>
+      <div className='flex justify-center items-center gap-8 m-3'>
+        <Button onClick={() => console.log("Product bought!!")}>Buy</Button>
+        <Button onClick={() => console.log("Added to cart")} outline>Add to cart</Button>
       </div>
     </>
   )
