@@ -30,7 +30,9 @@ const ProductSlider: React.FC<{ images: ProductImage[] }> = ({ images }) => {
               key={index}
               type='button'
               className={`shrink-0 relative w-1/5 mx-1 overflow-hidden cursor-pointer border-2 hover:border-black/40 ${
-                activeImageIndex === index ? 'border-black' : 'border-transparent'
+                activeImageIndex === index
+                  ? 'border-black'
+                  : 'border-transparent'
               }`}
               onClick={() => handleImageClick(index)}
             >
