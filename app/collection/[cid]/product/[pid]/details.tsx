@@ -86,7 +86,7 @@ export default function DetailsPanel({
         {options.map((option) => (
           <div key={option.name} className='flex flex-col gap-5 m-3 mb-1'>
             <Text size='md'>{`${option.name}s`}</Text>
-            <div className='flex flex gap-2'>
+            <div className='flex flex gap-4'>
               {option.values.map((value) => (
                 <OptionBox
                   key={value}
