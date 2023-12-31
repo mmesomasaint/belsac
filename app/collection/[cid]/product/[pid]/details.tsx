@@ -1,9 +1,9 @@
 'use client'
 
+import { useState } from 'react'
 import { Button, OptionBox, Text } from '@/app/components/elements'
 import { HR } from '@/app/components/filter'
 import { formatMoney } from '@/lib/product'
-import { useEffect, useState } from 'react'
 
 interface DetailsPanelProps {
   title: string
