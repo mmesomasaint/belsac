@@ -48,7 +48,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     else loadCart('POST', newMerchandise)
   }
 
-  const loadCart = (action: 'POST' | 'PUT', merch?: Merchandise) => {
+  const loadCart = (action: 'POST' | 'PUT' | 'GET', merch?: Merchandise) => {
     setAdding(true)
 
     fetch(`/api/cart?cartId=${cartId}`, {
