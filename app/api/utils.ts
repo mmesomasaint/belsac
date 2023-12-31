@@ -1,5 +1,6 @@
 import { Filter, FilterSubKey } from '@/lib/filter'
 import {
+  CartLine,
   GetVariantQueryResult,
   Merchandise,
   MiniProductQueryResult,
@@ -248,4 +249,20 @@ export function generateCartLinesInput(lines: Merchandise[]) {
     quantity,
     attributes,
   }))
+}
+
+/**
+ * Converts lines query results to a cleaner format.
+ * @param line List of merchandise gotten from querying for cart
+ * @returns A cleaner format that can be used by components
+ */
+export function cleanCartLinesResult(line: CartLine) {
+  const { id, quantity, merchandise, attributes } = line
+
+  return {
+    id,
+    quantity,
+    merchandiseId: merchandise.id,
+    attributes,
+  }
 }
