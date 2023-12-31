@@ -10,8 +10,19 @@ interface Merchandise {
   }[]
 }
 
+interface Line {
+  id: string
+  merchandiseId: string
+  quantity: number
+  attributes: {
+    key: string
+    value: string
+  }[]
+}
+
 export default function useCart() {
   const [adding, setAdding] = useState<boolean>(false)
+  const [cartLines, setCartLines] = useState<Line[]>([])
   const [cartId, setCartId] = useState<string | null>(
     cookies.get('cart_id') ?? null
   )
@@ -36,9 +47,10 @@ export default function useCart() {
         !cartId && cookies.set('cart_id', newCartId, { expires: 7 })
 
         setCartId(newCartId)
+        setCartLines(data?.body.lines)
       })
       .finally(() => setAdding(false))
   }
 
-  return { adding, updateCart }
+  return { adding, updateCart, cartSize: cartLines.length }
 }
