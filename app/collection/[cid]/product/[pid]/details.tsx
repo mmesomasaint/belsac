@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Button, MiniBox, OptionBox, Text } from '@/app/components/elements'
 import { HR } from '@/app/components/filter'
 import { formatMoney } from '@/lib/product'
+import useCart from '@/app/hooks/usecart'
 
 interface DetailsPanelProps {
   title: string
@@ -46,6 +47,7 @@ export default function DetailsPanel({
   const [amount, setAmount] = useState<number>(1)
   const [variant, setVariant] = useState<Variant>()
   const [loading, setLoading] = useState<boolean>(true)
+  const {adding, updateCart} = useCart()
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(
     extractDefaultOption(options)
   )
@@ -65,6 +67,19 @@ export default function DetailsPanel({
     return selectedOptions.some(
       (option) => option.name === name && option.value === value
     )
+  }
+
+  const addToCart = () => {
+    const newMerchandise = {
+      quantity: amount,
+      id: variant?.id ?? '',
+      attributes: selectedOptions.map((option) => ({
+        key: option.name,
+        value: option.value,
+      })),
+    }
+
+    updateCart(newMerchandise)
   }
 
   useEffect(() => {
@@ -172,11 +187,11 @@ export default function DetailsPanel({
               Buy
             </Button>
             <Button
-              onClick={() => console.log('Added to cart')}
-              disabled={amount < 1 || loading}
+              onClick={addToCart}
+              disabled={amount < 1 || loading || adding}
               outline
             >
-              Add to cart
+              {adding ? 'Adding' : 'Add to cart'}
             </Button>
           </div>
         </div>
