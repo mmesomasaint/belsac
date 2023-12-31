@@ -1,6 +1,6 @@
 import { shopifyFetch } from '@/lib/fetch'
 import { NextRequest } from 'next/server'
-import { CREATE_CART, ADD_ITEMS_TO_CART } from '../query'
+import { CREATE_CART, ADD_ITEMS_TO_CART, RETRIEVE_MINI_CART } from '../query'
 import {
   generateCartLinesInput,
   cleanMiniCartResult,
@@ -43,5 +43,25 @@ export async function PUT(Request: NextRequest) {
     return Response.json({ status: 200, body: cart })
   } else {
     return Response.json({ status: 500, message: 'Error receiving data' })
+  }
+}
+
+// Get cart mini
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams
+  const cartId = searchParams.get('cartId')
+
+  const { status, body } = await shopifyFetch({
+    query: RETRIEVE_MINI_CART,
+    variables: { cartId },
+  })
+
+  if (status === 200) {
+    return Response.json({
+      status: 200,
+      body: cleanMiniCartResult(body.data?.cart),
+    })
+  } else {
+    return Response.json({ status: 500, message: 'Error fetching data' })
   }
 }
