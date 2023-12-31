@@ -13,9 +13,11 @@ interface DetailsPanelProps {
   description: string
 }
 
-type SelectedOptions = {name: string, value: string}[]
+type SelectedOptions = { name: string; value: string }[]
 
-const extractDefaultOption = (options: { name: string; values: string[] }[]): SelectedOptions  => {
+const extractDefaultOption = (
+  options: { name: string; values: string[] }[]
+): SelectedOptions => {
   // Extract the first value of every item in the array and store them in this format.
   // [{name: "Color", value: "Bllue"}...]
   return options.map((option) => ({
@@ -31,7 +33,9 @@ export default function DetailsPanel({
   options,
   description,
 }: DetailsPanelProps) {
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(extractDefaultOption(options))
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(
+    extractDefaultOption(options)
+  )
 
   const setOptionsValues = (name: string, value: string) => {
     const newSelectedOptions = selectedOptions.map((option) => {
@@ -45,7 +49,9 @@ export default function DetailsPanel({
   }
 
   const inSelectedOptions = (name: string, value: string) => {
-    return selectedOptions.some((option) => option.name === name && option.value === value)
+    return selectedOptions.some(
+      (option) => option.name === name && option.value === value
+    )
   }
 
   useEffect(() => {
