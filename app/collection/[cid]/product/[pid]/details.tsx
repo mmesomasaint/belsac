@@ -3,6 +3,7 @@
 import { Button, OptionBox, Text } from '@/app/components/elements'
 import { HR } from '@/app/components/filter'
 import { formatMoney } from '@/lib/product'
+import { useEffect, useState } from 'react'
 
 interface DetailsPanelProps {
   title: string
@@ -12,6 +13,17 @@ interface DetailsPanelProps {
   description: string
 }
 
+type SelectedOptions = {name: string, value: string}[]
+
+const extractDefaultOption = (options: { name: string; values: string[] }[]): SelectedOptions  => {
+  // Extract the first value of every item in the array and store them in this format.
+  // [{name: "Color", value: "Bllue"}...]
+  return options.map((option) => ({
+    name: option.name,
+    value: option.values[0],
+  }))
+}
+
 export default function DetailsPanel({
   title,
   price,
@@ -19,6 +31,38 @@ export default function DetailsPanel({
   options,
   description,
 }: DetailsPanelProps) {
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(extractDefaultOption(options))
+
+  const setOptionsValues = (name: string, value: string) => {
+    const newSelectedOptions = selectedOptions.map((option) => {
+      if (option.name === name) {
+        return { ...option, value }
+      }
+      return option
+    })
+
+    setSelectedOptions(newSelectedOptions)
+  }
+
+  const inSelectedOptions = (name: string, value: string) => {
+    return selectedOptions.some((option) => option.name === name && option.value === value)
+  }
+
+  useEffect(() => {
+    const handle = title.split(' ').join('-')
+
+    fetch(`/api/products/variant?handle=${handle}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ selectedOptions }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data?.body))
+      .catch(() => console.log('An error occurred!'))
+  }, [selectedOptions])
+
   return (
     <>
       <HR>
@@ -40,10 +84,8 @@ export default function DetailsPanel({
               {option.values.map((value) => (
                 <OptionBox
                   key={value}
-                  active={false}
-                  onClick={() => {
-                    return
-                  }}
+                  active={inSelectedOptions(option.name, value)}
+                  onClick={() => setOptionsValues(option.name, value)}
                 >
                   {value}
                 </OptionBox>
