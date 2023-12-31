@@ -63,7 +63,7 @@ export default function DetailsPanel({
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ newSelectedOptions }),
+      body: JSON.stringify({ selectedOptions: newSelectedOptions }),
     })
       .then((res) => res.json())
       .then((data) => console.log(data?.body))
