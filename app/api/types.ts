@@ -102,6 +102,9 @@ export interface MiniCartQueryResult {
   id: string
   lines: {
     nodes: CartLine[]
+    pageInfo: {
+      hasNextPage: boolean
+    }
   }
 }
 

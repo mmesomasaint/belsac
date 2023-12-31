@@ -276,9 +276,11 @@ export function cleanCartLinesResult(line: CartLine) {
 export function cleanMiniCartResult(queryResult: MiniCartQueryResult) {
   const { id, lines } = queryResult
   const cartLines = lines.nodes.map((node) => cleanCartLinesResult(node))
+  const hasMore = lines.pageInfo.hasNextPage
 
   return {
     id,
     cartLines,
+    hasMore
   }
 }
