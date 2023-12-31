@@ -21,7 +21,7 @@ interface Line {
 }
 
 export default function useCart() {
-  const [loading, setLoading] = useState<boolean>(true)
+  const [adding, setAdding] = useState<boolean>(true)
   const [cartId, setCartId] = useState<string | null>(
     cookies.get('cart_id') ?? null
   )
@@ -39,7 +39,7 @@ export default function useCart() {
   }
 
   const loadCart = (action: 'POST' | 'PUT', merch?: Merchandise) => {
-    setLoading(true)
+    setAdding(true)
 
     fetch(`/api/cart?cart_id=${cartId}`, {
       method: action,
@@ -51,8 +51,8 @@ export default function useCart() {
         setCartId(data.body.id)
         cookies.set('cart_id', data?.body.id, { expires: 7 })
       })
-      .finally(() => setLoading(false))
+      .finally(() => setAdding(false))
   }
 
-  return { loading, cartLines, updateCart }
+  return { adding, cartLines, updateCart }
 }
