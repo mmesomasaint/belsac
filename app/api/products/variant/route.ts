@@ -4,10 +4,12 @@ import { RETRIEVE_A_PRODUCT } from '../../query'
 import { cleanProduct } from '../../utils'
 
 export async function GET(Request: NextRequest) {
+  const {selectedOptions} = await Request.json()
   const searchParams = Request.nextUrl.searchParams
   const handle = searchParams.get('handle')
   const variables = {
     handle,
+    selectedOptions,
   }
 
   const { status, body } = await shopifyFetch({
