@@ -66,8 +66,8 @@ export function Button({
 }) {
   const outlineStyles = `${
     outline
-      ? 'bg-transparent hover:bg-gray-300'
-      : 'bg-black/90 hover:bg-black/50'
+      ? 'bg-transparent hover:bg-gray-300 disabled:border-black/30'
+      : 'bg-black/90 hover:bg-black/50 disabled:bg-black/30'
   }`
   const outlineTextStyles = `${outline ? 'text-black/90' : 'text-white'}`
 
