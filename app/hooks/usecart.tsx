@@ -10,16 +10,6 @@ interface Merchandise {
   }[]
 }
 
-interface Line {
-  id: string
-  merchandiseId: string
-  quantity: number
-  attributes: {
-    key: string
-    value: string
-  }[]
-}
-
 export default function useCart() {
   const [adding, setAdding] = useState<boolean>(false)
   const [cartId, setCartId] = useState<string | null>(
