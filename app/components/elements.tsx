@@ -57,10 +57,12 @@ export function Button({
   outline,
   children,
   onClick,
+  disabled,
 }: {
   outline?: boolean
   children: React.ReactNode
   onClick: () => void
+  disabled?: boolean
 }) {
   const outlineStyles = `${
     outline
@@ -72,6 +74,7 @@ export function Button({
   return (
     <button
       type='button'
+      disabled={disabled}
       className={`py-4 px-10 shadow-md border border-black/90 leading-none text-2xl font-light ${outlineStyles} ${outlineTextStyles}`}
       onClick={onClick}
     >
