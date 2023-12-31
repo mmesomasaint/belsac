@@ -49,7 +49,7 @@ export default function useCart() {
       .then((data) => {
         setCartLines(data.body.lines)
         setCartId(data.body.id)
-        cookies.set('cart_id', data?.body.id, {expires: 7})
+        cookies.set('cart_id', data?.body.id, { expires: 7 })
       })
       .finally(() => setLoading(false))
   }
