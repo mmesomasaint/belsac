@@ -3,6 +3,7 @@ import {
   CartLine,
   GetVariantQueryResult,
   Merchandise,
+  MiniCartQueryResult,
   MiniProductQueryResult,
   RetrieveProductQueryResult,
   SearchProductsQueryResult,
@@ -264,5 +265,20 @@ export function cleanCartLinesResult(line: CartLine) {
     quantity,
     merchandiseId: merchandise.id,
     attributes,
+  }
+}
+
+/**
+ * Converts cart query result to a cleaner format.
+ * @param queryResult A result gotten from querying for mini cart
+ * @returns A cleaner format of cart that can be used by components
+ */
+export function cleanMiniCartResult(queryResult: MiniCartQueryResult) {
+  const { id, lines } = queryResult
+  const cartLines = lines.nodes.map((node) => cleanCartLinesResult(node))
+
+  return {
+    id,
+    cartLines,
   }
 }
