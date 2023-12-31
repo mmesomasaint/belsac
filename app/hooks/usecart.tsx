@@ -1,5 +1,5 @@
 import cookies from 'js-cookie'
-import { useState } from 'react'
+import { ReactNode, createContext, useContext, useState } from 'react'
 
 interface Merchandise {
   quantity: number
@@ -20,7 +20,21 @@ interface Line {
   }[]
 }
 
-export default function useCart() {
+interface CartContextType {
+  updateCart: (newMerchandise: Merchandise) => void
+  adding: boolean
+  cartSize: number
+}
+
+const CartContext = createContext<CartContextType>({
+  updateCart: () => {},
+  adding: false,
+  cartSize: 0,
+})
+
+export const useCart = () => useContext(CartContext)
+
+export function CartProvider({children}: {children: ReactNode}) {
   const [adding, setAdding] = useState<boolean>(false)
   const [cartLines, setCartLines] = useState<Line[]>([])
   const [cartId, setCartId] = useState<string | null>(
@@ -52,5 +66,11 @@ export default function useCart() {
       .finally(() => setAdding(false))
   }
 
-  return { adding, updateCart, cartSize: cartLines.length }
+  return (
+    <CartContext.Provider value={{ updateCart, adding, cartSize: cartLines.length }}>
+      {children}
+    </CartContext.Provider>
+  )
 }
+
+export default useCart
