@@ -41,7 +41,7 @@ export default function useCart() {
   const loadCart = (action: 'POST' | 'PUT', merch?: Merchandise) => {
     setAdding(true)
 
-    fetch(`/api/cart?cart_id=${cartId}`, {
+    fetch(`/api/cart?cartId=${cartId}`, {
       method: action,
       body: JSON.stringify({ lines: [merch] }),
     })
