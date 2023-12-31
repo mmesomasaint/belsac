@@ -47,7 +47,7 @@ export default function DetailsPanel({
   const [amount, setAmount] = useState<number>(1)
   const [variant, setVariant] = useState<Variant>()
   const [loading, setLoading] = useState<boolean>(true)
-  const {adding, updateCart} = useCart()
+  const { adding, updateCart } = useCart()
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(
     extractDefaultOption(options)
   )
