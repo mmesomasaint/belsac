@@ -18,7 +18,6 @@ export async function POST(Request: NextRequest) {
   })
 
   if (status === 200) {
-    console.log("Body: ", body)
     const cart = cleanMiniCartResult(body.data?.cartCreate?.cart)
     return Response.json({ status: 200, body: cart })
   } else {
