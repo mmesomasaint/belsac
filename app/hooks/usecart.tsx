@@ -1,3 +1,5 @@
+'use client'
+
 import cookies from 'js-cookie'
 import { ReactNode, createContext, useContext, useState } from 'react'
 
