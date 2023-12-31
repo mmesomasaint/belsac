@@ -137,3 +137,28 @@ query VariantByOptions($handle:String!, $selectedOptions: [SelectedOptionInput!]
   }
 }
 `
+
+export const CREATE_CART = `
+mutation ($input: CartInput) {
+  cartCreate(input: $input) {
+    cart {
+      id
+      lines(first: 10) {
+        nodes {
+          id
+          quantity
+          merchandise {
+            ... on ProductVariant {
+              id
+            }
+          }
+          attributes {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}
+`
