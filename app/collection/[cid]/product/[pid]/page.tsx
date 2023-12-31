@@ -54,6 +54,7 @@ export default async function Product({
           <div className='col-span-1'>
             <DetailsPanel
               title={product?.title ?? '...'}
+              handle={product?.handle ?? ''}
               price={product?.price ?? 0}
               discount={product?.discount ?? 0}
               options={product?.options ?? []}

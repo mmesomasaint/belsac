@@ -7,6 +7,7 @@ import { formatMoney } from '@/lib/product'
 
 interface DetailsPanelProps {
   title: string
+  handle: string
   price: number
   discount: number
   options: { name: string; values: string[] }[]
@@ -36,6 +37,7 @@ const extractDefaultOption = (
 
 export default function DetailsPanel({
   title,
+  handle,
   price,
   discount,
   options,
@@ -65,8 +67,6 @@ export default function DetailsPanel({
   }
 
   useEffect(() => {
-    const handle = title.split(' ').join('-')
-
     fetch(`/api/products/variant?handle=${handle}`, {
       method: 'POST',
       headers: {
