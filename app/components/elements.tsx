@@ -62,11 +62,12 @@ export function Button({
   children: React.ReactNode
   onClick: () => void
 }) {
-  const outlineStyles = `${outline ? 'bg-transparent' : 'bg-black/90'}`
+  const outlineStyles = `${outline ? 'bg-transparent hover:bg-gray-300' : 'bg-black/90 hover:bg-black/50'}`
   const outlineTextStyles = `${outline ? 'text-black/90' : 'text-white'}`
 
   return (
     <button
+      type='button'
       className={`py-4 px-10 shadow-md border border-black/90 leading-none text-2xl font-light ${outlineStyles} ${outlineTextStyles}`}
       onClick={onClick}
     >
@@ -91,6 +92,18 @@ export function OptionBox({
       className={`px-4 py-2 border border-black/20 hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black ${
         active ? 'bg-black text-white' : ''
       }`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  )
+}
+
+export function MiniBox({children, onClick}: {children: React.ReactNode, onClick: () => void}) {
+  return (
+    <button
+      type='button'
+      className='w-12 h-12 flex justify-center items-center border border-black/20 hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
       onClick={onClick}
     >
       {children}
