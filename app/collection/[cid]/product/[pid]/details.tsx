@@ -87,7 +87,9 @@ export default function DetailsPanel({
           <div className='flex justify-start items-center gap-3'>
             <Text size='lg'>{formatMoney(variant?.price ?? price)}</Text>
             <span className='line-through decoration-from-font'>
-              <Text size='sm'>{formatMoney(variant?.discount ?? discount)}</Text>
+              <Text size='sm'>
+                {formatMoney(variant?.discount ?? discount)}
+              </Text>
             </span>
           </div>
         </div>
@@ -111,42 +113,58 @@ export default function DetailsPanel({
         ))}
       </HR>
       <HR>
-      <div className='flex flex-col justify-start items-start gap-8 m-6 mb-4'>
-        <div className='flex flex-col gap-4'>
-          <Text size='md'>Quantity</Text>
-          <Text size='sm'>{`Only ${variant?.quantityAvailable ?? 0} item${variant?.quantityAvailable ?? 0 > 1 ? 's' : ''} left`}</Text>
-          <div className='flex justify-start items-center gap-4'>
-            <MiniBox onClick={() => amount > 1 && setAmount(prev => prev - 1)}>-</MiniBox>
-            <Text size='md'>{Math.min(amount, variant?.quantityAvailable ?? 0).toString()}</Text>
-            <MiniBox onClick={() => amount < (variant?.quantityAvailable ?? 0) && setAmount(prev => prev + 1) }>+</MiniBox>
+        <div className='flex flex-col justify-start items-start gap-8 m-6 mb-4'>
+          <div className='flex flex-col gap-4'>
+            <Text size='md'>Quantity</Text>
+            <Text size='sm'>{`Only ${variant?.quantityAvailable ?? 0} item${
+              variant?.quantityAvailable ?? 0 > 1 ? 's' : ''
+            } left`}</Text>
+            <div className='flex justify-start items-center gap-4'>
+              <MiniBox
+                onClick={() => amount > 1 && setAmount((prev) => prev - 1)}
+              >
+                -
+              </MiniBox>
+              <Text size='md'>
+                {Math.min(amount, variant?.quantityAvailable ?? 0).toString()}
+              </Text>
+              <MiniBox
+                onClick={() =>
+                  amount < (variant?.quantityAvailable ?? 0) &&
+                  setAmount((prev) => prev + 1)
+                }
+              >
+                +
+              </MiniBox>
+            </div>
           </div>
         </div>
-      </div>
       </HR>
       <HR>
-      <div className='flex flex-col justify-start items-start gap-8 m-6 mb-4'>
-        <div className='flex flex-col gap-4'>
-          <Text size='md'>Total</Text>
-          <Text size='lg'>{formatMoney((variant?.price ?? price) * amount)}</Text>
-          </div>
-          
-        <div className='flex justify-start items-center gap-8'>
-          
-          <Button onClick={() => console.log('Product bought!!')}>Buy</Button>
-          <Button onClick={() => console.log('Added to cart')} outline>
-            Add to cart
-          </Button>
-          </div>
-      </div>
-      </HR>
-        <div>
-          <div className='flex flex-col gap-5 m-6 mb-4'>
-            <Text size='md'>Description</Text>
-            <Text size='sm' copy>
-              {description}
+        <div className='flex flex-col justify-start items-start gap-8 m-6 mb-4'>
+          <div className='flex flex-col gap-4'>
+            <Text size='md'>Total</Text>
+            <Text size='lg'>
+              {formatMoney((variant?.price ?? price) * amount)}
             </Text>
           </div>
+
+          <div className='flex justify-start items-center gap-8'>
+            <Button onClick={() => console.log('Product bought!!')}>Buy</Button>
+            <Button onClick={() => console.log('Added to cart')} outline>
+              Add to cart
+            </Button>
+          </div>
         </div>
+      </HR>
+      <div>
+        <div className='flex flex-col gap-5 m-6 mb-4'>
+          <Text size='md'>Description</Text>
+          <Text size='sm' copy>
+            {description}
+          </Text>
+        </div>
+      </div>
     </>
   )
 }
