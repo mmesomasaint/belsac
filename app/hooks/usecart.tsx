@@ -1,7 +1,7 @@
 'use client'
 
 import cookies from 'js-cookie'
-import { ReactNode, createContext, useContext, useState } from 'react'
+import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 
 interface Merchandise {
   quantity: number
@@ -67,6 +67,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
       })
       .finally(() => setAdding(false))
   }
+
+  useEffect(() => {
+    cartId && loadCart('GET')
+  }, [])
 
   return (
     <CartContext.Provider
