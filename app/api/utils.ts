@@ -1,6 +1,7 @@
 import { Filter, FilterSubKey } from '@/lib/filter'
 import {
   CartLine,
+  FullCartQueryResult,
   GetVariantQueryResult,
   Merchandise,
   MiniCartQueryResult,
