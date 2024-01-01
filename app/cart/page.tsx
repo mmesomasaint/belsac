@@ -1,11 +1,9 @@
 import { RETRIEVE_CART } from '@/app/api/query'
-import { cleanProduct } from '@/app/api/utils'
+import { cleanFullCartResult } from '@/app/api/utils'
 import { Text } from '@/app/components/elements'
 import Header from '@/app/components/header'
-import ProductSlider from '@/app/components/product/slider'
 import { shopifyFetch } from '@/lib/fetch'
 import { PiCaretRightThin } from 'react-icons/pi'
-import DetailsPanel from './details'
 
 const getCart = async (cartId: string) => {
   const variables = {
@@ -23,8 +21,6 @@ const getCart = async (cartId: string) => {
 }
 
 export default async function Product() {
-  const cart = await getCart(cartId)
-
   return (
     <div className='px-7 max-w-[120rem] mx-auto'>
       <Header />
