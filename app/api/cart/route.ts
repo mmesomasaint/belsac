@@ -80,7 +80,7 @@ export async function GET(request: NextRequest) {
 export async function DELETE(Request: NextRequest) {
   const searchParams = Request.nextUrl.searchParams
   const cartId = searchParams.get('cartId')
-  const {lines} = await Request.json()
+  const { lines } = await Request.json()
 
   const variables = { cartId, lineIds: generateCartLineIds(lines) }
 
