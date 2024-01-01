@@ -8,7 +8,7 @@ import useCart from '../hooks/usecart'
 
 export default function Header({ defaultText }: { defaultText?: string }) {
   const [searchText, setSearchText] = useState(defaultText)
-  const {cartSize} = useCart()
+  const { cartSize } = useCart()
   const router = useRouter()
 
   return (
