@@ -191,13 +191,13 @@ export default function DetailsPanel({
           <div className='flex justify-start items-center gap-8'>
             <Button
               onClick={() => console.log('Product bought!!')}
-              disabled={amount < 1 || loading}
+              disabled={(variant?.quantityAvailable ?? 0) < 1 || loading}
             >
               Buy
             </Button>
             <Button
               onClick={addToCart}
-              disabled={amount < 1 || loading || adding}
+              disabled={(variant?.quantityAvailable ?? 0) < 1 || loading || adding}
               outline
             >
               {adding ? 'Adding' : 'Add to cart'}
