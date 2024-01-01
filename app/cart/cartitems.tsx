@@ -136,9 +136,11 @@ function CartItem({
       </div>
       <div className='col-span-4 w-full flex flex-col gap-6'>
         <Text size='lg'>{title ?? '...'}</Text>
-        <Text size='lg' faded>
-          {`${quantity.toString() ?? '0'} x ${formatMoney(price ?? 0)}`}
-        </Text>
+        <div className='flex justify-start items-center gap-6'>
+          <Text size='lg'>{quantity.toString() ?? '0'}</Text>
+          <Text size='lg'>x</Text>
+          <Text size='lg'>{formatMoney(price ?? 0)}</Text>
+        </div>
       </div>
       <div className='absolute top-0 right-0 flex items-stretch justify-center gap-4'>
         <button
