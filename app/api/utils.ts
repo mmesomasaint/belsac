@@ -285,7 +285,7 @@ export function cleanMiniCartResult(queryResult: MiniCartQueryResult) {
       totalAmount: cost.totalAmount?.amount,
       subtotalAmount: cost.subtotalAmount?.amount,
       totalTaxAmount: cost.totalTaxAmount?.amount,
-    }
+    },
   }
 }
 
