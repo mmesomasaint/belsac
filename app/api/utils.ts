@@ -314,3 +314,7 @@ export function cleanFullCartResult(fullCartResult: FullCartQueryResult) {
     },
   }
 }
+
+export function generateCartLineIds(lines: Merchandise[]) {
+  return lines.map(({ id }) => id)
+}
