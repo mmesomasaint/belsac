@@ -51,9 +51,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const loadCart = (action: 'POST' | 'PUT' | 'GET', merch?: Merchandise) => {
     setAdding(true)
 
+    const body = action === 'GET' ? null : JSON.stringify({ lines: [merch] })
+
     fetch(`/api/cart?cartId=${cartId}`, {
       method: action,
-      body: JSON.stringify({ lines: [merch] }),
+      body,
     })
       .then((res) => res.json())
       .then((data) => {
