@@ -197,7 +197,9 @@ export default function DetailsPanel({
             </Button>
             <Button
               onClick={addToCart}
-              disabled={(variant?.quantityAvailable ?? 0) < 1 || loading || adding}
+              disabled={
+                (variant?.quantityAvailable ?? 0) < 1 || loading || adding
+              }
               outline
             >
               {adding ? 'Adding' : 'Add to cart'}
