@@ -1,29 +1,8 @@
-import { RETRIEVE_CART } from '@/app/api/query'
-import { cleanFullCartResult } from '@/app/api/utils'
 import { Text } from '@/app/components/elements'
 import Header from '@/app/components/header'
-import { shopifyFetch } from '@/lib/fetch'
 import { PiCaretRightThin } from 'react-icons/pi'
-import useCart from '../hooks/usecart'
-
-const getCart = async (cartId: string) => {
-  const variables = {
-    cartId,
-  }
-
-  const { status, body } = await shopifyFetch({
-    query: RETRIEVE_CART,
-    variables,
-  })
-
-  if (status === 200) {
-    return cleanFullCartResult(body.data?.cart)
-  }
-}
 
 export default async function Cart() {
-  const {cartId} = useCart()
-
   return (
     <div className='px-7 max-w-[120rem] mx-auto'>
       <Header />
