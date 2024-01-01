@@ -5,6 +5,7 @@ import {
   ADD_ITEMS_TO_CART,
   RETRIEVE_MINI_CART,
   RETRIEVE_CART,
+  DELETE_ITEM_FROM_CART,
 } from '../query'
 import {
   generateCartLinesInput,
@@ -72,5 +73,26 @@ export async function GET(request: NextRequest) {
     })
   } else {
     return Response.json({ status: 500, message: 'Error fetching data' })
+  }
+}
+
+// Delete lines (items = product variants) from cart
+export async function DELETE(Request: NextRequest) {
+  const searchParams = Request.nextUrl.searchParams
+  const cartId = searchParams.get('cartId')
+  const {lines} = await Request.json()
+
+  const variables = { cartId, lineIds: generateCartLineIds(lines) }
+
+  const { status, body } = await shopifyFetch({
+    query: DELETE_ITEM_FROM_CART,
+    variables,
+  })
+
+  if (status === 200) {
+    const cart = cleanMiniCartResult(body.data?.cartLinesRemove?.cart)
+    return Response.json({ status: 200, body: cart })
+  } else {
+    return Response.json({ status: 500, message: 'Error receiving data' })
   }
 }
