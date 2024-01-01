@@ -31,6 +31,7 @@ interface Line {
 interface CartContextType {
   cartId: string | null
   updateCart: (newMerchandise: Merchandise) => void
+  deleteLine: (line: Line) => void
   adding: boolean
   cartSize: number
 }
@@ -38,6 +39,7 @@ interface CartContextType {
 const CartContext = createContext<CartContextType>({
   cartId: null,
   updateCart: () => {},
+  deleteLine: () => {},
   adding: false,
   cartSize: 0,
 })
@@ -56,7 +58,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     else loadCart('POST', newMerchandise)
   }
 
-  const loadCart = (action: 'POST' | 'PUT' | 'GET', merch?: Merchandise) => {
+  const deleteLine = (line: Line) => loadCart('DELETE', line)
+
+  const loadCart = (action: 'POST' | 'PUT' | 'GET' | 'DELETE', merch?: Merchandise) => {
     setAdding(true)
 
     const body = action === 'GET' ? null : JSON.stringify({ lines: [merch] })
@@ -84,7 +88,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   return (
     <CartContext.Provider
-      value={{ cartId, updateCart, adding, cartSize: cartLines.length }}
+      value={{ cartId, updateCart, deleteLine, adding, cartSize: cartLines.length }}
     >
       {children}
     </CartContext.Provider>
