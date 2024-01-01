@@ -1,6 +1,7 @@
 import { Text } from '@/app/components/elements'
 import Header from '@/app/components/header'
 import { PiCaretRightThin } from 'react-icons/pi'
+import CartItems from './cartitems'
 
 export default async function Cart() {
   return (
@@ -16,7 +17,7 @@ export default async function Cart() {
             Cart
           </Text>
         </div>
-        <div className='grid grid-cols-2 place-content-between items-stretch gap-8 py-6'></div>
+        <CartItems />
       </div>
     </div>
   )
