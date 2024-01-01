@@ -15,21 +15,14 @@ const ProductSlider: React.FC<{ images: ProductImage[] }> = ({ images }) => {
   }
 
   return (
-    <div className='container mx-auto'>
-      <div className='relative'>
-        <img
-          src={images[activeImageIndex].url}
-          alt={images[activeImageIndex].altText}
-          className='w-full h-[26rem] object-cover'
-        />
-      </div>
-      <div className='mt-4 overflow-hidden'>
-        <div className='flex gap-4 overflow-x-auto'>
+    <div className='container mx-auto flex max-h-[35rem]'>
+      <div className='max-h-full overflow-hidden'>
+        <div className='flex flex-col w-full h-full gap-4 overflow-y-auto'>
           {images.map((image, index) => (
             <button
               key={index}
               type='button'
-              className={`shrink-0 relative w-1/5 mx-1 overflow-hidden cursor-pointer border-2 hover:border-black/40 ${
+              className={`shrink-0 relative w-full h-1/5 mr-4 overflow-hidden cursor-pointer border-2 hover:border-black/40 ${
                 activeImageIndex === index
                   ? 'border-black'
                   : 'border-transparent'
@@ -44,6 +37,13 @@ const ProductSlider: React.FC<{ images: ProductImage[] }> = ({ images }) => {
             </button>
           ))}
         </div>
+      </div>
+      <div className='relative grow'>
+        <img
+          src={images[activeImageIndex].url}
+          alt={images[activeImageIndex].altText}
+          className='w-full h-full object-cover'
+        />
       </div>
     </div>
   )
