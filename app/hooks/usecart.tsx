@@ -71,7 +71,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         !cartId && cookies.set('cart_id', newCartId, { expires: 7 })
 
         setCartId(newCartId)
-        setCartLines(data?.body.lines)
+        setCartLines(data?.body.cartLines)
       })
       .finally(() => setAdding(false))
   }
