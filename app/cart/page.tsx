@@ -1,4 +1,4 @@
-import { RETRIEVE_A_PRODUCT } from '@/app/api/query'
+import { RETRIEVE_CART } from '@/app/api/query'
 import { cleanProduct } from '@/app/api/utils'
 import { Text } from '@/app/components/elements'
 import Header from '@/app/components/header'

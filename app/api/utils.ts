@@ -282,3 +282,34 @@ export function cleanMiniCartResult(queryResult: MiniCartQueryResult) {
     cartLines
   }
 }
+
+/**
+ * Converts full cart query result to a cleaner format.
+ * @param fullCartResult A result gotten from querying for full cart
+ * @returns A cleaner formart of cart that can be used by components
+ */
+export function cleanFullCartResult(fullCartResult: FullCartQueryResult) {
+  const { id, lines, attributes, cost, buyerIdentity } = fullCartResult
+  const cartLines = lines.nodes.map((node) => cleanCartLinesResult(node))
+
+  return {
+    id,
+    cartLines,
+    attributes,
+    cost: {
+      totalAmount: cost.totalAmount?.amount,
+      subtotalAmount: cost.subtotalAmount?.amount,
+      totalTaxAmount: cost.totalTaxAmount?.amount,
+      totalDutyAmount: cost.totalDutyAmount?.amount,
+    },
+    buyerIdentity: {
+      email: buyerIdentity.email,
+      phone: buyerIdentity.phone,
+      customerId: buyerIdentity.customer?.id,
+      address1: buyerIdentity.deliveryAddressPreferences?.address1,
+      address2: buyerIdentity.deliveryAddressPreferences?.address2,
+      city: buyerIdentity.deliveryAddressPreferences?.city,
+      zip: buyerIdentity.deliveryAddressPreferences?.zip,
+    },
+  }
+}
