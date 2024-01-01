@@ -28,12 +28,21 @@ interface Line {
   }[]
 }
 
+interface Cost {
+  subtotalAmount: number
+  totalAmount: number
+  totalTaxAmount: number
+}
+
+const DEFAULT_COST = {subtotalAmount: 0, totalAmount: 0, totalTaxAmount: 0}
+
 interface CartContextType {
   cartId: string | null
   updateCart: (newMerchandise: Merchandise) => void
   deleteLine: (line: Line) => void
   adding: boolean
   cartSize: number
+  cartPrice: Cost
 }
 
 const CartContext = createContext<CartContextType>({
@@ -42,12 +51,14 @@ const CartContext = createContext<CartContextType>({
   deleteLine: () => {},
   adding: false,
   cartSize: 0,
+  cartPrice: DEFAULT_COST
 })
 
 export const useCart = () => useContext(CartContext)
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [adding, setAdding] = useState<boolean>(false)
+  const [cartPrice, setCartPrice] = useState<Cost>(DEFAULT_COST)
   const [cartLines, setCartLines] = useState<Line[]>([])
   const [cartId, setCartId] = useState<string | null>(
     cookies.get('cart_id') ?? null
@@ -81,6 +92,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
         setCartId(newCartId)
         setCartLines(data?.body.cartLines)
+        setCartPrice(data?.body.cost)
       })
       .finally(() => setAdding(false))
   }
@@ -97,6 +109,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         deleteLine,
         adding,
         cartSize: cartLines.length,
+        cartPrice
       }}
     >
       {children}
