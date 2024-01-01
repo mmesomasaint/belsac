@@ -60,7 +60,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const deleteLine = (line: Line) => loadCart('DELETE', line)
 
-  const loadCart = (action: 'POST' | 'PUT' | 'GET' | 'DELETE', merch?: Merchandise) => {
+  const loadCart = (
+    action: 'POST' | 'PUT' | 'GET' | 'DELETE',
+    merch?: Merchandise
+  ) => {
     setAdding(true)
 
     const body = action === 'GET' ? null : JSON.stringify({ lines: [merch] })
@@ -88,7 +91,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   return (
     <CartContext.Provider
-      value={{ cartId, updateCart, deleteLine, adding, cartSize: cartLines.length }}
+      value={{
+        cartId,
+        updateCart,
+        deleteLine,
+        adding,
+        cartSize: cartLines.length,
+      }}
     >
       {children}
     </CartContext.Provider>
