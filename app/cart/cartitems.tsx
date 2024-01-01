@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { TbShoppingCartOff } from 'react-icons/tb'
 import { PiPencilSimpleLineThin, PiTrashSimpleThin } from 'react-icons/pi'
 import useCart from '../hooks/usecart'
-import { Text } from '../components/elements'
+import { Button, Text } from '../components/elements'
 import Image from 'next/image'
 import { formatMoney } from '@/lib/product'
 
@@ -104,11 +104,37 @@ export default function CartItems() {
         </div>
       )}
       {cart && (
+        <>
         <div className='col-span-8 flex flex-col gap-10'>
           {cart.cartLines.map((line) => (
             <CartItem key={line.id} line={line} />
           ))}
         </div>
+          <div className='col-span-4 flex flex-col gap-16 p-8 h-fit w-full ring ring-gray-200'>
+            <div className='flex flex-col gap-8'><div className='flex flex-col gap-3'>
+            <div className='flex justify-between gap-4'>
+              <Text size='xs'>Tax</Text>
+              <Text size='md'>{formatMoney(Number(cart.cost.totalTaxAmount))}</Text>
+            </div>
+            <div className='flex justify-between gap-4'>
+              <Text size='xs'>Subtotal</Text>
+              <Text size='md'>{formatMoney(Number(cart.cost.subtotalAmount))}</Text>
+            </div>
+            </div>
+            <div className='flex flex-col gap-3'>
+            <div className='flex justify-between gap-4'>
+              <Text size='md'>Total</Text>
+              <Text size='xl'>{formatMoney(Number(cart.cost.totalAmount))}</Text>
+            </div>
+            <Button
+              onClick={() => console.log('Checkout')}
+            >
+              Checkout
+            </Button>
+            </div>
+            </div>
+          </div>
+        </>
       )}
     </div>
   )
