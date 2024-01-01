@@ -66,15 +66,16 @@ export default function CartItems() {
   const deleteCartLine = (line: CartLine) => {
     if (cart) {
       // Rmove the line from the cart
-    const newCartLines = cart?.cartLines.filter(({ id }) => id !== line.id)
-    setCart({ ...cart, cartLines: newCartLines })
+      const newCartLines = cart?.cartLines.filter(({ id }) => id !== line.id)
+      setCart({ ...cart, cartLines: newCartLines })
 
-    // Modify attributes field to match db lines
-  const newAttributes = Object.entries(line.attributes).map(([key, value]) => ({key, value}))
+      // Modify attributes field to match db lines
+      const newAttributes = Object.entries(line.attributes).map(
+        ([key, value]) => ({ key, value })
+      )
 
-
-    // Remove the line from store db
-    deleteLine({...line, attributes: newAttributes})
+      // Remove the line from store db
+      deleteLine({ ...line, attributes: newAttributes })
     }
   }
 
