@@ -76,9 +76,11 @@ export default function CartItems() {
         .then((res) => res.json())
         .then((data) => {
           console.log('Cart Information: \n', data?.body)
-          setCart({
-            cartLines: extractAttributes(data?.body?.cartLines),
+          
+          const newCart = data?.body
+          newCart && setCart({
             ...data?.body,
+            cartLines: extractAttributes(data?.body.cartLines),
           })
         })
         .finally(() => setLoading(false))
@@ -121,6 +123,7 @@ function CartItem({
   line: CartLine
 }) {
   const hasImage = featuredImage && title
+  
   return (
     <div className='relative grid grid-cols-6 place-items-stretch min-h-[20rem] gap-10 p-10 border-b border-black/40 last:border-none'>
       <div className='col-span-2 w-full bg-gray-300'>
@@ -128,6 +131,8 @@ function CartItem({
           <Image
             src={featuredImage}
             alt={title}
+            width={400}
+            height={400}
             className='w-full object-cover'
           />
         )}
