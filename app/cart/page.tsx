@@ -21,9 +21,9 @@ const getCart = async (cartId: string) => {
   }
 }
 
-export default async function Product() {
+export default async function Cart() {
   const {cartId} = useCart()
-  
+
   return (
     <div className='px-7 max-w-[120rem] mx-auto'>
       <Header />
