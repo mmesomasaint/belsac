@@ -34,7 +34,7 @@ interface Cost {
   totalTaxAmount: number
 }
 
-const DEFAULT_COST = {subtotalAmount: 0, totalAmount: 0, totalTaxAmount: 0}
+const DEFAULT_COST = { subtotalAmount: 0, totalAmount: 0, totalTaxAmount: 0 }
 
 interface CartContextType {
   cartId: string | null
@@ -51,7 +51,7 @@ const CartContext = createContext<CartContextType>({
   deleteLine: () => {},
   adding: false,
   cartSize: 0,
-  cartPrice: DEFAULT_COST
+  cartPrice: DEFAULT_COST,
 })
 
 export const useCart = () => useContext(CartContext)
@@ -109,7 +109,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         deleteLine,
         adding,
         cartSize: cartLines.length,
-        cartPrice
+        cartPrice,
       }}
     >
       {children}
