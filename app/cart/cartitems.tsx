@@ -224,8 +224,8 @@ function CartItem({
           <Text size='lg'>{formatMoney(price ?? 0)}</Text>
         </div>
         <div className='flex justify-start items-center gap-6'>
-          {options.map((option) => (
-            <Text size='md'>{option}</Text>
+          {options.map((option, id) => (
+            <Text key={option+id} size='md'>{option}</Text>
           ))}
         </div>
       </div>
