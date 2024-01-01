@@ -275,12 +275,17 @@ export function cleanCartLinesResult(line: CartLine) {
  * @returns A cleaner format of cart that can be used by components
  */
 export function cleanMiniCartResult(queryResult: MiniCartQueryResult) {
-  const { id, lines } = queryResult
+  const { id, lines, cost } = queryResult
   const cartLines = lines.nodes.map((node) => cleanCartLinesResult(node))
 
   return {
     id,
     cartLines,
+    cost: {
+      totalAmount: cost.totalAmount?.amount,
+      subtotalAmount: cost.subtotalAmount?.amount,
+      totalTaxAmount: cost.totalTaxAmount?.amount,
+    }
   }
 }
 
@@ -301,7 +306,6 @@ export function cleanFullCartResult(fullCartResult: FullCartQueryResult) {
       totalAmount: cost.totalAmount?.amount,
       subtotalAmount: cost.subtotalAmount?.amount,
       totalTaxAmount: cost.totalTaxAmount?.amount,
-      totalDutyAmount: cost.totalDutyAmount?.amount,
     },
     buyerIdentity: {
       email: buyerIdentity.email,
