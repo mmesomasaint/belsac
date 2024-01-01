@@ -120,7 +120,10 @@ function CartItem({
   line: CartLine
 }) {
   const hasImage = featuredImage && title
-  const options = Object.entries(attributes).map(([key, value]) => value).join('.|.').split('.')
+  const options = Object.entries(attributes)
+    .map(([key, value]) => value)
+    .join('.|.')
+    .split('.')
 
   return (
     <div className='relative grid grid-cols-7 place-items-stretch min-h-[20rem] gap-16 py-16 px-8 border-b border-black/40 last:border-none'>
@@ -143,7 +146,9 @@ function CartItem({
           <Text size='lg'>{formatMoney(price ?? 0)}</Text>
         </div>
         <div className='flex justify-start items-center gap-6'>
-          {options.map(option => <Text size='md'>{option}</Text>)}
+          {options.map((option) => (
+            <Text size='md'>{option}</Text>
+          ))}
         </div>
       </div>
       <div className='absolute top-0 right-0 flex items-stretch justify-center gap-4'>
