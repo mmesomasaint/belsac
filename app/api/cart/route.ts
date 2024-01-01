@@ -12,6 +12,7 @@ import {
   cleanMiniCartResult,
   generateCreateCartInput,
   cleanFullCartResult,
+  generateCartLineIds,
 } from '../utils'
 
 // Create cart
