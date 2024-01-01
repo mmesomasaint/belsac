@@ -9,6 +9,7 @@ import useCart from '@/app/hooks/usecart'
 interface DetailsPanelProps {
   title: string
   handle: string
+  featuredImage: string
   price: number
   discount: number
   options: { name: string; values: string[] }[]
@@ -39,6 +40,7 @@ const extractDefaultOption = (
 export default function DetailsPanel({
   title,
   handle,
+  featuredImage,
   price,
   discount,
   options,
@@ -70,6 +72,8 @@ export default function DetailsPanel({
   }
 
   const addToCart = () => {
+    const moreAttributes = [...selectedOptions, {name: 'title', value: title}, {name: 'price', value: variant?.price ?? price}, {name: 'featuredImage', value: featuredImage}]
+
     const newMerchandise = {
       quantity: amount,
       id: variant?.id ?? '',
