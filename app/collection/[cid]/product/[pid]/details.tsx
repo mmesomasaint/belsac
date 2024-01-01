@@ -82,7 +82,7 @@ export default function DetailsPanel({
     const newMerchandise = {
       quantity: amount,
       id: variant?.id ?? '',
-      attributes: selectedOptions.map((option) => ({
+      attributes: moreAttributes.map((option) => ({
         key: option.name,
         value: option.value,
       })),
