@@ -98,11 +98,27 @@ export interface CartLine {
   }[]
 }
 
+export interface Cost {
+  totalAmount: {
+    amount: number
+    currencyCode: string
+  }
+  subtotalAmount: {
+    amount: number
+    currencyCode: string
+  }
+  totalTaxAmount: {
+    amount: number
+    currencyCode: string
+  }
+}
+
 export interface MiniCartQueryResult {
   id: string
   lines: {
     nodes: CartLine[]
   }
+  cost: Cost
 }
 
 export interface Merchandise {
@@ -123,24 +139,7 @@ export interface FullCartQueryResult {
     key: string
     value: string
   }[]
-  cost: {
-    totalAmount: {
-      amount: number
-      currencyCode: string
-    }
-    subtotalAmount: {
-      amount: number
-      currencyCode: string
-    }
-    totalTaxAmount: {
-      amount: number
-      currencyCode: string
-    }
-    totalDutyAmount: {
-      amount: number
-      currencyCode: string
-    }
-  }
+  cost: Cost
   buyerIdentity: {
     email: string
     phone: string
