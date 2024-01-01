@@ -44,7 +44,7 @@ interface Cart {
 export default function CartItems() {
   const [loading, setLoading] = useState<boolean>(true)
   const [cart, setCart] = useState<Cart>()
-  const { cartId, deleteLine } = useCart()
+  const { cartId, cartPrice, deleteLine } = useCart()
 
   const extractAttributes = (lines: CartLine[]) => {
     return lines.map((line) => {
@@ -160,13 +160,13 @@ export default function CartItems() {
                 <div className='flex items-center justify-between gap-4'>
                   <Text size='xs'>Tax</Text>
                   <Text size='md'>
-                    {formatMoney(Number(cart.cost.totalTaxAmount))}
+                    {formatMoney(Number(cartPrice.totalTaxAmount))}
                   </Text>
                 </div>
                 <div className='flex items-center justify-between gap-4'>
                   <Text size='xs'>Subtotal</Text>
                   <Text size='md'>
-                    {formatMoney(Number(cart.cost.subtotalAmount))}
+                    {formatMoney(Number(cartPrice.subtotalAmount))}
                   </Text>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function CartItems() {
                 <div className='flex items-center justify-between gap-4'>
                   <Text size='md'>Total</Text>
                   <Text size='xl'>
-                    {formatMoney(Number(cart.cost.totalAmount))}
+                    {formatMoney(Number(cartPrice.totalAmount))}
                   </Text>
                 </div>
                 <Button onClick={() => console.log('Checkout')}>
