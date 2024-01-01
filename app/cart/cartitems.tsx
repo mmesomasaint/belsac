@@ -111,15 +111,37 @@ export default function CartItems() {
             ))}
           </div>
           <div className='col-span-4 flex flex-col gap-16 p-8 h-fit w-full ring ring-gray-200'>
-            <div className='flex flex-col gap-8'>
+            
+          <div className='flex flex-col gap-8'>
+              <Text size='md'>Buyer Information</Text>
               <div className='flex flex-col gap-3'>
-                <div className='flex justify-between gap-4'>
+                <div className='flex items-center justify-between gap-4'>
+                  <Text size='xs'>Email</Text>
+                  <span className='text-clamp-1'><Text size='sm'>{cart.buyerIdentity.email}</Text></span>
+                </div>
+                <div className='flex items-center justify-between gap-4'>
+                  <Text size='xs'>Phone</Text>
+                  <span className='text-clamp-1'><Text size='sm'>{cart.buyerIdentity.phone}</Text></span>
+                </div>
+              </div>
+              <Button onClick={() => console.log('Edit Buyer Information')} outline>
+                <div className='flex justify-center gap-4 items-center'>
+                  <PiPencilSimpleLineThin className='text-2xl text-black' />
+                  <Text size='md'>Edit</Text>
+                </div>
+              </Button>
+              </div>
+              <div className='w-full border-b border-black/40' />
+            <div className='flex flex-col gap-8'>
+              <Text size='md'>Order Summary</Text>
+              <div className='flex flex-col gap-3'>
+                <div className='flex items-center justify-between gap-4'>
                   <Text size='xs'>Tax</Text>
                   <Text size='md'>
                     {formatMoney(Number(cart.cost.totalTaxAmount))}
                   </Text>
                 </div>
-                <div className='flex justify-between gap-4'>
+                <div className='flex items-center justify-between gap-4'>
                   <Text size='xs'>Subtotal</Text>
                   <Text size='md'>
                     {formatMoney(Number(cart.cost.subtotalAmount))}
@@ -127,7 +149,7 @@ export default function CartItems() {
                 </div>
               </div>
               <div className='flex flex-col gap-3'>
-                <div className='flex justify-between gap-4'>
+                <div className='flex items-center justify-between gap-4'>
                   <Text size='md'>Total</Text>
                   <Text size='xl'>
                     {formatMoney(Number(cart.cost.totalAmount))}
