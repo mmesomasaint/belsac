@@ -75,7 +75,7 @@ export default function DetailsPanel({
     const moreAttributes = [
       ...selectedOptions,
       { name: 'title', value: title },
-      { name: 'price', value: variant?.price ?? price },
+      { name: 'price', value: (variant?.price ?? price).toString() },
       { name: 'featuredImage', value: featuredImage },
     ]
 
