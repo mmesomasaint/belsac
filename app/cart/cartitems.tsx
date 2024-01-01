@@ -44,7 +44,7 @@ interface Cart {
 export default function CartItems() {
   const [loading, setLoading] = useState<boolean>(true)
   const [cart, setCart] = useState<Cart>()
-  const { cartId } = useCart()
+  const { cartId, deleteLine } = useCart()
 
   const extractAttributes = (lines: CartLine[]) => {
     return lines.map((line) => {
@@ -61,6 +61,21 @@ export default function CartItems() {
         attributes: rest,
       }
     })
+  }
+
+  const deleteCartLine = (line: CartLine) => {
+    if (cart) {
+      // Rmove the line from the cart
+    const newCartLines = cart?.cartLines.filter(({ id }) => id !== line.id)
+    setCart({ ...cart, cartLines: newCartLines })
+
+    // Modify attributes field to match db lines
+  const newAttributes = Object.entries(line.attributes).map(([key, value]) => ({key, value}))
+
+
+    // Remove the line from store db
+    deleteLine({...line, attributes: newAttributes})
+    }
   }
 
   useEffect(() => {
@@ -107,7 +122,7 @@ export default function CartItems() {
         <>
           <div className='col-span-8 flex flex-col gap-10'>
             {cart.cartLines.map((line) => (
-              <CartItem key={line.id} line={line} />
+              <CartItem key={line.id} line={line} deleteLine={deleteCartLine} />
             ))}
           </div>
           <div className='col-span-4 flex flex-col gap-16 p-8 h-fit w-full ring ring-gray-200'>
@@ -174,10 +189,13 @@ export default function CartItems() {
 }
 
 function CartItem({
-  line: { id, title, featuredImage, price, quantity, attributes },
+  line,
+  deleteLine,
 }: {
   line: CartLine
+  deleteLine: (line: CartLine) => void
 }) {
+  const { id, title, featuredImage, price, quantity, attributes } = line
   const hasImage = featuredImage && title
   const options = Object.entries(attributes)
     .map(([key, value]) => value)
@@ -221,7 +239,7 @@ function CartItem({
         </button>
         <button
           type='button'
-          onClick={() => console.log(`Line: ${id}, deleted!!`)}
+          onClick={() => deleteLine(line)}
           className='w-14 h-14 flex justify-center items-center border border-red-500 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
           title='Delete line'
         >
