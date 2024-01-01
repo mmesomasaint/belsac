@@ -139,7 +139,6 @@ export interface FullCartQueryResult {
     key: string
     value: string
   }[]
-  cost: Cost
   buyerIdentity: {
     email: string
     phone: string
