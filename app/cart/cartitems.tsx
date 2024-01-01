@@ -28,15 +28,8 @@ interface BuyerIdentity {
   phone: string
 }
 
-interface Cost {
-  subtotalAmount: string
-  totalAmount: string
-  totalTaxAmount: string
-}
-
 interface Cart {
   id: string
-  cost: Cost
   cartLines: CartLine[]
   buyerIdentity: BuyerIdentity
 }
