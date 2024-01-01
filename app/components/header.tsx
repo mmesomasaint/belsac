@@ -4,9 +4,11 @@ import { PiHeartStraightThin, PiShoppingCartThin } from 'react-icons/pi'
 import { useRouter } from 'next/navigation'
 import { Button, Text } from './elements'
 import { useState } from 'react'
+import useCart from '../hooks/usecart'
 
 export default function Header({ defaultText }: { defaultText?: string }) {
   const [searchText, setSearchText] = useState(defaultText)
+  const {cartSize} = useCart()
   const router = useRouter()
 
   return (
@@ -26,8 +28,13 @@ export default function Header({ defaultText }: { defaultText?: string }) {
         </Button>
       </div>
       <div className='flex justify-end items-center gap-10'>
-        <PiHeartStraightThin className='text-4xl' />
-        <PiShoppingCartThin className='text-4xl' />
+        <PiHeartStraightThin className='text-5xl' />
+        <div className='relative w-14 h-14 flex justify-center items-center hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'>
+          <PiShoppingCartThin className='text-5xl' />
+          <div className='absolute top-0 right-0 w-6 h-6 flex justify-center items-center bg-black text-white text-xs rounded-full'>
+            {cartSize}
+          </div>
+        </div>
       </div>
     </div>
   )
