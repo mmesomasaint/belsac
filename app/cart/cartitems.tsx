@@ -75,9 +75,8 @@ export default function CartItems() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log('Cart Information: \n', data?.body)
-          
           const newCart = data?.body
+          
           newCart && setCart({
             ...data?.body,
             cartLines: extractAttributes(data?.body.cartLines),
@@ -123,7 +122,7 @@ function CartItem({
   line: CartLine
 }) {
   const hasImage = featuredImage && title
-  
+
   return (
     <div className='relative grid grid-cols-6 place-items-stretch min-h-[20rem] gap-10 p-10 border-b border-black/40 last:border-none'>
       <div className='col-span-2 w-full bg-gray-300'>
