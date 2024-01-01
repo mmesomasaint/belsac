@@ -72,7 +72,12 @@ export default function DetailsPanel({
   }
 
   const addToCart = () => {
-    const moreAttributes = [...selectedOptions, {name: 'title', value: title}, {name: 'price', value: variant?.price ?? price}, {name: 'featuredImage', value: featuredImage}]
+    const moreAttributes = [
+      ...selectedOptions,
+      { name: 'title', value: title },
+      { name: 'price', value: variant?.price ?? price },
+      { name: 'featuredImage', value: featuredImage },
+    ]
 
     const newMerchandise = {
       quantity: amount,
