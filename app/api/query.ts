@@ -291,24 +291,6 @@ query ($cartId: ID!) {
       key
       value
     }
-    cost {
-      totalAmount {
-        amount
-        currencyCode
-      }
-      subtotalAmount {
-        amount
-        currencyCode
-      }
-      totalTaxAmount {
-        amount
-        currencyCode
-      }
-      totalDutyAmount {
-        amount
-        currencyCode
-      }
-    }
     buyerIdentity {
       email
       phone
