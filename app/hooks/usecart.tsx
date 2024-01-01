@@ -29,12 +29,14 @@ interface Line {
 }
 
 interface CartContextType {
+  cartId: string | null
   updateCart: (newMerchandise: Merchandise) => void
   adding: boolean
   cartSize: number
 }
 
 const CartContext = createContext<CartContextType>({
+  cartId: null,
   updateCart: () => {},
   adding: false,
   cartSize: 0,
@@ -82,7 +84,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   return (
     <CartContext.Provider
-      value={{ updateCart, adding, cartSize: cartLines.length }}
+      value={{ cartId, updateCart, adding, cartSize: cartLines.length }}
     >
       {children}
     </CartContext.Provider>
