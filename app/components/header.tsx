@@ -36,7 +36,7 @@ export default function Header({ defaultText }: { defaultText?: string }) {
         >
           <PiShoppingCartThin className='text-5xl' />
           <div className='absolute top-0 right-0 w-6 h-6 flex justify-center items-center bg-black text-white text-xs rounded-full'>
-            {cartSize}
+            {`${cartSize > 9 ? '9+' : cartSize}`}
           </div>
         </button>
       </div>
