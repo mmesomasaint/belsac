@@ -158,6 +158,24 @@ mutation ($input: CartInput) {
           }
         }
       }
+      cost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+        totalDutyAmount {
+          amount
+          currencyCode
+        }
+      }
     }
   }
 }
@@ -186,6 +204,24 @@ mutation ($cartId: ID!, $lines: [CartLineInput!]!) {
           }
         }
       }
+      cost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+        totalDutyAmount {
+          amount
+          currencyCode
+        }
+      }
     }
   }
 }
@@ -208,6 +244,24 @@ query ($cartId: ID!) {
           key
           value
         }
+      }
+    }
+    cost {
+      totalAmount {
+        amount
+        currencyCode
+      }
+      subtotalAmount {
+        amount
+        currencyCode
+      }
+      totalTaxAmount {
+        amount
+        currencyCode
+      }
+      totalDutyAmount {
+        amount
+        currencyCode
       }
     }
   }
@@ -295,6 +349,24 @@ mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
             key
             value
           }
+        }
+      }
+      cost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+        totalDutyAmount {
+          amount
+          currencyCode
         }
       }
     }
