@@ -29,16 +29,16 @@ export default function Header({ defaultText }: { defaultText?: string }) {
       </div>
       <div className='flex justify-end items-center gap-10'>
         <PiHeartStraightThin className='text-5xl' />
-        <div className='relative w-14 h-14 flex justify-center items-center hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'>
+        <button
+          type='button'
+          onClick={() => router.push('/cart')}
+          className='relative w-14 h-14 flex justify-center items-center hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
+        >
           <PiShoppingCartThin className='text-5xl' />
-          <button
-            type='button'
-            onClick={() => router.push('/cart')}
-            className='absolute top-0 right-0 w-6 h-6 flex justify-center items-center bg-black text-white text-xs rounded-full'
-          >
+          <div className='absolute top-0 right-0 w-6 h-6 flex justify-center items-center bg-black text-white text-xs rounded-full'>
             {cartSize}
-          </button>
-        </div>
+          </div>
+        </button>
       </div>
     </div>
   )
