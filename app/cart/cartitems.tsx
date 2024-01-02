@@ -43,7 +43,7 @@ export default function CartItems() {
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(true)
   const [cart, setCart] = useState<Cart>()
-  const { cartId, cartPrice, deleteLine, editLine } = useCart()
+  const { adding, cartId, cartPrice, deleteLine, editLine } = useCart()
 
   const extractAttributes = (lines: CartLine[]) => {
     return lines.map((line) => {
@@ -204,7 +204,7 @@ export default function CartItems() {
                     {formatMoney(Number(cartPrice.totalAmount))}
                   </Text>
                 </div>
-                <Button onClick={() => router.push(cart?.checkoutUrl)}>
+                <Button disabled={adding} onClick={() => router.push(cart?.checkoutUrl)}>
                   Checkout
                 </Button>
               </div>
