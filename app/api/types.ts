@@ -160,3 +160,26 @@ export interface FullCartQueryResult {
     }
   }
 }
+
+export interface CustomerInfoQueryResult {
+  id: string
+  buyerIdentity: {
+    email: string
+    phone: string
+    customer: {
+      id: string
+      firstName: string
+      lastName: string
+    }
+    countryCode: string
+    deliveryAddressPreferences: {
+      address1: string
+      address2: string
+      city: string
+      provinceCode: string
+      countryCodeV2: string
+      zip: string
+      country: string
+    }
+  }
+}
