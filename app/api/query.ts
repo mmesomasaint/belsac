@@ -355,3 +355,49 @@ mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
   }
 }
 `
+
+export const UPDATE_A_CART_ITEM = `
+mutation ($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+  cartLinesUpdate(
+    cartId: $cartId
+    lines: $lines
+  ) {
+    cart {
+      id
+      lines(first: 10) {
+        nodes {
+          id
+          quantity
+          merchandise {
+            ... on ProductVariant {
+              id
+            }
+          }
+          attributes {
+            key
+            value
+          }
+        }
+      }
+      cost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+        totalDutyAmount {
+          amount
+          currencyCode
+        }
+      }
+    }
+  }
+}
+`
