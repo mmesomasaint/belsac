@@ -27,6 +27,7 @@ export default function CartInfo({
 }) {
   const { adding, cartPrice } = useCart()
   const router = useRouter()
+  const hasCompleteDetails = Object.values(buyerIdentity).every((value) => value !== '')
 
   return (
     <>
@@ -107,7 +108,7 @@ export default function CartInfo({
             <Text size='md'>Total</Text>
             <Text size='xl'>{formatMoney(Number(cartPrice.totalAmount))}</Text>
           </div>
-          <Button disabled={adding} onClick={() => router.push(checkoutUrl)}>
+          <Button disabled={adding || !hasCompleteDetails} onClick={() => router.push(checkoutUrl)}>
             Checkout
           </Button>
         </div>
