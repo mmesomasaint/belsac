@@ -156,6 +156,7 @@ export interface FullCartQueryResult {
       provinceCode: string
       countryCodeV2: string
       zip: string
+      country: string
     }
   }
 }
