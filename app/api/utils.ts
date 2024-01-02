@@ -357,7 +357,18 @@ export function cleanCustomerInfoResult(result: CustomerInfoQueryResult) {
 }
 
 export function generateBuyerId(customerInfo: any) {
-  const { firstName, lastName, email, phone, address1, address2, city, province, country, zip } = customerInfo
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    address1,
+    address2,
+    city,
+    province,
+    country,
+    zip,
+  } = customerInfo
 
   return {
     email,
@@ -373,6 +384,6 @@ export function generateBuyerId(customerInfo: any) {
       province,
       country,
       zip,
-    }
+    },
   }
 }
