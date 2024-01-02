@@ -27,8 +27,8 @@ export default function CartInfo({
 }) {
   const { adding, cartPrice } = useCart()
   const router = useRouter()
-  const hasCompleteDetails = Object.values(buyerIdentity).every(
-    (value) => value !== ''
+  const hasCompleteDetails = Object.values(buyerIdentity).some(
+    (value) => value === ''
   )
 
   return (
