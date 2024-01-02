@@ -86,7 +86,15 @@ export default function CartItems() {
 
       setCart({ ...cart, cartLines: updatedCartLines })
 
-      editLine(newLine)
+      // CartLine here should match the object structure of db cartline
+      const editedLine = {
+        id: newLine.id,
+        merchandiseId: newLine.merchandiseId,
+        quantity: newLine.quantity,
+        attributes: newLine.attributes,
+      };
+
+      editLine(editedLine);
     }
   }
 

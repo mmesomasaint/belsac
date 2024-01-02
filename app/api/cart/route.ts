@@ -113,6 +113,7 @@ export async function PATCH(Request: NextRequest) {
   })
 
   if (status === 200) {
+    console.log("Body :", body)
     const cart = cleanMiniCartResult(body.data?.cartLinesUpdate?.cart)
     return Response.json({ status: 200, body: cart })
   } else {
