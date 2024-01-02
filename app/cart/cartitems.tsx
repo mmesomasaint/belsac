@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { TbShoppingCartOff } from 'react-icons/tb'
 import { PiPencilSimpleLineThin, PiTrashSimpleThin } from 'react-icons/pi'
-import { TfiClose, TfiCheck } from "react-icons/tfi"
+import { TfiClose, TfiCheck } from 'react-icons/tfi'
 import useCart from '../hooks/usecart'
 import { Button, MiniBox, Text } from '../components/elements'
 import Image from 'next/image'
@@ -15,7 +15,7 @@ interface Attribute {
 }
 
 interface CartLine {
-  attributes: Attribute[] 
+  attributes: Attribute[]
   optionAttributes: { [key: string]: any }
   id: string
   merchandiseId: string
@@ -134,7 +134,12 @@ export default function CartItems() {
         <>
           <div className='col-span-8 flex flex-col gap-10'>
             {cart.cartLines.map((line) => (
-              <CartItem key={line.id} line={line} deleteLine={deleteCartLine} editLine={editCartLine} />
+              <CartItem
+                key={line.id}
+                line={line}
+                deleteLine={deleteCartLine}
+                editLine={editCartLine}
+              />
             ))}
           </div>
           <div className='col-span-4 flex flex-col gap-16 p-8 h-fit w-full ring ring-gray-200'>
@@ -210,7 +215,8 @@ function CartItem({
   editLine: (line: CartLine, newAmount: number) => void
 }) {
   const [inEditMode, setInEditMode] = useState(false)
-  const { id, title, featuredImage, price, quantity, maxQuantity, attributes } = line
+  const { id, title, featuredImage, price, quantity, maxQuantity, attributes } =
+    line
   const [newAmount, setNewAmount] = useState(quantity)
   const hasImage = featuredImage && title
   const options = Object.entries(attributes)
@@ -246,25 +252,21 @@ function CartItem({
   )
 
   const EditAmountPanel = () => (
-    
     <div className='flex justify-start items-center gap-4'>
-    <MiniBox
-      onClick={() => newAmount > 1 && setNewAmount((prev) => prev - 1)}
-    >
-      -
-    </MiniBox>
-    <Text size='md'>
-      {newAmount.toString()}
-    </Text>
-    <MiniBox
-      onClick={() =>
-        newAmount < (maxQuantity ?? 0) &&
-        setNewAmount((prev) => prev + 1)
-      }
-    >
-      +
-    </MiniBox>
-  </div>
+      <MiniBox
+        onClick={() => newAmount > 1 && setNewAmount((prev) => prev - 1)}
+      >
+        -
+      </MiniBox>
+      <Text size='md'>{newAmount.toString()}</Text>
+      <MiniBox
+        onClick={() =>
+          newAmount < (maxQuantity ?? 0) && setNewAmount((prev) => prev + 1)
+        }
+      >
+        +
+      </MiniBox>
+    </div>
   )
 
   return (
@@ -283,7 +285,11 @@ function CartItem({
       <div className='col-span-7 w-full flex flex-col gap-6'>
         <Text size='lg'>{title ?? '...'}</Text>
         <div className='flex justify-start items-center gap-6'>
-          {inEditMode ? <EditAmountPanel /> : <Text size='lg'>{quantity.toString()}</Text>}
+          {inEditMode ? (
+            <EditAmountPanel />
+          ) : (
+            <Text size='lg'>{quantity.toString()}</Text>
+          )}
           <Text size='lg'>x</Text>
           <Text size='lg'>{formatMoney(price ?? 0)}</Text>
         </div>
@@ -302,8 +308,11 @@ function CartItem({
           className='w-14 h-14 flex justify-center items-center border border-black hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
           title='Edit line'
         >
-          {inEditMode ? <EditModeControl /> :
-          <PiPencilSimpleLineThin className='text-2xl text-black' />}
+          {inEditMode ? (
+            <EditModeControl />
+          ) : (
+            <PiPencilSimpleLineThin className='text-2xl text-black' />
+          )}
         </button>
         <button
           type='button'
