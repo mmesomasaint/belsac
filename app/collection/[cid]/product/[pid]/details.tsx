@@ -77,7 +77,10 @@ export default function DetailsPanel({
       { name: 'title', value: title },
       { name: 'price', value: (variant?.price ?? price).toString() },
       { name: 'featuredImage', value: featuredImage },
-      {name: 'maxQuantity', value: (variant?.quantityAvailable ?? 0).toString()}
+      {
+        name: 'maxQuantity',
+        value: (variant?.quantityAvailable ?? 0).toString(),
+      },
     ]
 
     const newMerchandise = {
