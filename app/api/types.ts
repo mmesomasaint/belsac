@@ -132,6 +132,7 @@ export interface Merchandise {
 
 export interface FullCartQueryResult {
   id: string
+  checkoutUrl: string
   lines: {
     nodes: CartLine[]
   }

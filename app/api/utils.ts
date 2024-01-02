@@ -295,11 +295,12 @@ export function cleanMiniCartResult(queryResult: MiniCartQueryResult) {
  * @returns A cleaner formart of cart that can be used by components
  */
 export function cleanFullCartResult(fullCartResult: FullCartQueryResult) {
-  const { id, lines, attributes, buyerIdentity } = fullCartResult
+  const { id, checkoutUrl, lines, attributes, buyerIdentity } = fullCartResult
   const cartLines = lines.nodes.map((node) => cleanCartLinesResult(node))
 
   return {
     id,
+    checkoutUrl,
     cartLines,
     attributes,
     buyerIdentity: {

@@ -272,6 +272,7 @@ export const RETRIEVE_CART = `
 query ($cartId: ID!) {
   cart(id: $cartId) {
     id
+    checkoutUrl
     lines(first: 10) {
       nodes {
         id

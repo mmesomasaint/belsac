@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { TbShoppingCartOff } from 'react-icons/tb'
 import { PiPencilSimpleLineThin, PiTrashSimpleThin } from 'react-icons/pi'
 import { TfiClose, TfiCheck } from 'react-icons/tfi'
@@ -33,11 +34,13 @@ interface BuyerIdentity {
 
 interface Cart {
   id: string
+  checkoutUrl: string
   cartLines: CartLine[]
   buyerIdentity: BuyerIdentity
 }
 
 export default function CartItems() {
+  const router = useRouter()
   const [loading, setLoading] = useState<boolean>(true)
   const [cart, setCart] = useState<Cart>()
   const { cartId, cartPrice, deleteLine, editLine } = useCart()
@@ -201,7 +204,7 @@ export default function CartItems() {
                     {formatMoney(Number(cartPrice.totalAmount))}
                   </Text>
                 </div>
-                <Button onClick={() => console.log('Checkout')}>
+                <Button onClick={() => router.push(cart?.checkoutUrl)}>
                   Checkout
                 </Button>
               </div>
