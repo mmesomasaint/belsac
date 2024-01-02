@@ -309,6 +309,7 @@ query ($cartId: ID!) {
           provinceCode
           countryCodeV2
           zip
+          country
         }
       }
     }

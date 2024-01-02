@@ -313,6 +313,7 @@ export function cleanFullCartResult(fullCartResult: FullCartQueryResult) {
       address2: buyerIdentity.deliveryAddressPreferences?.address2,
       city: buyerIdentity.deliveryAddressPreferences?.city,
       zip: buyerIdentity.deliveryAddressPreferences?.zip,
+      country: buyerIdentity.deliveryAddressPreferences?.country,
     },
   }
 }
