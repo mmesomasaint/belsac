@@ -330,7 +330,12 @@ export function generateCartLineIds(lines: Merchandise[]) {
 
 export function cleanCustomerInfoResult(result: CustomerInfoQueryResult) {
   const { id, buyerIdentity } = result
-  const { email, phone, customer: { firstName, lastName }, deliveryAddressPreferences: {address1, address2, city, zip, country} } = buyerIdentity
+  const {
+    email,
+    phone,
+    customer: { firstName, lastName },
+    deliveryAddressPreferences: { address1, address2, city, zip, country },
+  } = buyerIdentity
 
   return {
     id,
@@ -341,6 +346,6 @@ export function cleanCustomerInfoResult(result: CustomerInfoQueryResult) {
     address1,
     address2,
     city,
-    country
+    country,
   }
 }
