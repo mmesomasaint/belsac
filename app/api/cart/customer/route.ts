@@ -1,7 +1,7 @@
 import { shopifyFetch } from '@/lib/fetch'
 import { NextRequest } from 'next/server'
 import { UPDATE_CUSTOMER_INFO } from '../../query'
-import { cleanCustomerInfoResult } from '../../utils'
+import { cleanCustomerInfoResult, generateBuyerId } from '../../utils'
 
 export async function POST(Request: NextRequest) {
   const searchParams = Request.nextUrl.searchParams
