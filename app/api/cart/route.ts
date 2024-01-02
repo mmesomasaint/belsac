@@ -106,7 +106,7 @@ export async function PATCH(Request: NextRequest) {
   const { lines } = await Request.json()
 
   const variables = { cartId, lines }
-  
+
   const { status, body } = await shopifyFetch({
     query: UPDATE_A_CART_ITEM,
     variables,
