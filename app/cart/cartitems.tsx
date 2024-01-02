@@ -150,7 +150,10 @@ export default function CartItems() {
             ))}
           </div>
           <div className='col-span-4 flex flex-col gap-16 p-8 h-fit w-full ring ring-gray-200'>
-            <CartInfo buyerIdentity={cart.buyerIdentity} checkoutUrl={cart.checkoutUrl} />
+            <CartInfo
+              buyerIdentity={cart.buyerIdentity}
+              checkoutUrl={cart.checkoutUrl}
+            />
           </div>
         </>
       )}
