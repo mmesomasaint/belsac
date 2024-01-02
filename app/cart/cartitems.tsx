@@ -120,7 +120,7 @@ export default function CartItems() {
             ))}
           </div>
           <div className='col-span-4 flex flex-col gap-16 p-8 h-fit w-full ring ring-gray-200'>
-            <div className='flex flex-col gap-8'>
+            <div className='flex flex-col gap-8 w-full overflow-hidden'>
               <Text size='md'>Buyer Information</Text>
               <div className='flex flex-col gap-3'>
                 <div className='flex items-center justify-between gap-4'>
