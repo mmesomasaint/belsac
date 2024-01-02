@@ -367,12 +367,12 @@ export function generateBuyerId(customerInfo: any) {
       lastName,
     },
     deliveryAddressPreferences: {
-      address1: 'No Example Street',
-      address2: '8th Example Floor',
-      city: 'Enugu',
-      province: 'South-east',
-      country: 'NG',
-      zip: '41001',
+      address1,
+      address2,
+      city,
+      province,
+      country,
+      zip,
     }
   }
 }
