@@ -204,7 +204,10 @@ export default function CartItems() {
                     {formatMoney(Number(cartPrice.totalAmount))}
                   </Text>
                 </div>
-                <Button disabled={adding} onClick={() => router.push(cart?.checkoutUrl)}>
+                <Button
+                  disabled={adding}
+                  onClick={() => router.push(cart?.checkoutUrl)}
+                >
                   Checkout
                 </Button>
               </div>
