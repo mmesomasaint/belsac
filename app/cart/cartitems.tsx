@@ -215,7 +215,7 @@ function CartItem({
   editLine: (line: CartLine, newAmount: number) => void
 }) {
   const [inEditMode, setInEditMode] = useState(false)
-  const { id, title, featuredImage, price, quantity, maxQuantity, attributes } =
+  const { title, featuredImage, price, quantity, maxQuantity, attributes } =
     line
   const [newAmount, setNewAmount] = useState(quantity)
   const hasImage = featuredImage && title
