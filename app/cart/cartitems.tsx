@@ -215,11 +215,11 @@ function CartItem({
   editLine: (line: CartLine, newAmount: number) => void
 }) {
   const [inEditMode, setInEditMode] = useState(false)
-  const { title, featuredImage, price, quantity, maxQuantity, attributes } =
+  const { title, featuredImage, price, quantity, maxQuantity, optionAttributes } =
     line
   const [newAmount, setNewAmount] = useState(quantity)
   const hasImage = featuredImage && title
-  const options = Object.entries(attributes)
+  const options = Object.entries(optionAttributes)
     .map(([key, value]) => value)
     .join('.|.')
     .split('.')
