@@ -351,6 +351,7 @@ export function cleanCustomerInfoResult(result: CustomerInfoQueryResult) {
     address1,
     address2,
     city,
+    zip,
     country,
   }
 }
