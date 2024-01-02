@@ -197,8 +197,8 @@ function CartItem({
     .split('.')
 
   return (
-    <div className='relative grid grid-cols-7 place-items-stretch min-h-[20rem] gap-16 py-16 px-8 border-b border-black/40 last:border-none'>
-      <div className='col-span-2 w-full bg-gray-300'>
+    <div className='relative grid grid-cols-9 place-items-stretch min-h-[20rem] gap-16 py-16 px-8 border-b border-black/40 last:border-none'>
+      <div className={`col-span-2 w-full ${!hasImage && 'bg-gray-300'}`}>
         {hasImage && (
           <Image
             src={featuredImage}
@@ -209,7 +209,7 @@ function CartItem({
           />
         )}
       </div>
-      <div className='col-span-4 w-full flex flex-col gap-6'>
+      <div className='col-span-7 w-full flex flex-col gap-6'>
         <Text size='lg'>{title ?? '...'}</Text>
         <div className='flex justify-start items-center gap-6'>
           <Text size='lg'>{quantity.toString() ?? '0'}</Text>
