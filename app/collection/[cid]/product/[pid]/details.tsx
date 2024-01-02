@@ -195,7 +195,9 @@ export default function DetailsPanel({
           <div className='flex justify-start items-center gap-8'>
             <Button
               onClick={() => console.log('Product bought!!')}
-              disabled={(variant?.quantityAvailable ?? 0) < 1 || loading || adding}
+              disabled={
+                (variant?.quantityAvailable ?? 0) < 1 || loading || adding
+              }
             >
               Buy
             </Button>
