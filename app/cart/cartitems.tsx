@@ -30,6 +30,13 @@ interface CartLine {
 interface BuyerIdentity {
   email: string
   phone: string
+  firstName: string
+  lastName: string
+  address1: string
+  address2: string
+  city: string
+  zip: string
+  country: string
 }
 
 interface Cart {
@@ -158,6 +165,12 @@ export default function CartItems() {
               <Text size='md'>Buyer Information</Text>
               <div className='flex flex-col gap-3'>
                 <div className='flex items-center justify-between gap-4'>
+                  <Text size='xs'>Name</Text>
+                  <span className='text-clamp-1'>
+                    <Text size='sm'>{`${cart.buyerIdentity.firstName ?? '...'} ${cart.buyerIdentity.lastName ?? '...'}`}</Text>
+                  </span>
+                </div>
+                <div className='flex items-center justify-between gap-4'>
                   <Text size='xs'>Email</Text>
                   <span className='text-clamp-1'>
                     <Text size='sm'>{cart.buyerIdentity.email}</Text>
@@ -167,6 +180,30 @@ export default function CartItems() {
                   <Text size='xs'>Phone</Text>
                   <span className='text-clamp-1'>
                     <Text size='sm'>{cart.buyerIdentity.phone}</Text>
+                  </span>
+                </div>
+                <div className='flex items-center justify-between gap-4'>
+                  <Text size='xs'>ZIP</Text>
+                  <span className='text-clamp-1'>
+                    <Text size='sm'>{cart.buyerIdentity.zip}</Text>
+                  </span>
+                </div>
+                <div className='flex items-center justify-between gap-4'>
+                  <Text size='xs'>Address 1</Text>
+                  <span className='text-clamp-1'>
+                    <Text size='sm'>{cart.buyerIdentity.address1}</Text>
+                  </span>
+                </div>
+                <div className='flex items-center justify-between gap-4'>
+                  <Text size='xs'>Address 2</Text>
+                  <span className='text-clamp-1'>
+                    <Text size='sm'>{cart.buyerIdentity.address2}</Text>
+                  </span>
+                </div>
+                <div className='flex items-center justify-between gap-4'>
+                  <Text size='xs'>Country</Text>
+                  <span className='text-clamp-1'>
+                    <Text size='sm'>{cart.buyerIdentity.country}</Text>
                   </span>
                 </div>
               </div>

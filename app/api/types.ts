@@ -145,6 +145,8 @@ export interface FullCartQueryResult {
     phone: string
     customer: {
       id: string
+      firstName: string
+      lastName: string
     }
     countryCode: string
     deliveryAddressPreferences: {

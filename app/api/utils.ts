@@ -307,6 +307,8 @@ export function cleanFullCartResult(fullCartResult: FullCartQueryResult) {
       email: buyerIdentity.email,
       phone: buyerIdentity.phone,
       customerId: buyerIdentity.customer?.id,
+      firstName: buyerIdentity.customer?.firstName,
+      lastName: buyerIdentity.customer?.lastName,
       address1: buyerIdentity.deliveryAddressPreferences?.address1,
       address2: buyerIdentity.deliveryAddressPreferences?.address2,
       city: buyerIdentity.deliveryAddressPreferences?.city,

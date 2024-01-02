@@ -297,6 +297,8 @@ query ($cartId: ID!) {
       phone
       customer {
         id
+        firstName
+        lastName
       }
       countryCode
       deliveryAddressPreferences {
@@ -402,3 +404,5 @@ mutation ($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
   }
 }
 `
+
+
