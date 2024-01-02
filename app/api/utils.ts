@@ -328,6 +328,11 @@ export function generateCartLineIds(lines: Merchandise[]) {
   return lines.map(({ id }) => id)
 }
 
+/**
+ * Converts customer info query result to a cleaner format.
+ * @param result A result gotten from querying for customer info
+ * @returns A cleaner formart of customer info that can be used by components
+ */
 export function cleanCustomerInfoResult(result: CustomerInfoQueryResult) {
   const { id, buyerIdentity } = result
   const {
