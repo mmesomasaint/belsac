@@ -1,6 +1,7 @@
 import { Filter, FilterSubKey } from '@/lib/filter'
 import {
   CartLine,
+  CustomerInfoQueryResult,
   FullCartQueryResult,
   GetVariantQueryResult,
   Merchandise,
@@ -325,4 +326,21 @@ export function cleanFullCartResult(fullCartResult: FullCartQueryResult) {
  */
 export function generateCartLineIds(lines: Merchandise[]) {
   return lines.map(({ id }) => id)
+}
+
+export function cleanCustomerInfoResult(result: CustomerInfoQueryResult) {
+  const { id, buyerIdentity } = result
+  const { email, phone, customer: { firstName, lastName }, deliveryAddressPreferences: {address1, address2, city, zip, country} } = buyerIdentity
+
+  return {
+    id,
+    firstName,
+    lastName,
+    email,
+    phone,
+    address1,
+    address2,
+    city,
+    country
+  }
 }
