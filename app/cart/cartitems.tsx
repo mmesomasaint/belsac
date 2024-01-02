@@ -167,7 +167,9 @@ export default function CartItems() {
                 <div className='flex items-center justify-between gap-4'>
                   <Text size='xs'>Name</Text>
                   <span className='text-clamp-1'>
-                    <Text size='sm'>{`${cart.buyerIdentity.firstName ?? '...'} ${cart.buyerIdentity.lastName ?? '...'}`}</Text>
+                    <Text size='sm'>{`${
+                      cart.buyerIdentity.firstName ?? '...'
+                    } ${cart.buyerIdentity.lastName ?? '...'}`}</Text>
                   </span>
                 </div>
                 <div className='flex items-center justify-between gap-4'>
