@@ -302,18 +302,18 @@ function CartItem({
         </div>
       </div>
       <div className='absolute top-0 right-0 flex items-stretch justify-center gap-4'>
-          {inEditMode ? (
-            <EditModeControl />
-          ) : (
-        <button
-          type='button'
-          onClick={() => setInEditMode(true)}
-          className='w-14 h-14 flex justify-center items-center border border-black hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
-          title='Edit line'
-        >
+        {inEditMode ? (
+          <EditModeControl />
+        ) : (
+          <button
+            type='button'
+            onClick={() => setInEditMode(true)}
+            className='w-14 h-14 flex justify-center items-center border border-black hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
+            title='Edit line'
+          >
             <PiPencilSimpleLineThin className='text-2xl text-black' />
-        </button>
-          )}
+          </button>
+        )}
         <button
           type='button'
           onClick={() => deleteLine(line)}
