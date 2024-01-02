@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react'
 import { TbShoppingCartOff } from 'react-icons/tb'
 import { PiPencilSimpleLineThin, PiTrashSimpleThin } from 'react-icons/pi'
+import { TfiClose, TfiCheck } from "react-icons/tfi"
 import useCart from '../hooks/usecart'
-import { Button, Text } from '../components/elements'
+import { Button, MiniBox, Text } from '../components/elements'
 import Image from 'next/image'
 import { formatMoney } from '@/lib/product'
 
@@ -14,13 +15,15 @@ interface Attribute {
 }
 
 interface CartLine {
-  attributes: Attribute[] | { [key: string]: any }
+  attributes: Attribute[] 
+  optionAttributes: { [key: string]: any }
   id: string
   merchandiseId: string
   quantity: number
   price?: number
   title?: string
   featuredImage?: string
+  maxQuantity?: number
 }
 
 interface BuyerIdentity {
@@ -37,21 +40,22 @@ interface Cart {
 export default function CartItems() {
   const [loading, setLoading] = useState<boolean>(true)
   const [cart, setCart] = useState<Cart>()
-  const { cartId, cartPrice, deleteLine } = useCart()
+  const { cartId, cartPrice, deleteLine, editLine } = useCart()
 
   const extractAttributes = (lines: CartLine[]) => {
     return lines.map((line) => {
       const attributes = Object.fromEntries(
         line.attributes.map(({ key, value }: Attribute) => [key, value])
       )
-      const { price, title, featuredImage, ...rest } = attributes
+      const { price, title, featuredImage, maxQuantity, ...rest } = attributes
 
       return {
         title,
         featuredImage,
         price: Number(price),
+        maxQuantity: Number(maxQuantity),
         ...line,
-        attributes: rest,
+        optionAttributes: rest,
       }
     })
   }
@@ -62,13 +66,27 @@ export default function CartItems() {
       const newCartLines = cart?.cartLines.filter(({ id }) => id !== line.id)
       setCart({ ...cart, cartLines: newCartLines })
 
-      // Modify attributes field to match db lines
-      const newAttributes = Object.entries(line.attributes).map(
-        ([key, value]) => ({ key, value })
-      )
-
       // Remove the line from store db
-      deleteLine({ ...line, attributes: newAttributes })
+      deleteLine(line)
+    }
+  }
+
+  const editCartLine = (oldLine: CartLine, newAmount: number) => {
+    if (cart) {
+      const newLine = { ...oldLine, quantity: newAmount }
+
+      // Edit the line in the cart
+      const updatedCartLines = cart?.cartLines.map((line) => {
+        if (line.id === newLine.id) {
+          return newLine
+        }
+
+        return line
+      })
+
+      setCart({ ...cart, cartLines: updatedCartLines })
+
+      editLine(newLine)
     }
   }
 
@@ -116,7 +134,7 @@ export default function CartItems() {
         <>
           <div className='col-span-8 flex flex-col gap-10'>
             {cart.cartLines.map((line) => (
-              <CartItem key={line.id} line={line} deleteLine={deleteCartLine} />
+              <CartItem key={line.id} line={line} deleteLine={deleteCartLine} editLine={editCartLine} />
             ))}
           </div>
           <div className='col-span-4 flex flex-col gap-16 p-8 h-fit w-full ring ring-gray-200'>
@@ -185,16 +203,69 @@ export default function CartItems() {
 function CartItem({
   line,
   deleteLine,
+  editLine,
 }: {
   line: CartLine
   deleteLine: (line: CartLine) => void
+  editLine: (line: CartLine, newAmount: number) => void
 }) {
-  const { id, title, featuredImage, price, quantity, attributes } = line
+  const [inEditMode, setInEditMode] = useState(false)
+  const { id, title, featuredImage, price, quantity, maxQuantity, attributes } = line
+  const [newAmount, setNewAmount] = useState(quantity)
   const hasImage = featuredImage && title
   const options = Object.entries(attributes)
     .map(([key, value]) => value)
     .join('.|.')
     .split('.')
+
+  const EditModeControl = () => (
+    <div className='flex justify-start items-center gap-4'>
+      <button
+        type='button'
+        onClick={() => {
+          editLine(line, newAmount)
+          setInEditMode(false)
+        }}
+        className='w-14 h-14 flex justify-center items-center border border-black hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
+        title='Save line edit'
+      >
+        <TfiCheck className='text-2xl text-black' />
+      </button>
+      <button
+        type='button'
+        onClick={() => {
+          setNewAmount(quantity)
+          setInEditMode(false)
+        }}
+        className='w-14 h-14 flex justify-center items-center border border-black hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
+        title='Cancel line edit'
+      >
+        <TfiClose className='text-2xl text-black' />
+      </button>
+    </div>
+  )
+
+  const EditAmountPanel = () => (
+    
+    <div className='flex justify-start items-center gap-4'>
+    <MiniBox
+      onClick={() => newAmount > 1 && setNewAmount((prev) => prev - 1)}
+    >
+      -
+    </MiniBox>
+    <Text size='md'>
+      {newAmount.toString()}
+    </Text>
+    <MiniBox
+      onClick={() =>
+        newAmount < (maxQuantity ?? 0) &&
+        setNewAmount((prev) => prev + 1)
+      }
+    >
+      +
+    </MiniBox>
+  </div>
+  )
 
   return (
     <div className='relative grid grid-cols-9 place-items-stretch min-h-[20rem] xl:gap-16 gap-8 py-16 px-8 border-b border-black/40 last:border-none'>
@@ -212,7 +283,7 @@ function CartItem({
       <div className='col-span-7 w-full flex flex-col gap-6'>
         <Text size='lg'>{title ?? '...'}</Text>
         <div className='flex justify-start items-center gap-6'>
-          <Text size='lg'>{quantity.toString() ?? '0'}</Text>
+          {inEditMode ? <EditAmountPanel /> : <Text size='lg'>{quantity.toString()}</Text>}
           <Text size='lg'>x</Text>
           <Text size='lg'>{formatMoney(price ?? 0)}</Text>
         </div>
@@ -227,11 +298,12 @@ function CartItem({
       <div className='absolute top-0 right-0 flex items-stretch justify-center gap-4'>
         <button
           type='button'
-          onClick={() => console.log(`Line: ${id}, ready for editing!!`)}
+          onClick={() => !inEditMode && setInEditMode(true)}
           className='w-14 h-14 flex justify-center items-center border border-black hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
           title='Edit line'
         >
-          <PiPencilSimpleLineThin className='text-2xl text-black' />
+          {inEditMode ? <EditModeControl /> :
+          <PiPencilSimpleLineThin className='text-2xl text-black' />}
         </button>
         <button
           type='button'
