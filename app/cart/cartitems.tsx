@@ -218,7 +218,9 @@ function CartItem({
         </div>
         <div className='flex justify-start items-center gap-6'>
           {options.map((option, id) => (
-            <Text key={option+id} size='md'>{option}</Text>
+            <Text key={option + id} size='md'>
+              {option}
+            </Text>
           ))}
         </div>
       </div>
