@@ -354,3 +354,24 @@ export function cleanCustomerInfoResult(result: CustomerInfoQueryResult) {
     country,
   }
 }
+
+export function generateBuyerId(customerInfo: any) {
+  const { firstName, lastName, email, phone, address1, address2, city, province, country, zip } = customerInfo
+
+  return {
+    email,
+    phone,
+    customer: {
+      firstName,
+      lastName,
+    },
+    deliveryAddressPreferences: {
+      address1: 'No Example Street',
+      address2: '8th Example Floor',
+      city: 'Enugu',
+      province: 'South-east',
+      country: 'NG',
+      zip: '41001',
+    }
+  }
+}
