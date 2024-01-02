@@ -318,6 +318,11 @@ export function cleanFullCartResult(fullCartResult: FullCartQueryResult) {
   }
 }
 
+/**
+ * Generates a list of cart line ids that can be passed as parameter to query.
+ * @param lines The list of products id and quantity choosen by customer
+ * @returns A list of cart line ids that can be passed to query
+ */
 export function generateCartLineIds(lines: Merchandise[]) {
   return lines.map(({ id }) => id)
 }
