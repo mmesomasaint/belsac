@@ -92,9 +92,9 @@ export default function CartItems() {
         merchandiseId: newLine.merchandiseId,
         quantity: newLine.quantity,
         attributes: newLine.attributes,
-      };
+      }
 
-      editLine(editedLine);
+      editLine(editedLine)
     }
   }
 
@@ -223,8 +223,14 @@ function CartItem({
   editLine: (line: CartLine, newAmount: number) => void
 }) {
   const [inEditMode, setInEditMode] = useState(false)
-  const { title, featuredImage, price, quantity, maxQuantity, optionAttributes } =
-    line
+  const {
+    title,
+    featuredImage,
+    price,
+    quantity,
+    maxQuantity,
+    optionAttributes,
+  } = line
   const [newAmount, setNewAmount] = useState(quantity)
   const hasImage = featuredImage && title
   const options = Object.entries(optionAttributes)
