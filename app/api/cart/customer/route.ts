@@ -1,7 +1,7 @@
-import { shopifyFetch } from "@/lib/fetch"
-import { NextRequest } from "next/server"
-import { UPDATE_CUSTOMER_INFO } from "../../query"
-import { cleanCustomerInfoResult } from "../../utils"
+import { shopifyFetch } from '@/lib/fetch'
+import { NextRequest } from 'next/server'
+import { UPDATE_CUSTOMER_INFO } from '../../query'
+import { cleanCustomerInfoResult } from '../../utils'
 
 export async function POST(Request: NextRequest) {
   const searchParams = Request.nextUrl.searchParams
@@ -14,7 +14,9 @@ export async function POST(Request: NextRequest) {
   })
 
   if (status === 200) {
-    const cart = cleanCustomerInfoResult(body.data?.cartBuyerIdentityUpdate?.cart)
+    const cart = cleanCustomerInfoResult(
+      body.data?.cartBuyerIdentityUpdate?.cart
+    )
     return Response.json({ status: 200, body: cart })
   } else {
     return Response.json({ status: 500, message: 'Error receiving data' })
