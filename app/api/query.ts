@@ -406,4 +406,33 @@ mutation ($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
 }
 `
 
-
+export const UPDATE_CUSTOMER_INFO = `
+mutation cartBuyerIdentityUpdate($buyerIdentity: CartBuyerIdentityInput!, $cartId: ID!) {
+  cartBuyerIdentityUpdate(buyerIdentity: $buyerIdentity, cartId: $cartId) {
+    cart {
+      id
+      buyerIdentity {
+        email
+        phone
+        customer {
+          id
+          firstName
+          lastName
+        }
+        countryCode
+        deliveryAddressPreferences {
+          ... on MailingAddress {
+            address1
+            address2
+            city
+            provinceCode
+            countryCodeV2
+            zip
+            country
+          }
+        }
+      }
+    }
+  }
+}
+`
