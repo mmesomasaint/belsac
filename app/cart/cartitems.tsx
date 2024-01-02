@@ -197,7 +197,7 @@ function CartItem({
     .split('.')
 
   return (
-    <div className='relative grid grid-cols-9 place-items-stretch min-h-[20rem] gap-16 py-16 px-8 border-b border-black/40 last:border-none'>
+    <div className='relative grid grid-cols-9 place-items-stretch min-h-[20rem] xl:gap-16 gap-8 py-16 px-8 border-b border-black/40 last:border-none'>
       <div className={`col-span-2 w-full ${!hasImage && 'bg-gray-300'}`}>
         {hasImage && (
           <Image
