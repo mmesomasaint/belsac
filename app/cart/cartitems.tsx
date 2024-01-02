@@ -243,10 +243,10 @@ function CartItem({
           setNewAmount(quantity)
           setInEditMode(false)
         }}
-        className='w-14 h-14 flex justify-center items-center border border-black hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
+        className='w-14 h-14 flex justify-center items-center border border-black bg-black hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
         title='Cancel line edit'
       >
-        <TfiClose className='text-2xl text-black' />
+        <TfiClose className='text-2xl text-white' />
       </button>
     </div>
   )
