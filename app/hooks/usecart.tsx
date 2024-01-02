@@ -40,6 +40,7 @@ interface CartContextType {
   cartId: string | null
   updateCart: (newMerchandise: Merchandise) => void
   deleteLine: (line: Line) => void
+  editLine: (line: Line) => void
   adding: boolean
   cartSize: number
   cartPrice: Cost
@@ -49,6 +50,7 @@ const CartContext = createContext<CartContextType>({
   cartId: null,
   updateCart: () => {},
   deleteLine: () => {},
+  editLine: () => {},
   adding: false,
   cartSize: 0,
   cartPrice: DEFAULT_COST,
@@ -71,8 +73,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const deleteLine = (line: Line) => loadCart('DELETE', line)
 
+  const editLine = (line: Line) => loadCart('PATCH', line)
+
   const loadCart = (
-    action: 'POST' | 'PUT' | 'GET' | 'DELETE',
+    action: 'POST' | 'PUT' | 'GET' | 'DELETE' | 'PATCH',
     merch?: Merchandise
   ) => {
     setAdding(true)
@@ -107,6 +111,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         cartId,
         updateCart,
         deleteLine,
+        editLine,
         adding,
         cartSize: cartLines.length,
         cartPrice,
