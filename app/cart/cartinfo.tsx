@@ -58,7 +58,7 @@ export default function CartInfo({
 
   // api fetch
   const updateInfo = () => {
-    setLoading(false)
+    setLoading(true)
 
     fetch(`/api/cart/customer?cartId=${cartId}`, {
       method: 'POST',
@@ -68,6 +68,7 @@ export default function CartInfo({
       .then((data) => {
         if (data?.status === '200') {
           setInEditMode(false)
+          setBuyerIdentity(data?.body)
         }
       })
       .catch((e) => console.log('An error occurred.\n', e))
@@ -90,7 +91,7 @@ export default function CartInfo({
                 </span>
               )}
             </div>
-            {inEditMode && (
+            {(inEditMode || loading) && (
               <div className='flex items-stretch justify-start gap-4'>
                 <input
                   name='first name'
@@ -118,7 +119,7 @@ export default function CartInfo({
                 </span>
               )}
             </div>
-            {inEditMode && (
+            {(inEditMode || loading) && (
               <input
                 name='email'
                 value={buyerIdentity.email ?? ''}
@@ -137,7 +138,7 @@ export default function CartInfo({
                 </span>
               )}
             </div>
-            {inEditMode && (
+            {(inEditMode || loading) && (
               <input
                 name='phone'
                 value={buyerIdentity.phone ?? ''}
@@ -156,7 +157,7 @@ export default function CartInfo({
                 </span>
               )}
             </div>
-            {inEditMode && (
+            {(inEditMode || loading) && (
               <input
                 name='zip'
                 value={buyerIdentity.zip ?? ''}
@@ -175,7 +176,7 @@ export default function CartInfo({
                 </span>
               )}
             </div>
-            {inEditMode && (
+            {(inEditMode || loading) && (
               <input
                 name='Address 1'
                 value={buyerIdentity.address1 ?? ''}
@@ -194,7 +195,7 @@ export default function CartInfo({
                 </span>
               )}
             </div>
-            {inEditMode && (
+            {(inEditMode || loading) && (
               <input
                 name='Address 2'
                 value={buyerIdentity.address2 ?? ''}
@@ -213,7 +214,7 @@ export default function CartInfo({
                 </span>
               )}
             </div>
-            {inEditMode && (
+            {(inEditMode || loading) && (
               <input
                 name='Country'
                 value={buyerIdentity.country ?? ''}
@@ -229,12 +230,11 @@ export default function CartInfo({
             <Button
               disabled={!hasCompleteDetails}
               onClick={() => {
-                setInEditMode(false)
                 updateInfo()
               }}
               outline
             >
-              <Text size='md'>Save</Text>
+              <Text size='md'>{loading ? 'Saving' : 'Save'}</Text>
             </Button>
             <Button onClick={() => setInEditMode(false)}>
               <Text size='md' white>
