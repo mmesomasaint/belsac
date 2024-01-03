@@ -20,15 +20,18 @@ export interface BuyerIdentity {
 }
 
 export default function CartInfo({
+  cartId,
   defaultBuyerIdentity,
   checkoutUrl,
 }: {
+  cartId: string
   defaultBuyerIdentity: BuyerIdentity
   checkoutUrl: string
 }) {
   const { adding, cartPrice } = useCart()
   const router = useRouter()
   const [inEditMode, setInEditMode] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
   const [buyerIdentity, setBuyerIdentity] =
     useState<BuyerIdentity>(defaultBuyerIdentity)
   const hasCompleteDetails = useMemo(
@@ -52,6 +55,23 @@ export default function CartInfo({
   const setZip = (zip: string) => setBuyerIdentity({ ...buyerIdentity, zip })
   const setCountry = (country: string) =>
     setBuyerIdentity({ ...buyerIdentity, country })
+
+  // api fetch
+  const updateInfo = () => {
+    setLoading(false)
+
+    fetch(`/api/cart/customer?cartId=${cartId}`, {
+      method: 'POST',
+      body: JSON.stringify({customerInfo: buyerIdentity}),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setInEditMode(false)
+        }
+      })
+      .finally(() => setLoading(false))
+  }
 
   return (
     <>
@@ -207,7 +227,10 @@ export default function CartInfo({
           <div className='flex items-center justify-center gap-4'>
             <Button
               disabled={!hasCompleteDetails}
-              onClick={() => setInEditMode(false)}
+              onClick={() => {
+                setInEditMode(false)
+                updateInfo()
+              }}
               outline
             >
               <Text size='md'>Save</Text>

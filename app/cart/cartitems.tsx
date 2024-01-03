@@ -151,6 +151,7 @@ export default function CartItems() {
           </div>
           <div className='col-span-4 flex flex-col gap-16 p-8 h-fit w-full ring ring-gray-200'>
             <CartInfo
+              cartId={cart.id}
               defaultBuyerIdentity={cart.buyerIdentity}
               checkoutUrl={cart.checkoutUrl}
             />
