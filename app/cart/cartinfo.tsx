@@ -39,30 +39,27 @@ export default function CartInfo({
     [buyerIdentity]
   )
 
-  // Setters
-  const setEmail = (email: string) =>
-    setBuyerIdentity({ ...buyerIdentity, email })
-  const setFirstName = (firstName: string) =>
-    setBuyerIdentity({ ...buyerIdentity, firstName })
-  const setLastName = (lastName: string) =>
-    setBuyerIdentity({ ...buyerIdentity, lastName })
-  const setPhone = (phone: string) =>
-    setBuyerIdentity({ ...buyerIdentity, phone })
-  const setAddress1 = (address1: string) =>
-    setBuyerIdentity({ ...buyerIdentity, address1 })
-  const setAddress2 = (address2: string) =>
-    setBuyerIdentity({ ...buyerIdentity, address2 })
-  const setZip = (zip: string) => setBuyerIdentity({ ...buyerIdentity, zip })
-  const setCountry = (country: string) =>
-    setBuyerIdentity({ ...buyerIdentity, country })
-
   // api fetch
-  const updateInfo = () => {
+  const updateInfo = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     setLoading(true)
+
+    const formData = new FormData(e.currentTarget)
+    const newBuyerIdentity: BuyerIdentity = {
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      firstName: formData.get('first name') as string,
+      lastName: formData.get('last name') as string,
+      address1: formData.get('Address 1') as string,
+      address2: formData.get('Address 2') as string,
+      city: '',
+      zip: formData.get('zip') as string,
+      country: formData.get('Country') as string,
+    }
 
     fetch(`/api/cart/customer?cartId=${cartId}`, {
       method: 'POST',
-      body: JSON.stringify({ customerInfo: buyerIdentity }),
+      body: JSON.stringify({ customerInfo: newBuyerIdentity }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -77,7 +74,7 @@ export default function CartInfo({
 
   return (
     <>
-      <div className='flex flex-col gap-8 w-full overflow-hidden'>
+      <form onSubmit={updateInfo} className='flex flex-col gap-8 w-full overflow-hidden'>
         <Text size='md'>Buyer Information</Text>
         <div className='flex flex-col gap-3'>
           <div className='flex flex-col gap-2 items-stretch'>
@@ -95,17 +92,13 @@ export default function CartInfo({
               <div className='flex items-stretch justify-start gap-4'>
                 <input
                   name='first name'
-                  value={buyerIdentity.firstName ?? ''}
                   className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                   placeholder='First Name'
-                  onChange={(e) => setFirstName(e.target.value)}
                 />
                 <input
                   name='last name'
-                  value={buyerIdentity.lastName ?? ''}
                   className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                   placeholder='Last Name'
-                  onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
             )}
@@ -122,10 +115,8 @@ export default function CartInfo({
             {(inEditMode || loading) && (
               <input
                 name='email'
-                value={buyerIdentity.email ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Email'
-                onChange={(e) => setEmail(e.target.value)}
               />
             )}
           </div>
@@ -141,10 +132,8 @@ export default function CartInfo({
             {(inEditMode || loading) && (
               <input
                 name='phone'
-                value={buyerIdentity.phone ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Phone'
-                onChange={(e) => setPhone(e.target.value)}
               />
             )}
           </div>
@@ -160,10 +149,8 @@ export default function CartInfo({
             {(inEditMode || loading) && (
               <input
                 name='zip'
-                value={buyerIdentity.zip ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Zip'
-                onChange={(e) => setZip(e.target.value)}
               />
             )}
           </div>
@@ -179,10 +166,8 @@ export default function CartInfo({
             {(inEditMode || loading) && (
               <input
                 name='Address 1'
-                value={buyerIdentity.address1 ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Address 1'
-                onChange={(e) => setAddress1(e.target.value)}
               />
             )}
           </div>
@@ -198,10 +183,8 @@ export default function CartInfo({
             {(inEditMode || loading) && (
               <input
                 name='Address 2'
-                value={buyerIdentity.address2 ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Address 2'
-                onChange={(e) => setAddress2(e.target.value)}
               />
             )}
           </div>
@@ -217,25 +200,21 @@ export default function CartInfo({
             {(inEditMode || loading) && (
               <input
                 name='Country'
-                value={buyerIdentity.country ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Country'
-                onChange={(e) => setCountry(e.target.value)}
               />
             )}
           </div>
         </div>
         {inEditMode ? (
           <div className='flex items-center justify-center gap-4'>
-            <Button
+            <button
+              type='submit'
               disabled={!hasCompleteDetails}
-              onClick={() => {
-                updateInfo()
-              }}
-              outline
+              className='py-4 px-10 shadow-md border border-black/90 leading-none text-2xl font-light text-black/90 bg-transparent hover:bg-gray-300 disabled:border-black/30'
             >
               <Text size='md'>{loading ? 'Saving' : 'Save'}</Text>
-            </Button>
+            </button>
             <Button onClick={() => setInEditMode(false)}>
               <Text size='md' white>
                 Cancel
@@ -250,7 +229,7 @@ export default function CartInfo({
             </div>
           </Button>
         )}
-      </div>
+      </form>
       <div className='w-full border-b border-black/40' />
       <div className='flex flex-col gap-8'>
         <Text size='md'>Order Summary</Text>
