@@ -66,7 +66,7 @@ export default function CartInfo({
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.success) {
+        if (data?.status === '200') {
           setInEditMode(false)
         }
       })
