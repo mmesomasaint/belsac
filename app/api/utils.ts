@@ -373,17 +373,17 @@ export function generateBuyerId(customerInfo: any) {
   return {
     email,
     phone,
-    customer: {
-      firstName,
-      lastName,
-    },
     deliveryAddressPreferences: {
-      address1,
-      address2,
-      city,
-      province,
-      country,
-      zip,
+      deliveryAddress: {
+        firstName,
+        lastName,
+        address1,
+        address2,
+        city,
+        province,
+        country,
+        zip,
+      },
     },
   }
 }

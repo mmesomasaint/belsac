@@ -14,6 +14,7 @@ export async function POST(Request: NextRequest) {
   })
 
   if (status === 200) {
+    console.log("Body: ", body)
     const cart = cleanCustomerInfoResult(
       body.data?.cartBuyerIdentityUpdate?.cart
     )
