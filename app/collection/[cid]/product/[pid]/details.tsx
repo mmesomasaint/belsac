@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import {useRouter} from 'next/navigation'
 import { Button, MiniBox, OptionBox, Text } from '@/app/components/elements'
 import { HR } from '@/app/components/filter'
 import { formatMoney } from '@/lib/product'
@@ -50,6 +51,7 @@ export default function DetailsPanel({
   const [variant, setVariant] = useState<Variant>()
   const [loading, setLoading] = useState<boolean>(true)
   const { adding, updateCart } = useCart()
+  const router = useRouter()
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(
     extractDefaultOption(options)
   )
@@ -194,7 +196,10 @@ export default function DetailsPanel({
 
           <div className='flex justify-start items-center gap-8'>
             <Button
-              onClick={() => console.log('Product bought!!')}
+              onClick={() => {
+                addToCart()
+                router.push('/cart')
+              }}
               disabled={
                 (variant?.quantityAvailable ?? 0) < 1 || loading || adding
               }
