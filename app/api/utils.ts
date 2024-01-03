@@ -334,7 +334,7 @@ export function generateCartLineIds(lines: Merchandise[]) {
  * @returns A cleaner formart of customer info that can be used by components
  */
 export function cleanCustomerInfoResult(result: CustomerInfoQueryResult) {
-  const { id, buyerIdentity } = result
+  const { buyerIdentity } = result
   const {
     email,
     phone,
@@ -343,7 +343,6 @@ export function cleanCustomerInfoResult(result: CustomerInfoQueryResult) {
   } = buyerIdentity
 
   return {
-    id,
     firstName,
     lastName,
     email,
