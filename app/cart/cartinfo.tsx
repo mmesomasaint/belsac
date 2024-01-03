@@ -37,14 +37,21 @@ export default function CartInfo({
   )
 
   // Setters
-  const setEmail = (email: string) => setBuyerIdentity({ ...buyerIdentity, email })
-  const setFirstName = (firstName: string) => setBuyerIdentity({ ...buyerIdentity, firstName })
-  const setLastName = (lastName: string) => setBuyerIdentity({ ...buyerIdentity, lastName })
-  const setPhone = (phone: string) => setBuyerIdentity({ ...buyerIdentity, phone })
-  const setAddress1 = (address1: string) => setBuyerIdentity({ ...buyerIdentity, address1 })
-  const setAddress2 = (address2: string) => setBuyerIdentity({ ...buyerIdentity, address2 })
+  const setEmail = (email: string) =>
+    setBuyerIdentity({ ...buyerIdentity, email })
+  const setFirstName = (firstName: string) =>
+    setBuyerIdentity({ ...buyerIdentity, firstName })
+  const setLastName = (lastName: string) =>
+    setBuyerIdentity({ ...buyerIdentity, lastName })
+  const setPhone = (phone: string) =>
+    setBuyerIdentity({ ...buyerIdentity, phone })
+  const setAddress1 = (address1: string) =>
+    setBuyerIdentity({ ...buyerIdentity, address1 })
+  const setAddress2 = (address2: string) =>
+    setBuyerIdentity({ ...buyerIdentity, address2 })
   const setZip = (zip: string) => setBuyerIdentity({ ...buyerIdentity, zip })
-  const setCountry = (country: string) => setBuyerIdentity({ ...buyerIdentity, country })
+  const setCountry = (country: string) =>
+    setBuyerIdentity({ ...buyerIdentity, country })
 
   return (
     <>
@@ -242,12 +249,16 @@ export default function CartInfo({
             <Text size='md'>Total</Text>
             <Text size='xl'>{formatMoney(Number(cartPrice.totalAmount))}</Text>
           </div>
+          <div className='flex flex-col items-stretch gap-3'>
+            
           <Button
             disabled={adding || !hasCompleteDetails}
             onClick={() => router.push(checkoutUrl)}
-          >
+            >
             Checkout
           </Button>
+            {!hasCompleteDetails && <Text size='xs'>* Please fill up your information before checkout.</Text>}
+          </div>
         </div>
       </div>
     </>
