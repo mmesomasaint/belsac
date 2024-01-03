@@ -74,7 +74,10 @@ export default function CartInfo({
 
   return (
     <>
-      <form onSubmit={updateInfo} className='flex flex-col gap-8 w-full overflow-hidden'>
+      <form
+        onSubmit={updateInfo}
+        className='flex flex-col gap-8 w-full overflow-hidden'
+      >
         <Text size='md'>Buyer Information</Text>
         <div className='flex flex-col gap-3'>
           <div className='flex flex-col gap-2 items-stretch'>
