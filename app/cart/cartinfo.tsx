@@ -250,14 +250,17 @@ export default function CartInfo({
             <Text size='xl'>{formatMoney(Number(cartPrice.totalAmount))}</Text>
           </div>
           <div className='flex flex-col items-stretch gap-3'>
-            
-          <Button
-            disabled={adding || !hasCompleteDetails}
-            onClick={() => router.push(checkoutUrl)}
+            <Button
+              disabled={adding || !hasCompleteDetails}
+              onClick={() => router.push(checkoutUrl)}
             >
-            Checkout
-          </Button>
-            {!hasCompleteDetails && <Text size='xs'>* Please fill up your information before checkout.</Text>}
+              Checkout
+            </Button>
+            {!hasCompleteDetails && (
+              <Text size='xs'>
+                * Please fill up your information before checkout.
+              </Text>
+            )}
           </div>
         </div>
       </div>
