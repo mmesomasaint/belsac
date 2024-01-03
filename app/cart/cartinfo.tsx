@@ -36,6 +36,16 @@ export default function CartInfo({
     [buyerIdentity]
   )
 
+  // Setters
+  const setEmail = (email: string) => setBuyerIdentity({ ...buyerIdentity, email })
+  const setFirstName = (firstName: string) => setBuyerIdentity({ ...buyerIdentity, firstName })
+  const setLastName = (lastName: string) => setBuyerIdentity({ ...buyerIdentity, lastName })
+  const setPhone = (phone: string) => setBuyerIdentity({ ...buyerIdentity, phone })
+  const setAddress1 = (address1: string) => setBuyerIdentity({ ...buyerIdentity, address1 })
+  const setAddress2 = (address2: string) => setBuyerIdentity({ ...buyerIdentity, address2 })
+  const setZip = (zip: string) => setBuyerIdentity({ ...buyerIdentity, zip })
+  const setCountry = (country: string) => setBuyerIdentity({ ...buyerIdentity, country })
+
   return (
     <>
       <div className='flex flex-col gap-8 w-full overflow-hidden'>
@@ -57,14 +67,16 @@ export default function CartInfo({
                 <input
                   name='first name'
                   value={buyerIdentity.firstName}
-                  className='w-full h-10 border border-black/40 px-4 py-2 placeholder:font-light'
+                  className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                   placeholder='First Name'
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
                 <input
                   name='last name'
                   value={buyerIdentity.lastName}
-                  className='w-full h-10 border border-black/40 px-4 py-2 placeholder:font-light'
+                  className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                   placeholder='Last Name'
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
             )}
@@ -82,8 +94,9 @@ export default function CartInfo({
               <input
                 name='email'
                 value={buyerIdentity.email}
-                className='w-full h-10 border border-black/40 px-4 py-2 placeholder:font-light'
+                className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Email'
+                onChange={(e) => setEmail(e.target.value)}
               />
             )}
           </div>
@@ -100,8 +113,9 @@ export default function CartInfo({
               <input
                 name='phone'
                 value={buyerIdentity.phone}
-                className='w-full h-10 border border-black/40 px-4 py-2 placeholder:font-light'
+                className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Phone'
+                onChange={(e) => setPhone(e.target.value)}
               />
             )}
           </div>
@@ -118,8 +132,9 @@ export default function CartInfo({
               <input
                 name='zip'
                 value={buyerIdentity.zip}
-                className='w-full h-10 border border-black/40 px-4 py-2 placeholder:font-light'
+                className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Zip'
+                onChange={(e) => setZip(e.target.value)}
               />
             )}
           </div>
@@ -136,26 +151,9 @@ export default function CartInfo({
               <input
                 name='Address 1'
                 value={buyerIdentity.address1}
-                className='w-full h-10 border border-black/40 px-4 py-2 placeholder:font-light'
+                className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Address 1'
-              />
-            )}
-          </div>
-          <div className='flex flex-col gap-2 items-stretch'>
-            <div className='flex items-center justify-between gap-4'>
-              <Text size='xs'>Address 1</Text>
-              {!inEditMode && (
-                <span className='text-clamp-1'>
-                  <Text size='sm'>{buyerIdentity.address1}</Text>
-                </span>
-              )}
-            </div>
-            {inEditMode && (
-              <input
-                name='Address 1'
-                value={buyerIdentity.address1}
-                className='w-full h-10 border border-black/40 px-4 py-2 placeholder:font-light'
-                placeholder='Address 1'
+                onChange={(e) => setAddress1(e.target.value)}
               />
             )}
           </div>
@@ -172,8 +170,9 @@ export default function CartInfo({
               <input
                 name='Address 2'
                 value={buyerIdentity.address2}
-                className='w-full h-10 border border-black/40 px-4 py-2 placeholder:font-light'
+                className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Address 2'
+                onChange={(e) => setAddress2(e.target.value)}
               />
             )}
           </div>
@@ -190,8 +189,9 @@ export default function CartInfo({
               <input
                 name='Country'
                 value={buyerIdentity.country}
-                className='w-full h-10 border border-black/40 px-4 py-2 placeholder:font-light'
+                className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Country'
+                onChange={(e) => setCountry(e.target.value)}
               />
             )}
           </div>
