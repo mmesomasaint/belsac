@@ -62,7 +62,7 @@ export default function CartInfo({
 
     fetch(`/api/cart/customer?cartId=${cartId}`, {
       method: 'POST',
-      body: JSON.stringify({customerInfo: buyerIdentity}),
+      body: JSON.stringify({ customerInfo: buyerIdentity }),
     })
       .then((res) => res.json())
       .then((data) => {
