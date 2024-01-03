@@ -70,7 +70,7 @@ export default function CartInfo({
           setInEditMode(false)
         }
       })
-      .catch((e) => console.log("An error occurred.\n", e))
+      .catch((e) => console.log('An error occurred.\n', e))
       .finally(() => setLoading(false))
   }
 
