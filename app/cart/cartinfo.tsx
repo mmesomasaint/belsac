@@ -35,7 +35,7 @@ export default function CartInfo({
   const [buyerIdentity, setBuyerIdentity] =
     useState<BuyerIdentity>(defaultBuyerIdentity)
   const hasCompleteDetails = useMemo(
-    () => Object.values(buyerIdentity).some((value) => value === ''),
+    () => Object.values(buyerIdentity).every((value) => value !== ''),
     [buyerIdentity]
   )
 
@@ -70,6 +70,7 @@ export default function CartInfo({
           setInEditMode(false)
         }
       })
+      .catch((e) => console.log("An error occurred.\n", e))
       .finally(() => setLoading(false))
   }
 
@@ -93,14 +94,14 @@ export default function CartInfo({
               <div className='flex items-stretch justify-start gap-4'>
                 <input
                   name='first name'
-                  value={buyerIdentity.firstName}
+                  value={buyerIdentity.firstName ?? ''}
                   className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                   placeholder='First Name'
                   onChange={(e) => setFirstName(e.target.value)}
                 />
                 <input
                   name='last name'
-                  value={buyerIdentity.lastName}
+                  value={buyerIdentity.lastName ?? ''}
                   className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                   placeholder='Last Name'
                   onChange={(e) => setLastName(e.target.value)}
@@ -120,7 +121,7 @@ export default function CartInfo({
             {inEditMode && (
               <input
                 name='email'
-                value={buyerIdentity.email}
+                value={buyerIdentity.email ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Email'
                 onChange={(e) => setEmail(e.target.value)}
@@ -139,7 +140,7 @@ export default function CartInfo({
             {inEditMode && (
               <input
                 name='phone'
-                value={buyerIdentity.phone}
+                value={buyerIdentity.phone ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Phone'
                 onChange={(e) => setPhone(e.target.value)}
@@ -158,7 +159,7 @@ export default function CartInfo({
             {inEditMode && (
               <input
                 name='zip'
-                value={buyerIdentity.zip}
+                value={buyerIdentity.zip ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Zip'
                 onChange={(e) => setZip(e.target.value)}
@@ -177,7 +178,7 @@ export default function CartInfo({
             {inEditMode && (
               <input
                 name='Address 1'
-                value={buyerIdentity.address1}
+                value={buyerIdentity.address1 ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Address 1'
                 onChange={(e) => setAddress1(e.target.value)}
@@ -196,7 +197,7 @@ export default function CartInfo({
             {inEditMode && (
               <input
                 name='Address 2'
-                value={buyerIdentity.address2}
+                value={buyerIdentity.address2 ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Address 2'
                 onChange={(e) => setAddress2(e.target.value)}
@@ -215,7 +216,7 @@ export default function CartInfo({
             {inEditMode && (
               <input
                 name='Country'
-                value={buyerIdentity.country}
+                value={buyerIdentity.country ?? ''}
                 className='w-full h-10 border border-black/40 focus:outline-black px-4 py-2 placeholder:font-light'
                 placeholder='Country'
                 onChange={(e) => setCountry(e.target.value)}
@@ -274,7 +275,7 @@ export default function CartInfo({
           </div>
           <div className='flex flex-col items-stretch gap-3'>
             <Button
-              disabled={adding || !hasCompleteDetails}
+              disabled={adding || !hasCompleteDetails || loading}
               onClick={() => router.push(checkoutUrl)}
             >
               Checkout
